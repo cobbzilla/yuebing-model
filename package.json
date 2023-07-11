@@ -1,0 +1,45 @@
+{
+  "name": "yuebing-model",
+  "version": "2.0.0",
+  "type": "module",
+  "description": "Data model for yuebing",
+  "keywords": [
+    "yuebing",
+    "model"
+  ],
+  "homepage": "https://github.com/cobbzilla/yuebing-model",
+  "author": "Jonathan Cobb <bqppl0m2@duck.com> (https://github.com/cobbzilla)",
+  "funding": {
+    "type": "patreon",
+    "url": "https://www.patreon.com/cobbzilla"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cobbzilla/yuebing-model"
+  },
+  "license": "Apache-2.0",
+  "scripts": {
+    "tsc": "tsc --module es2020 -p tsconfig.json && tsc --module es2020 -p tsconfig-cjs.json",
+    "lint": "npx eslint src",
+    "lint:fix": "npm run lint -- --fix",
+    "prettier": "npx prettier src --check",
+    "prettier:fix": "npm run prettier -- --write",
+    "orm-gen": "node lib/esm/scripts/generate.js"
+  },
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "files": [
+    "lib/"
+  ],
+  "devDependencies": {
+    "@types/node": "^20.3.3",
+    "@typescript-eslint/eslint-plugin": "^5.61.0",
+    "@typescript-eslint/parser": "^5.61.0",
+    "eslint": "^8.44.0",
+    "eslint-config-prettier": "^8.8.0",
+    "mobiletto-orm": "^2.0.3",
+    "prettier": "^2.8.8",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^5.1.6"
+  }
+}

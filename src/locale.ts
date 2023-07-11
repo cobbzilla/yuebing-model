@@ -1,0 +1,26 @@
+export const YUEBING_LOCALES: string[] = [
+    "ar",
+    "bn",
+    "de",
+    "en",
+    "es",
+    "fr",
+    "ha",
+    "hi",
+    "id",
+    "it",
+    "ja",
+    "ko",
+    "mr",
+    "pl",
+    "pt",
+    "ru",
+    "sw",
+    "tl",
+    "tr",
+    "ur",
+    "vi",
+    "zh",
+];
+
+export const YUEBING_DEFAULT_LOCALE = "en";
