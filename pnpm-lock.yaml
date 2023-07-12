@@ -21,8 +21,8 @@ devDependencies:
     specifier: ^8.8.0
     version: 8.8.0(eslint@8.44.0)
   mobiletto-orm:
-    specifier: ^2.0.6
-    version: 2.0.6
+    specifier: ^2.0.7
+    version: 2.0.7
   prettier:
     specifier: ^2.8.8
     version: 2.8.8
@@ -1025,17 +1025,17 @@ packages:
       winston: 3.10.0
     dev: true
 
-  /mobiletto-orm-typedef@2.0.21:
-    resolution: {integrity: sha512-JKz7zyzyx8zZDKRIC0YMccN2nbNK/16qof3PS3bJcBeVVkwP2n1nhlXSAL/oyaxR3Kun85TNFvJtMyLmaVKjEw==}
+  /mobiletto-orm-typedef@2.0.22:
+    resolution: {integrity: sha512-QPCEmt0iCeI3uOuHl4Eof0M8CTRj0lFKbwbyZWhpiIpMR1PmWcCO4Nol02EA4Z5vjz6u9L4mJs/dw9ZEVEswqw==}
     dependencies:
       shasum: 1.0.2
     dev: true
 
-  /mobiletto-orm@2.0.6:
-    resolution: {integrity: sha512-Mnsn4hdCa4Zgh2cWyL7cKNr8mDqsUnS4P+5DOEVlyHZxEKXQ+MiVlIsPZWX66dn6mvZrBgz62fo5K4DfqHI4zQ==}
+  /mobiletto-orm@2.0.7:
+    resolution: {integrity: sha512-NIGqEoMckfaH/6h4nQHmhE/ex1vdjH90DhuFv9umjinIsC7j/1FYEcZ3YSrQbN4aQJLlFRmJptsFYQCN4uYpjg==}
     dependencies:
       mobiletto-base: 2.0.29
-      mobiletto-orm-typedef: 2.0.21
+      mobiletto-orm-typedef: 2.0.22
     transitivePeerDependencies:
       - supports-color
     dev: true
