@@ -1,4 +1,11 @@
-export type UserType = {
+export type AccountType = {
+    _meta?: {
+        id: string;
+        version: string;
+        removed?: boolean;
+        ctime: number;
+        mtime: number;
+    };
     username: string;
     email: string;
     password: string;
@@ -7,7 +14,4 @@ export type UserType = {
     locale: string;
     flags?: string[];
     verified?: number;
-    id: string;
-    ctime?: number;
-    mtime?: number;
 };

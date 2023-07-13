@@ -4,9 +4,10 @@ import { YUEBING_LOCALES, YUEBING_DEFAULT_LOCALE } from "../locale.js";
 
 import * as valid from "../validation.js";
 
-export const USER_TYPEDEF = new MobilettoOrmTypeDef({
+export const ACCOUNT_TYPEDEF = new MobilettoOrmTypeDef({
     typeName: "account",
-    tableFields: ["username", "email", "firstName", "lastName", "locale", "verified", "ctime", "mtime"],
+    idPrefix: "acct",
+    tableFields: ["username", "email", "firstName", "lastName", "locale", "verified", "_meta.ctime", "_meta.mtime"],
     fields: {
         username: {
             type: "string",
@@ -80,7 +81,3 @@ export const USER_TYPEDEF = new MobilettoOrmTypeDef({
         },
     },
 });
-
-// hide id field in UI (username becomes the id)
-USER_TYPEDEF.fields.id.control = "hidden";
-USER_TYPEDEF.fields.id.redact = false;
