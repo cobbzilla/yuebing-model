@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   mobiletto-orm-typedef-gen:
-    specifier: ^2.1.0
-    version: 2.1.0
+    specifier: ^2.1.5
+    version: 2.1.5
 
 devDependencies:
   '@types/node':
@@ -776,15 +776,15 @@ packages:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
     dev: false
 
-  /mobiletto-orm-typedef-gen@2.1.0:
-    resolution: {integrity: sha512-8shlw4XHtKsIlHJfD1OBHcVn7Gqtp28MpadnbbQH4t6PUIBBsQGhCuQ28NosQBULpXMfFfb2Sa19r3P4iSlQXA==}
+  /mobiletto-orm-typedef-gen@2.1.5:
+    resolution: {integrity: sha512-bcEg+EY1yH1cTaa9AvphCxgsyBV90lFJmp7WZ4RQ31YYRHm8DxtZNN7k/HyVPbnzchbeQwP1jhNLaYeuX2+ukw==}
     dependencies:
       handlebars: 4.7.7
-      mobiletto-orm-typedef: 2.1.9
+      mobiletto-orm-typedef: 2.1.13
     dev: false
 
-  /mobiletto-orm-typedef@2.1.9:
-    resolution: {integrity: sha512-n3IWyI4xrhJ+mbrNsav1xzWgbyekpeorUmG0rySGrUWNSxj6LlfRpKuLCGOkuZLgWeGrdY203NZ6J4n8Pi/K9A==}
+  /mobiletto-orm-typedef@2.1.13:
+    resolution: {integrity: sha512-XRuYHnJlexycoIhHm2UpWW48eEzVXevlSIYT8DFWkCqOWNy2WF7f2Mwk0kcABC4UykWPgl0webhE7unhCm5Y0g==}
     dependencies:
       shasum: 1.0.2
       uuid: 9.0.0

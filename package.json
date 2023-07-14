@@ -1,6 +1,6 @@
 {
   "name": "yuebing-model",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "type": "module",
   "description": "Data model for yuebing",
   "keywords": [
@@ -43,6 +43,6 @@
     "yup": "^1.2.0"
   },
   "dependencies": {
-    "mobiletto-orm-typedef-gen": "^2.1.0"
+    "mobiletto-orm-typedef-gen": "^2.1.5"
   }
 }
