@@ -1,6 +1,6 @@
 {
   "name": "yuebing-model",
-  "type": "commonjs",
+  "type": "module",
   "main": "./index.js",
   "homepage": "https://github.com/cobbzilla/yuebing",
   "author": "Jonathan Cobb <bqppl0m2@duck.com> (https://github.com/cobbzilla)",
