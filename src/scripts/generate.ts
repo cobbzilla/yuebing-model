@@ -5,7 +5,7 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-import { generateTypeScriptType, generateYup } from "mobiletto-orm-typedef-gen/lib/esm/index.js";
+import { generateTypeScriptType, generateYup } from "mobiletto-orm-typedef-gen";
 import { ACCOUNT_TYPEDEF, AUTH_ACCOUNT_TYPEDEF } from "../typedef/model/account.js";
 import { USERNAME_AND_PASSWORD_TYPEDEF } from "../typedef/auth/usernameAndPassword.js";
 import { REGISTRATION_TYPEDEF } from "../typedef/auth/registration.js";

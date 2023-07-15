@@ -1,4 +1,4 @@
-import { MobilettoOrmTypeDef } from "mobiletto-orm-typedef-gen/lib/esm/index.js";
+import { MobilettoOrmTypeDef } from "mobiletto-orm-typedef-gen";
 
 import { primaryAccountFields, ACCOUNT_TABLE_FIELDS } from "../model/account.js";
 

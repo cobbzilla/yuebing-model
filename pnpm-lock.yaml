@@ -26,8 +26,8 @@ devDependencies:
     specifier: ^8.8.0
     version: 8.8.0(eslint@8.44.0)
   mobiletto-orm-typedef-gen:
-    specifier: ^2.1.17
-    version: 2.1.17
+    specifier: ^2.1.19
+    version: 2.1.19
   prettier:
     specifier: ^2.8.8
     version: 2.8.8
@@ -778,8 +778,8 @@ packages:
   /minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
 
-  /mobiletto-orm-typedef-gen@2.1.17:
-    resolution: {integrity: sha512-VHdn8vYkXnz9Sh91xTX9uvldUCXt74m6QO1MV5exAE9BZaQRhsPKBJY1q/4baL3WPL31s3MzR/2j2HTM6AH+cQ==}
+  /mobiletto-orm-typedef-gen@2.1.19:
+    resolution: {integrity: sha512-vMPzuWZUo7pwMU5o8bAR/D8UVZGkIIuOs8fkwT2suO/KlCOG4suQFo+o54FftrAmR2auw4nW4wTQYvGKdg397w==}
     dependencies:
       handlebars: 4.7.7
       mobiletto-orm-typedef: 2.1.20
