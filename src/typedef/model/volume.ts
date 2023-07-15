@@ -1,5 +1,4 @@
-// import { MobilettoOrmTypeDef, MobilettoOrmFieldDefConfigs, MobilettoOrmRawValue } from "mobiletto-orm-typedef-gen";
-import * as gen from "mobiletto-orm-typedef-gen";
+import { MobilettoOrmTypeDef, MobilettoOrmFieldDefConfigs, MobilettoOrmRawValue } from "mobiletto-orm-typedef";
 
 import * as valid from "../../validation.js";
 import { parseMessage } from "../../locale.js";
@@ -7,7 +6,7 @@ import { parseMessage } from "../../locale.js";
 export const VOLUME_MOUNT_SOURCE = "source";
 export const VOLUME_MOUNT_DESTINATION = "destination";
 
-const LOCAL_FIELDS: gen.MobilettoOrmFieldDefConfigs = {
+const LOCAL_FIELDS: MobilettoOrmFieldDefConfigs = {
     key: {
         type: "string",
         label: "label_volumeType_local_field_key",
@@ -27,7 +26,7 @@ const LOCAL_FIELDS: gen.MobilettoOrmFieldDefConfigs = {
     },
 };
 
-const S3_FIELDS: gen.MobilettoOrmFieldDefConfigs = {
+const S3_FIELDS: MobilettoOrmFieldDefConfigs = {
     key: {
         type: "string",
         label: "label_volumeType_s3_field_key",
@@ -108,7 +107,7 @@ const S3_FIELDS: gen.MobilettoOrmFieldDefConfigs = {
     },
 };
 
-const B2_FIELDS: gen.MobilettoOrmFieldDefConfigs = {
+const B2_FIELDS: MobilettoOrmFieldDefConfigs = {
     key: {
         type: "string",
         label: "label_volumeType_b2_field_key",
@@ -162,14 +161,14 @@ export const VOL_TYPE_LOCAL = "local";
 export const VOL_TYPE_S3 = "s3";
 export const VOL_TYPE_B2 = "b2";
 
-const VOLUME_TYPES: Record<string, gen.MobilettoOrmFieldDefConfigs> = {};
+const VOLUME_TYPES: Record<string, MobilettoOrmFieldDefConfigs> = {};
 VOLUME_TYPES[VOL_TYPE_LOCAL] = LOCAL_FIELDS;
 VOLUME_TYPES[VOL_TYPE_S3] = S3_FIELDS;
 VOLUME_TYPES[VOL_TYPE_B2] = B2_FIELDS;
 
 export const DEFAULT_ENCRYPTION_ALGO = "aes-256-cbc";
 
-export const VOLUME_TYPEDEF = new gen.MobilettoOrmTypeDef({
+export const VOLUME_TYPEDEF = new MobilettoOrmTypeDef({
     typeName: "volume",
     tableFields: ["name", "type", "mount", "system", "ctime", "mtime"],
     fields: {
@@ -178,7 +177,7 @@ export const VOLUME_TYPEDEF = new gen.MobilettoOrmTypeDef({
             primary: true,
             min: 3,
             max: 100,
-            render: (v: gen.MobilettoOrmRawValue, messages: Record<string, string>, title: string): string =>
+            render: (v: MobilettoOrmRawValue, messages: Record<string, string>, title: string): string =>
                 valid.isSelfVolume(v as string)
                     ? parseMessage("admin_label_self_volume", messages, { title })
                     : (v as string),
@@ -200,7 +199,7 @@ export const VOLUME_TYPEDEF = new gen.MobilettoOrmTypeDef({
         system: {
             type: "boolean",
             default: false,
-            render: (v: gen.MobilettoOrmRawValue, messages: Record<string, string>, title: string): string =>
+            render: (v: MobilettoOrmRawValue, messages: Record<string, string>, title: string): string =>
                 valid.isSelfVolume(v as string) ? "true" : (v as string),
         },
         type: {
@@ -210,7 +209,7 @@ export const VOLUME_TYPEDEF = new gen.MobilettoOrmTypeDef({
             }),
             required: true,
             updatable: false,
-            render: (v: gen.MobilettoOrmRawValue, messages, title): string =>
+            render: (v: MobilettoOrmRawValue, messages, title): string =>
                 valid.isSelfVolume(v as string)
                     ? parseMessage("label_volumeType_system", messages, { title })
                     : (v as string),

@@ -1,4 +1,4 @@
-import { MobilettoOrmTypeDef, MobilettoOrmFieldDefConfigs } from "mobiletto-orm-typedef-gen";
+import { MobilettoOrmTypeDef, MobilettoOrmFieldDefConfigs } from "mobiletto-orm-typedef";
 
 import { YUEBING_LOCALES, YUEBING_DEFAULT_LOCALE } from "../../locale.js";
 

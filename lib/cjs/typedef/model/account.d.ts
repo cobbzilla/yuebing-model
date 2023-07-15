@@ -1,4 +1,4 @@
-import { MobilettoOrmTypeDef, MobilettoOrmFieldDefConfigs } from "mobiletto-orm-typedef-gen";
+import { MobilettoOrmTypeDef, MobilettoOrmFieldDefConfigs } from "mobiletto-orm-typedef";
 export declare const LOGIN_MIN_LENGTH = 2;
 export declare const LOGIN_MAX_LENGTH = 100;
 export declare const PASSWORD_MIN_LENGTH = 8;
