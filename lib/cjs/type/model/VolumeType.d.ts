@@ -1,3 +1,4 @@
+import { MobilettoOrmObject } from "mobiletto-orm-typedef";
 export type Volume_encryptionType = {
     encryptionKey: string;
     encryptionIV?: string;
@@ -23,14 +24,7 @@ export type Volume_localType = {
     key: string;
     mode?: string;
 };
-export type VolumeType = {
-    _meta?: {
-        id: string;
-        version: string;
-        removed?: boolean;
-        ctime: number;
-        mtime: number;
-    };
+export type VolumeType = MobilettoOrmObject & {
     name: string;
     mount: string;
     readOnly?: boolean;

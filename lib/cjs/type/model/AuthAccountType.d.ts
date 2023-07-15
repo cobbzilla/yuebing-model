@@ -1,11 +1,5 @@
-export type AuthAccountType = {
-    _meta?: {
-        id: string;
-        version: string;
-        removed?: boolean;
-        ctime: number;
-        mtime: number;
-    };
+import { MobilettoOrmObject } from "mobiletto-orm-typedef";
+export type AuthAccountType = MobilettoOrmObject & {
     username: string;
     email: string;
     password: string;

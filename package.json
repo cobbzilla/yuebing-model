@@ -39,7 +39,7 @@
     "eslint": "^8.44.0",
     "eslint-config-prettier": "^8.8.0",
     "mobiletto-orm-typedef": "^2.1.20",
-    "mobiletto-orm-typedef-gen": "^2.1.19",
+    "mobiletto-orm-typedef-gen": "^2.1.22",
     "prettier": "^2.8.8",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^5.1.6",

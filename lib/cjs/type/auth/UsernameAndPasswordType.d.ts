@@ -1,11 +1,5 @@
-export type UsernameAndPasswordType = {
-    _meta?: {
-        id: string;
-        version: string;
-        removed?: boolean;
-        ctime: number;
-        mtime: number;
-    };
+import { MobilettoOrmObject } from "mobiletto-orm-typedef";
+export type UsernameAndPasswordType = MobilettoOrmObject & {
     usernameOrEmail: string;
     password: string;
 };
