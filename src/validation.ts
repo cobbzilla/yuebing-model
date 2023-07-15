@@ -40,3 +40,10 @@ export const findValidEmails = (muck: string | string[], splitOn = /[\s,<>]+/g):
     const list = typeof muck === "string" ? muck.split(splitOn) : Array.isArray(muck) ? muck : [];
     return list.filter((e) => isValidEmail(e));
 };
+
+export const SELF_VOLUME_NAME = " ~ this ~ ";
+
+export const isSelfVolume = (volume?: string | { name?: string } | null) =>
+    volume &&
+    ((typeof volume === "string" && volume === SELF_VOLUME_NAME) ||
+        (volume as { name?: string }).name === SELF_VOLUME_NAME);

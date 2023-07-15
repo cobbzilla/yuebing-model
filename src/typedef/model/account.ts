@@ -76,16 +76,41 @@ export const primaryAccountFields: MobilettoOrmFieldDefConfigs = {
     },
 };
 
+export const ACCOUNT_TABLE_FIELDS = [
+    "username",
+    "email",
+    "firstName",
+    "lastName",
+    "locale",
+    "verified",
+    "_meta.ctime",
+    "_meta.mtime",
+];
+
 export const ACCOUNT_TYPEDEF = new MobilettoOrmTypeDef({
     typeName: "account",
     idPrefix: "acct",
-    tableFields: ["username", "email", "firstName", "lastName", "locale", "verified", "_meta.ctime", "_meta.mtime"],
+    tableFields: ACCOUNT_TABLE_FIELDS,
     fields: {
         ...primaryAccountFields,
         verified: {
             type: "number",
             control: "label",
             render: "datetime",
+            tabIndex: 8,
+        },
+    },
+});
+
+export const AUTH_ACCOUNT_TYPEDEF = new MobilettoOrmTypeDef({
+    typeName: "authAccount",
+    idPrefix: "acct",
+    tableFields: ACCOUNT_TABLE_FIELDS,
+    fields: {
+        ...ACCOUNT_TYPEDEF.fields,
+        session: {
+            type: "string",
+            control: "label",
             tabIndex: 8,
         },
     },
