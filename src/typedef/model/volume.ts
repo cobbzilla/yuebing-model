@@ -1,4 +1,9 @@
-import { MobilettoOrmTypeDef, MobilettoOrmFieldDefConfigs, MobilettoOrmRawValue } from "mobiletto-orm-typedef";
+import {
+    MobilettoOrmTypeDef,
+    MobilettoOrmFieldDefConfigs,
+    MobilettoOrmRawValue,
+    MobilettoOrmObject,
+} from "mobiletto-orm-typedef";
 
 import * as valid from "../../validation.js";
 import { parseMessage } from "../../locale.js";
@@ -165,6 +170,13 @@ const VOLUME_TYPES: Record<string, MobilettoOrmFieldDefConfigs> = {};
 VOLUME_TYPES[VOL_TYPE_LOCAL] = LOCAL_FIELDS;
 VOLUME_TYPES[VOL_TYPE_S3] = S3_FIELDS;
 VOLUME_TYPES[VOL_TYPE_B2] = B2_FIELDS;
+
+const notKeyOrSecret = (k: string): boolean => k !== "key" && k !== "secret";
+
+export const VOLUME_OPTS_FIELDS: Record<string, string[]> = {};
+VOLUME_OPTS_FIELDS[VOL_TYPE_LOCAL] = Object.keys(LOCAL_FIELDS).filter(notKeyOrSecret);
+VOLUME_OPTS_FIELDS[VOL_TYPE_S3] = Object.keys(S3_FIELDS).filter(notKeyOrSecret);
+VOLUME_OPTS_FIELDS[VOL_TYPE_B2] = Object.keys(B2_FIELDS).filter(notKeyOrSecret);
 
 export const DEFAULT_ENCRYPTION_ALGO = "aes-256-cbc";
 

@@ -17,10 +17,7 @@ generateYup(ACCOUNT_TYPEDEF, { outfile: `${__dirname}/../../../src/type/model/Ac
 generateTypeScriptType(AUTH_ACCOUNT_TYPEDEF, { outfile: `${__dirname}/../../../src/type/model/AuthAccountType.ts` });
 generateYup(AUTH_ACCOUNT_TYPEDEF, { outfile: `${__dirname}/../../../src/type/model/AuthAccountSchema.ts` });
 
-generateTypeScriptType(VOLUME_TYPEDEF, {
-    outfile: `${__dirname}/../../../src/type/model/VolumeType.ts`,
-    header: 'import { VOL_TYPE_LOCAL, VOL_TYPE_S3, VOL_TYPE_B2 } from "../../typedef/model/volume.js";\n',
-});
+generateTypeScriptType(VOLUME_TYPEDEF, { outfile: `${__dirname}/../../../src/type/model/VolumeType.ts` });
 generateYup(VOLUME_TYPEDEF, {
     outfile: `${__dirname}/../../../src/type/model/VolumeSchema.ts`,
     header: 'import { VOL_TYPE_LOCAL, VOL_TYPE_S3, VOL_TYPE_B2 } from "../../typedef/model/volume.js";\n',
