@@ -1,6 +1,6 @@
 {
   "name": "yuebing-model",
-  "version": "2.1.11",
+  "version": "2.2.0",
   "type": "module",
   "export": "./lib/esm/index.js",
   "description": "Data model for yuebing",

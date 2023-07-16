@@ -24,6 +24,13 @@ generateYup(VOLUME_TYPEDEF, {
 });
 
 generateTypeScriptType(USERNAME_AND_PASSWORD_TYPEDEF, {
+    outfile: `${__dirname}/../../../src/type/auth/SessionType.ts`,
+});
+generateYup(USERNAME_AND_PASSWORD_TYPEDEF, {
+    outfile: `${__dirname}/../../../src/type/auth/SessionSchema.ts`,
+});
+
+generateTypeScriptType(USERNAME_AND_PASSWORD_TYPEDEF, {
     outfile: `${__dirname}/../../../src/type/auth/UsernameAndPasswordType.ts`,
 });
 generateYup(USERNAME_AND_PASSWORD_TYPEDEF, {
