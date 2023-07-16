@@ -1,8 +1,8 @@
 import * as yup from "yup";
-export declare const UsernameAndPasswordSchema: yup.ObjectSchema<{
-    usernameOrEmail: string;
-    password: string;
+export declare const SessionSchema: yup.ObjectSchema<{
+    account: string;
+    token: string;
 }, yup.AnyObject, {
-    usernameOrEmail: undefined;
-    password: undefined;
+    account: undefined;
+    token: undefined;
 }, "">;
