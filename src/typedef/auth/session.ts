@@ -5,17 +5,18 @@ export const SessionTypeDef = new MobilettoOrmTypeDef({
     typeName: "session",
     idPrefix: "session",
     fields: {
+        token: {
+            primary: true,
+            control: "password",
+            min: MIN_ID_LENGTH,
+            max: MIN_ID_LENGTH + 100,
+        },
         account: {
             required: true,
             type: "string",
             min: MIN_ID_LENGTH,
             max: MIN_ID_LENGTH + 100, // let's be generous
-        },
-        token: {
-            required: true,
-            control: "password",
-            min: MIN_ID_LENGTH,
-            max: MIN_ID_LENGTH + 100,
+            updatable: false,
         },
     },
 });
