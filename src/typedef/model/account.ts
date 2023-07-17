@@ -87,7 +87,7 @@ export const ACCOUNT_TABLE_FIELDS = [
     "_meta.mtime",
 ];
 
-export const ACCOUNT_TYPEDEF = new MobilettoOrmTypeDef({
+export const AccountTypeDef = new MobilettoOrmTypeDef({
     typeName: "account",
     idPrefix: "acct",
     tableFields: ACCOUNT_TABLE_FIELDS,
@@ -102,12 +102,12 @@ export const ACCOUNT_TYPEDEF = new MobilettoOrmTypeDef({
     },
 });
 
-export const AUTH_ACCOUNT_TYPEDEF = new MobilettoOrmTypeDef({
+export const AuthAccountTypeDef = new MobilettoOrmTypeDef({
     typeName: "authAccount",
     idPrefix: "acct",
     tableFields: ACCOUNT_TABLE_FIELDS,
     fields: {
-        ...ACCOUNT_TYPEDEF.fields,
+        ...AccountTypeDef.fields,
         session: {
             type: "string",
             control: "label",

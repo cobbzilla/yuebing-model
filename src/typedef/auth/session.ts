@@ -1,7 +1,7 @@
 import { MobilettoOrmTypeDef } from "mobiletto-orm-typedef-gen";
 import { MIN_ID_LENGTH } from "mobiletto-orm-typedef";
 
-export const SESSION_TYPEDEF = new MobilettoOrmTypeDef({
+export const SessionTypeDef = new MobilettoOrmTypeDef({
     typeName: "session",
     idPrefix: "session",
     fields: {
