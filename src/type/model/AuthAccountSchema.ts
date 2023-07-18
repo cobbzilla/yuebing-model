@@ -8,8 +8,8 @@ export const AuthAccountSchema = yup.object({
         .typeError('username_invalid')
         .required('username_required'),
     email: yup.string()
-        .min(2, 'email_min')
-        .max(100, 'email_max')
+        .min(6, 'email_min')
+        .max(200, 'email_max')
         .matches(/^[A-Z\d][A-Z\d._%+-]*@[A-Z\d.-]+\.[A-Z]{2,24}$/i, 'email_regex')
         .typeError('email_invalid')
         .required('email_required'),
@@ -31,8 +31,7 @@ export const AuthAccountSchema = yup.object({
     locale: yup.string()
         .oneOf(["ar","bn","de","en","es","fr","ha","hi","id","it","ja","ko","mr","pl","pt","ru","sw","tl","tr","ur","vi","zh"], 'locale_enum')
         .typeError('locale_invalid')
-        .required('locale_required')
-        .default("en"),
+        .required('locale_required'),
     flags: yup.array().of(yup.string()
             .oneOf(["flag_welcome_email","flag_can_comment","flag_can_tag","flag_can_edit_metadata","flag_can_set_thumbnail"], 'flags_enum')
             .typeError('flags_invalid'))

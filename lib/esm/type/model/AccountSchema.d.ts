@@ -14,7 +14,7 @@ export declare const AccountSchema: yup.ObjectSchema<{
     password: undefined;
     firstName: undefined;
     lastName: undefined;
-    locale: "en";
+    locale: undefined;
     flags: yup.Maybe<yup.Maybe<("flag_welcome_email" | "flag_can_comment" | "flag_can_tag" | "flag_can_edit_metadata" | "flag_can_set_thumbnail" | undefined)[] | undefined>>;
     verified: undefined;
 }, "">;

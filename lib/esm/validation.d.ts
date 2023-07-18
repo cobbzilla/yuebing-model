@@ -1,4 +1,5 @@
 export declare const EMAIL_REGEX: RegExp;
+export declare const LIST_OF_EMAILS_REGEX: RegExp;
 export declare const PATH_REGEX: RegExp;
 export declare const REGEX_VALIDATORS: {
     locale: RegExp;

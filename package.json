@@ -1,8 +1,7 @@
 {
   "name": "yuebing-model",
-  "version": "2.2.3",
+  "version": "2.2.5",
   "type": "module",
-  "export": "./lib/esm/index.js",
   "description": "Data model for yuebing",
   "keywords": [
     "yuebing",
@@ -16,19 +15,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cobbzilla/yuebing-model"
+    "url": "https://github.com/cobbzilla/yuebing-model.git"
   },
   "license": "Apache-2.0",
   "scripts": {
-    "tsc": "tsc --module es2020 -p tsconfig.json && tsc --module es2020 -p tsconfig-cjs.json",
+    "tsc": "tsc --module es2020 -p tsconfig.json",
     "lint": "npx eslint src",
     "lint:fix": "npm run lint -- --fix",
     "prettier": "npx prettier src --check",
     "prettier:fix": "npm run prettier -- --write",
     "orm-gen": "node lib/esm/scripts/generate.js"
   },
-  "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
+  "exports": {
+    ".": "./lib/esm/index.js"
+  },
   "files": [
     "lib/"
   ],
@@ -38,11 +39,12 @@
     "@typescript-eslint/parser": "^5.61.0",
     "eslint": "^8.44.0",
     "eslint-config-prettier": "^8.8.0",
-    "mobiletto-orm-typedef": "^2.1.21",
-    "mobiletto-orm-typedef-gen": "^2.1.23",
+    "mobiletto-orm-typedef": "^2.1.25",
+    "mobiletto-orm-typedef-gen": "^2.1.25",
     "prettier": "^2.8.8",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^5.1.6",
+    "yuebing-messages": "^2.0.0",
     "yup": "^1.2.0"
   },
   "dependencies": {

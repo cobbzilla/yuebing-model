@@ -1,11 +1,12 @@
 import { MobilettoOrmTypeDef, MobilettoOrmFieldDefConfigs } from "mobiletto-orm-typedef";
 
-import { YUEBING_LOCALES, YUEBING_DEFAULT_LOCALE } from "../../locale.js";
-
 import * as valid from "../../validation.js";
+import { YUEBING_LOCALES } from "yuebing-messages";
 
 export const LOGIN_MIN_LENGTH = 2;
 export const LOGIN_MAX_LENGTH = 100;
+export const EMAIL_MIN_LENGTH = 6;
+export const EMAIL_MAX_LENGTH = 200;
 export const PASSWORD_MIN_LENGTH = 8;
 export const PASSWORD_MAX_LENGTH = 100;
 
@@ -23,8 +24,8 @@ export const primaryAccountFields: MobilettoOrmFieldDefConfigs = {
     email: {
         type: "string",
         required: true,
-        min: LOGIN_MIN_LENGTH,
-        max: LOGIN_MAX_LENGTH,
+        min: EMAIL_MIN_LENGTH,
+        max: EMAIL_MAX_LENGTH,
         regex: valid.REGEX_VALIDATORS.email,
         normalize: (v): string => (v as string).toLowerCase(),
         updatable: false,
@@ -58,7 +59,6 @@ export const primaryAccountFields: MobilettoOrmFieldDefConfigs = {
             return { value: loc, label: `locale_${loc}` };
         }),
         required: true,
-        default: YUEBING_DEFAULT_LOCALE,
         tabIndex: 6,
     },
     flags: {

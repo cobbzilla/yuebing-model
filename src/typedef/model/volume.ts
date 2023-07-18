@@ -1,12 +1,7 @@
-import {
-    MobilettoOrmTypeDef,
-    MobilettoOrmFieldDefConfigs,
-    MobilettoOrmRawValue,
-    MobilettoOrmObject,
-} from "mobiletto-orm-typedef";
+import { MobilettoOrmTypeDef, MobilettoOrmFieldDefConfigs, MobilettoOrmRawValue } from "mobiletto-orm-typedef";
 
 import * as valid from "../../validation.js";
-import { parseMessage } from "../../locale.js";
+import { parseMessage } from "yuebing-messages";
 
 export const VOLUME_MOUNT_SOURCE = "source";
 export const VOLUME_MOUNT_DESTINATION = "destination";
@@ -182,6 +177,7 @@ export const DEFAULT_ENCRYPTION_ALGO = "aes-256-cbc";
 
 export const volumeTypeDef = new MobilettoOrmTypeDef({
     typeName: "volume",
+    idPrefix: "vol",
     tableFields: ["name", "type", "mount", "system", "ctime", "mtime"],
     fields: {
         name: {

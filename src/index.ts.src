@@ -1,4 +1,3 @@
-export * from "./locale.js";
 export * from "./validation.js";
 export * from "./typedef/model/account.js";
 export * from "./typedef/model/volume.js";

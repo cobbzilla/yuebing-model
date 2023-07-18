@@ -8,7 +8,6 @@ if [ -z "${BASE_DIR}" ] ; then
 fi
 
 clean () {
-    find "${BASE_DIR}"/lib/cjs -type f | grep -v package.json | xargs rm
     find "${BASE_DIR}"/lib/esm -type f | grep -v package.json | xargs rm
     rm -rf "${BASE_DIR}"/src/type/*
 }
