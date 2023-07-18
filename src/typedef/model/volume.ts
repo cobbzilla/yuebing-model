@@ -175,7 +175,7 @@ VOLUME_OPTS_FIELDS[VOL_TYPE_B2] = Object.keys(B2_FIELDS).filter(notKeyOrSecret);
 
 export const DEFAULT_ENCRYPTION_ALGO = "aes-256-cbc";
 
-export const volumeTypeDef = new MobilettoOrmTypeDef({
+export const VolumeTypeDef = new MobilettoOrmTypeDef({
     typeName: "volume",
     idPrefix: "vol",
     tableFields: ["name", "type", "mount", "system", "ctime", "mtime"],
