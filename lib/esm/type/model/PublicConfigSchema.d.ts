@@ -7,7 +7,6 @@ export declare const PublicConfigSchema: yup.ObjectSchema<{
     inviteFriendsEnabled: NonNullable<boolean | undefined>;
     limitRegistration: yup.Maybe<string | undefined>;
     defaultLocale: NonNullable<"ar" | "bn" | "de" | "en" | "es" | "fr" | "ha" | "hi" | "id" | "it" | "ja" | "ko" | "mr" | "pl" | "pt" | "ru" | "sw" | "tl" | "tr" | "ur" | "vi" | "zh" | undefined>;
-    defaultAutoscanInterval: number | null;
     emailEnabled: NonNullable<boolean | undefined>;
 }, yup.AnyObject, {
     public: undefined;
@@ -17,6 +16,5 @@ export declare const PublicConfigSchema: yup.ObjectSchema<{
     inviteFriendsEnabled: true;
     limitRegistration: undefined;
     defaultLocale: "en";
-    defaultAutoscanInterval: 86400000;
     emailEnabled: undefined;
 }, "">;

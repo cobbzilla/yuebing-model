@@ -1,12 +1,14 @@
 import * as yup from "yup";
 export declare const PrivateConfig_autoscanSchema: yup.ObjectSchema<{
     initialDelay: number;
+    interval: number | null;
     showTransformOutput: NonNullable<boolean | undefined>;
     cleanupTemporaryAssets: NonNullable<boolean | undefined>;
     deleteIncompleteUploads: NonNullable<boolean | undefined>;
     transformConcurrency: number;
 }, yup.AnyObject, {
     initialDelay: 600000;
+    interval: 86400000;
     showTransformOutput: undefined;
     cleanupTemporaryAssets: true;
     deleteIncompleteUploads: true;
@@ -27,10 +29,21 @@ export declare const PrivateConfig_emailSchema: yup.ObjectSchema<{
     secure: undefined;
     fromEmail: undefined;
 }, "">;
-export declare const PrivateConfigSchema: yup.ObjectSchema<{
+export declare const PrivateConfig_authSchema: yup.ObjectSchema<{
     verifyAccountTimeout: number;
     resetPasswordTimeout: number;
     sessionTimeout: number;
+}, yup.AnyObject, {
+    verifyAccountTimeout: 172800000;
+    resetPasswordTimeout: 3600000;
+    sessionTimeout: 86400000;
+}, "">;
+export declare const PrivateConfigSchema: yup.ObjectSchema<{
+    auth: {
+        verifyAccountTimeout: number;
+        resetPasswordTimeout: number;
+        sessionTimeout: number;
+    } | null | undefined;
     emailEnabled: NonNullable<boolean | undefined>;
     email: {
         password: string;
@@ -43,15 +56,18 @@ export declare const PrivateConfigSchema: yup.ObjectSchema<{
     autoscanEnabled: NonNullable<boolean | undefined>;
     autoscan: {
         initialDelay: number;
+        interval: number | null;
         showTransformOutput: NonNullable<boolean | undefined>;
         cleanupTemporaryAssets: NonNullable<boolean | undefined>;
         deleteIncompleteUploads: NonNullable<boolean | undefined>;
         transformConcurrency: number;
     } | null | undefined;
 }, yup.AnyObject, {
-    verifyAccountTimeout: 172800000;
-    resetPasswordTimeout: 3600000;
-    sessionTimeout: 86400000;
+    auth: {
+        verifyAccountTimeout: 172800000;
+        resetPasswordTimeout: 3600000;
+        sessionTimeout: 86400000;
+    };
     emailEnabled: undefined;
     email: {
         host: undefined;
@@ -64,6 +80,7 @@ export declare const PrivateConfigSchema: yup.ObjectSchema<{
     autoscanEnabled: undefined;
     autoscan: {
         initialDelay: 600000;
+        interval: 86400000;
         showTransformOutput: undefined;
         cleanupTemporaryAssets: true;
         deleteIncompleteUploads: true;

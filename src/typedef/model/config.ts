@@ -3,14 +3,6 @@ import { LIST_OF_EMAILS_REGEX, REGEX_VALIDATORS } from "../../validation.js";
 import { FALLBACK_DEFAULT_LANG, YUEBING_LOCALES } from "yuebing-messages";
 import { EMAIL_MAX_LENGTH, EMAIL_MIN_LENGTH } from "./account.js";
 
-const AUTOSCAN_INTERVAL_FIELD: MobilettoOrmFieldDefConfig = {
-    type: "number",
-    minValue: 1000 * 60, // 1 minute
-    maxValue: 1000 * 60 * 60 * 24 * 366, // 366 days
-    default: 1000 * 60 * 60 * 24, // default 24 hours
-    control: "duration",
-};
-
 export const PublicConfigTypeDef = new MobilettoOrmTypeDef({
     typeName: "publicConfig",
     idPrefix: "cfg~public",
@@ -41,6 +33,7 @@ export const PublicConfigTypeDef = new MobilettoOrmTypeDef({
             type: "string",
             regex: LIST_OF_EMAILS_REGEX,
             normalize: (v) => (v ? v.toString().replace(/[,\s]+/, "\n") : v),
+            default: "",
         },
         defaultLocale: {
             required: true,
@@ -48,7 +41,6 @@ export const PublicConfigTypeDef = new MobilettoOrmTypeDef({
             values: YUEBING_LOCALES,
             default: FALLBACK_DEFAULT_LANG,
         },
-        defaultAutoscanInterval: AUTOSCAN_INTERVAL_FIELD,
         emailEnabled: {
             required: true,
             default: false,
@@ -61,26 +53,30 @@ export const PrivateConfigTypeDef = new MobilettoOrmTypeDef({
     idPrefix: "cfg~private",
     singleton: "private",
     fields: {
-        verifyAccountTimeout: {
-            required: true,
-            minValue: 1000 * 60, // 1 minute
-            maxValue: 1000 * 60 * 60 * 24 * 30, // 30 days
-            default: 1000 * 60 * 60 * 24 * 2, // 2 days
-            control: "duration",
-        },
-        resetPasswordTimeout: {
-            required: true,
-            minValue: 1000 * 60, // 1 minute
-            maxValue: 1000 * 60 * 60 * 24, // 1 day
-            default: 1000 * 60 * 60, // 1 hour
-            control: "duration",
-        },
-        sessionTimeout: {
-            required: true,
-            minValue: 1000 * 60 * 60, // 60 minutes
-            maxValue: 1000 * 60 * 60 * 24 * 366 * 100, // >100 years
-            default: 1000 * 60 * 60 * 24, // 1 day
-            control: "duration",
+        auth: {
+            fields: {
+                verifyAccountTimeout: {
+                    required: true,
+                    minValue: 1000 * 60, // 1 minute
+                    maxValue: 1000 * 60 * 60 * 24 * 30, // 30 days
+                    default: 1000 * 60 * 60 * 24 * 2, // 2 days
+                    control: "duration",
+                },
+                resetPasswordTimeout: {
+                    required: true,
+                    minValue: 1000 * 60, // 1 minute
+                    maxValue: 1000 * 60 * 60 * 24, // 1 day
+                    default: 1000 * 60 * 60, // 1 hour
+                    control: "duration",
+                },
+                sessionTimeout: {
+                    required: true,
+                    minValue: 1000 * 60 * 60, // 60 minutes
+                    maxValue: 1000 * 60 * 60 * 24 * 366 * 100, // >100 years
+                    default: 1000 * 60 * 60 * 24, // 1 day
+                    control: "duration",
+                },
+            },
         },
         emailEnabled: {
             required: true,
@@ -134,6 +130,13 @@ export const PrivateConfigTypeDef = new MobilettoOrmTypeDef({
                     minValue: 1000 * 60, // 1 minute
                     maxValue: 1000 * 60 * 60, // 1 hour
                     default: 1000 * 60 * 10, // 10 minutes
+                    control: "duration",
+                },
+                interval: {
+                    type: "number",
+                    minValue: 1000 * 60, // 1 minute
+                    maxValue: 1000 * 60 * 60 * 24 * 366, // 366 days
+                    default: 1000 * 60 * 60 * 24, // default 24 hours
                     control: "duration",
                 },
                 showTransformOutput: {

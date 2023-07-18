@@ -2,6 +2,7 @@
 import { MobilettoOrmObject } from "mobiletto-orm-typedef";
 export type PrivateConfig_autoscanType = {
     initialDelay: number;
+    interval?: number;
     showTransformOutput: boolean;
     cleanupTemporaryAssets: boolean;
     deleteIncompleteUploads: boolean;
@@ -15,10 +16,13 @@ export type PrivateConfig_emailType = {
     secure: boolean;
     fromEmail: string;
 };
-export type PrivateConfigType = MobilettoOrmObject & {
+export type PrivateConfig_authType = {
     verifyAccountTimeout: number;
     resetPasswordTimeout: number;
     sessionTimeout: number;
+};
+export type PrivateConfigType = MobilettoOrmObject & {
+    auth?: PrivateConfig_authType;
     emailEnabled: boolean;
     email?: PrivateConfig_emailType;
     autoscanEnabled: boolean;
