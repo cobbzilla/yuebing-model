@@ -15,6 +15,9 @@ export type PrivateConfig_emailType = {
     fromEmail: string;
 };
 export type PrivateConfigType = MobilettoOrmObject & {
+    verifyAccountTimeout: number;
+    resetPasswordTimeout: number;
+    sessionTimeout: number;
     emailEnabled: boolean;
     email?: PrivateConfig_emailType;
     autoscanEnabled: boolean;

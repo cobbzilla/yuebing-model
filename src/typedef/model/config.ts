@@ -48,6 +48,19 @@ export const PublicConfigTypeDef = new MobilettoOrmTypeDef({
             values: YUEBING_LOCALES,
             default: FALLBACK_DEFAULT_LANG,
         },
+        defaultAutoscanInterval: AUTOSCAN_INTERVAL_FIELD,
+        emailEnabled: {
+            required: true,
+            default: false,
+        },
+    },
+});
+
+export const PrivateConfigTypeDef = new MobilettoOrmTypeDef({
+    typeName: "privateConfig",
+    idPrefix: "cfg~private",
+    singleton: "private",
+    fields: {
         verifyAccountTimeout: {
             required: true,
             minValue: 1000 * 60, // 1 minute
@@ -62,19 +75,13 @@ export const PublicConfigTypeDef = new MobilettoOrmTypeDef({
             default: 1000 * 60 * 60, // 1 hour
             control: "duration",
         },
-        defaultAutoscanInterval: AUTOSCAN_INTERVAL_FIELD,
-        emailEnabled: {
+        sessionTimeout: {
             required: true,
-            default: false,
+            minValue: 1000 * 60 * 60, // 60 minutes
+            maxValue: 1000 * 60 * 60 * 24 * 366 * 100, // >100 years
+            default: 1000 * 60 * 60 * 24, // 1 day
+            control: "duration",
         },
-    },
-});
-
-export const PrivateConfigTypeDef = new MobilettoOrmTypeDef({
-    typeName: "privateConfig",
-    idPrefix: "cfg~private",
-    singleton: "private",
-    fields: {
         emailEnabled: {
             required: true,
             default: false,

@@ -29,18 +29,6 @@ export const PublicConfigSchema = yup.object({
         .typeError('defaultLocale_invalid')
         .required('defaultLocale_required')
         .default("en"),
-    verifyAccountTimeout: yup.number()
-        .min(60000, 'verifyAccountTimeout_minValue')
-        .max(2592000000, 'verifyAccountTimeout_maxValue')
-        .typeError('verifyAccountTimeout_invalid')
-        .required('verifyAccountTimeout_required')
-        .default(172800000),
-    resetPasswordTimeout: yup.number()
-        .min(60000, 'resetPasswordTimeout_minValue')
-        .max(86400000, 'resetPasswordTimeout_maxValue')
-        .typeError('resetPasswordTimeout_invalid')
-        .required('resetPasswordTimeout_required')
-        .default(3600000),
     defaultAutoscanInterval: yup.number()
         .min(60000, 'defaultAutoscanInterval_minValue')
         .max(31622400000, 'defaultAutoscanInterval_maxValue')

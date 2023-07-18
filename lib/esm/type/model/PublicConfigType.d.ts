@@ -7,8 +7,6 @@ export type PublicConfigType = MobilettoOrmObject & {
     inviteFriendsEnabled: boolean;
     limitRegistration?: string;
     defaultLocale: string;
-    verifyAccountTimeout: number;
-    resetPasswordTimeout: number;
     defaultAutoscanInterval?: number;
     emailEnabled: boolean;
 };

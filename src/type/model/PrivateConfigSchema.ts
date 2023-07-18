@@ -60,6 +60,24 @@ export const PrivateConfig_emailSchema = yup.object({
 });
 
 export const PrivateConfigSchema = yup.object({
+    verifyAccountTimeout: yup.number()
+        .min(60000, 'verifyAccountTimeout_minValue')
+        .max(2592000000, 'verifyAccountTimeout_maxValue')
+        .typeError('verifyAccountTimeout_invalid')
+        .required('verifyAccountTimeout_required')
+        .default(172800000),
+    resetPasswordTimeout: yup.number()
+        .min(60000, 'resetPasswordTimeout_minValue')
+        .max(86400000, 'resetPasswordTimeout_maxValue')
+        .typeError('resetPasswordTimeout_invalid')
+        .required('resetPasswordTimeout_required')
+        .default(3600000),
+    sessionTimeout: yup.number()
+        .min(3600000, 'sessionTimeout_minValue')
+        .max(3162240000000, 'sessionTimeout_maxValue')
+        .typeError('sessionTimeout_invalid')
+        .required('sessionTimeout_required')
+        .default(86400000),
     emailEnabled: yup.boolean()
         .typeError('emailEnabled_invalid')
         .required('emailEnabled_required'),

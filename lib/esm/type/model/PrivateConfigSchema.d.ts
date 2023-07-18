@@ -28,6 +28,9 @@ export declare const PrivateConfig_emailSchema: yup.ObjectSchema<{
     fromEmail: undefined;
 }, "">;
 export declare const PrivateConfigSchema: yup.ObjectSchema<{
+    verifyAccountTimeout: number;
+    resetPasswordTimeout: number;
+    sessionTimeout: number;
     emailEnabled: NonNullable<boolean | undefined>;
     email: {
         password: string;
@@ -46,6 +49,9 @@ export declare const PrivateConfigSchema: yup.ObjectSchema<{
         transformConcurrency: number;
     } | null | undefined;
 }, yup.AnyObject, {
+    verifyAccountTimeout: 172800000;
+    resetPasswordTimeout: 3600000;
+    sessionTimeout: 86400000;
     emailEnabled: undefined;
     email: {
         host: undefined;
