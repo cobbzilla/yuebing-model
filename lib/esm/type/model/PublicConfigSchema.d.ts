@@ -6,7 +6,7 @@ export declare const PublicConfigSchema: yup.ObjectSchema<{
     registrationEnabled: NonNullable<boolean | undefined>;
     inviteFriendsEnabled: NonNullable<boolean | undefined>;
     limitRegistration: yup.Maybe<string | undefined>;
-    defaultLocale: NonNullable<"ar" | "bn" | "de" | "en" | "es" | "fr" | "ha" | "hi" | "id" | "it" | "ja" | "ko" | "mr" | "pl" | "pt" | "ru" | "sw" | "tl" | "tr" | "ur" | "vi" | "zh" | undefined>;
+    defaultLocale: NonNullable<"en" | "ar" | "bn" | "de" | "es" | "fr" | "ha" | "hi" | "id" | "it" | "ja" | "ko" | "mr" | "pl" | "pt" | "ru" | "sw" | "tl" | "tr" | "ur" | "vi" | "zh" | undefined>;
     emailEnabled: NonNullable<boolean | undefined>;
 }, yup.AnyObject, {
     public: undefined;
