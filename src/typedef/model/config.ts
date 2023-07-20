@@ -45,6 +45,10 @@ export const PublicConfigTypeDef = new MobilettoOrmTypeDef({
             required: true,
             default: false,
         },
+        isDefault: {
+            required: false,
+            default: false,
+        },
     },
 });
 
@@ -73,7 +77,7 @@ export const PrivateConfigTypeDef = new MobilettoOrmTypeDef({
                     required: true,
                     minValue: 1000 * 60 * 60, // 60 minutes
                     maxValue: 1000 * 60 * 60 * 24 * 366 * 100, // >100 years
-                    default: 1000 * 60 * 60 * 24, // 1 day
+                    default: 1000 * 60 * 60 * 24 * 90, // 90 days
                     control: "duration",
                 },
             },
@@ -90,21 +94,25 @@ export const PrivateConfigTypeDef = new MobilettoOrmTypeDef({
                     min: 6,
                     max: 128,
                     regex: REGEX_VALIDATORS.host,
+                    default: "127.0.0.1",
                 },
                 port: {
                     required: true,
                     minValue: 10,
                     maxValue: 65000,
+                    default: 25,
                 },
                 user: {
                     required: true,
                     min: 2,
                     max: 100,
+                    default: "smtp_user",
                 },
                 password: {
                     required: true,
                     min: 2,
                     max: 100,
+                    default: "",
                 },
                 secure: {
                     required: true,
@@ -115,6 +123,7 @@ export const PrivateConfigTypeDef = new MobilettoOrmTypeDef({
                     min: EMAIL_MIN_LENGTH,
                     max: EMAIL_MAX_LENGTH,
                     regex: REGEX_VALIDATORS.email,
+                    default: "nobody@localhost.example",
                 },
             },
         },
@@ -156,6 +165,10 @@ export const PrivateConfigTypeDef = new MobilettoOrmTypeDef({
                     minValue: 1,
                     values: [...Array(129).keys()].slice(1),
                     default: 1,
+                },
+                isDefault: {
+                    required: false,
+                    default: false,
                 },
             },
         },

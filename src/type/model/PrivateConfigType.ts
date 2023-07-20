@@ -7,6 +7,7 @@ export type PrivateConfig_autoscanType = {
     cleanupTemporaryAssets: boolean;
     deleteIncompleteUploads: boolean;
     transformConcurrency: number;
+    isDefault?: boolean;
 };
 export type PrivateConfig_emailType = {
     host: string;

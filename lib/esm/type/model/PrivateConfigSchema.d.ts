@@ -6,6 +6,7 @@ export declare const PrivateConfig_autoscanSchema: yup.ObjectSchema<{
     cleanupTemporaryAssets: NonNullable<boolean | undefined>;
     deleteIncompleteUploads: NonNullable<boolean | undefined>;
     transformConcurrency: number;
+    isDefault: yup.Maybe<boolean | undefined>;
 }, yup.AnyObject, {
     initialDelay: 600000;
     interval: 86400000;
@@ -13,6 +14,7 @@ export declare const PrivateConfig_autoscanSchema: yup.ObjectSchema<{
     cleanupTemporaryAssets: true;
     deleteIncompleteUploads: true;
     transformConcurrency: 1;
+    isDefault: undefined;
 }, "">;
 export declare const PrivateConfig_emailSchema: yup.ObjectSchema<{
     host: string;
@@ -22,12 +24,12 @@ export declare const PrivateConfig_emailSchema: yup.ObjectSchema<{
     secure: NonNullable<boolean | undefined>;
     fromEmail: string;
 }, yup.AnyObject, {
-    host: undefined;
-    port: undefined;
-    user: undefined;
+    host: "127.0.0.1";
+    port: 25;
+    user: "smtp_user";
     password: undefined;
     secure: undefined;
-    fromEmail: undefined;
+    fromEmail: "nobody@localhost.example";
 }, "">;
 export declare const PrivateConfig_authSchema: yup.ObjectSchema<{
     verifyAccountTimeout: number;
@@ -36,7 +38,7 @@ export declare const PrivateConfig_authSchema: yup.ObjectSchema<{
 }, yup.AnyObject, {
     verifyAccountTimeout: 172800000;
     resetPasswordTimeout: 3600000;
-    sessionTimeout: 86400000;
+    sessionTimeout: 7776000000;
 }, "">;
 export declare const PrivateConfigSchema: yup.ObjectSchema<{
     auth: {
@@ -55,6 +57,7 @@ export declare const PrivateConfigSchema: yup.ObjectSchema<{
     } | null | undefined;
     autoscanEnabled: NonNullable<boolean | undefined>;
     autoscan: {
+        isDefault?: yup.Maybe<boolean | undefined>;
         initialDelay: number;
         interval: number | null;
         showTransformOutput: NonNullable<boolean | undefined>;
@@ -66,16 +69,16 @@ export declare const PrivateConfigSchema: yup.ObjectSchema<{
     auth: {
         verifyAccountTimeout: 172800000;
         resetPasswordTimeout: 3600000;
-        sessionTimeout: 86400000;
+        sessionTimeout: 7776000000;
     };
     emailEnabled: undefined;
     email: {
-        host: undefined;
-        port: undefined;
-        user: undefined;
+        host: "127.0.0.1";
+        port: 25;
+        user: "smtp_user";
         password: undefined;
         secure: undefined;
-        fromEmail: undefined;
+        fromEmail: "nobody@localhost.example";
     };
     autoscanEnabled: undefined;
     autoscan: {
@@ -85,5 +88,6 @@ export declare const PrivateConfigSchema: yup.ObjectSchema<{
         cleanupTemporaryAssets: true;
         deleteIncompleteUploads: true;
         transformConcurrency: 1;
+        isDefault: undefined;
     };
 }, "">;

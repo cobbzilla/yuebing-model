@@ -8,6 +8,7 @@ export declare const PublicConfigSchema: yup.ObjectSchema<{
     limitRegistration: yup.Maybe<string | undefined>;
     defaultLocale: NonNullable<"en" | "ar" | "bn" | "de" | "es" | "fr" | "ha" | "hi" | "id" | "it" | "ja" | "ko" | "mr" | "pl" | "pt" | "ru" | "sw" | "tl" | "tr" | "ur" | "vi" | "zh" | undefined>;
     emailEnabled: NonNullable<boolean | undefined>;
+    isDefault: yup.Maybe<boolean | undefined>;
 }, yup.AnyObject, {
     public: undefined;
     title: "Yuebing 🥮";
@@ -17,4 +18,5 @@ export declare const PublicConfigSchema: yup.ObjectSchema<{
     limitRegistration: undefined;
     defaultLocale: "en";
     emailEnabled: undefined;
+    isDefault: undefined;
 }, "">;
