@@ -48,9 +48,8 @@ export declare const Volume_localSchema: yup.ObjectSchema<{
 export declare const VolumeSchema: yup.ObjectSchema<{
     name: string;
     mount: NonNullable<"source" | "destination" | undefined>;
-    readOnly: yup.Maybe<boolean | undefined>;
     system: yup.Maybe<boolean | undefined>;
-    type: NonNullable<"local" | "s3" | "b2" | undefined>;
+    type: NonNullable<"local" | "s3" | "b2" | "generic" | undefined>;
     local: {
         key: string;
         mode: string | null;
@@ -81,7 +80,6 @@ export declare const VolumeSchema: yup.ObjectSchema<{
 }, yup.AnyObject, {
     name: undefined;
     mount: undefined;
-    readOnly: undefined;
     system: undefined;
     type: undefined;
     local: {

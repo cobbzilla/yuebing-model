@@ -28,7 +28,6 @@ export type Volume_localType = {
 export type VolumeType = MobilettoOrmObject & {
     name: string;
     mount: string;
-    readOnly?: boolean;
     system?: boolean;
     type: string;
     local?: Volume_localType;

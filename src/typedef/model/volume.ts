@@ -52,7 +52,6 @@ const S3_FIELDS: MobilettoOrmFieldDefConfigs = {
         min: 3,
         max: 63,
         regex: valid.REGEX_VALIDATORS.s3_bucket,
-        updatable: false,
     },
     region: {
         type: "string",
@@ -89,13 +88,11 @@ const S3_FIELDS: MobilettoOrmFieldDefConfigs = {
             return { value: r, label: r, rawLabel: true };
         }),
         default: "us-east-1",
-        updatable: false,
     },
     prefix: {
         type: "string",
         label: "label_volumeType_s3_field_prefix",
         default: "",
-        updatable: false,
     },
     delimiter: {
         type: "string",
@@ -103,7 +100,6 @@ const S3_FIELDS: MobilettoOrmFieldDefConfigs = {
         default: "/",
         min: 1,
         max: 1,
-        updatable: false,
     },
 };
 
@@ -115,7 +111,6 @@ const B2_FIELDS: MobilettoOrmFieldDefConfigs = {
         min: 10,
         max: 50,
         regex: valid.REGEX_VALIDATORS.raw_hex,
-        updatable: false,
     },
     secret: {
         type: "string",
@@ -123,7 +118,6 @@ const B2_FIELDS: MobilettoOrmFieldDefConfigs = {
         required: true,
         min: 10,
         max: 50,
-        updatable: false,
     },
     bucket: {
         type: "string",
@@ -132,7 +126,6 @@ const B2_FIELDS: MobilettoOrmFieldDefConfigs = {
         min: 6,
         max: 63,
         regex: valid.REGEX_VALIDATORS.b2_bucket,
-        updatable: false,
     },
     partSize: {
         type: "number",
@@ -145,7 +138,6 @@ const B2_FIELDS: MobilettoOrmFieldDefConfigs = {
         type: "string",
         label: "label_volumeType_b2_field_prefix",
         default: "",
-        updatable: false,
     },
     delimiter: {
         type: "string",
@@ -153,18 +145,46 @@ const B2_FIELDS: MobilettoOrmFieldDefConfigs = {
         default: "/",
         min: 1,
         max: 1,
-        updatable: false,
+    },
+};
+
+const GENERIC_FIELDS: MobilettoOrmFieldDefConfigs = {
+    driver: {
+        type: "string",
+        label: "label_volumeType_generic_field_driver",
+        required: true,
+        max: 1000,
+    },
+    key: {
+        type: "string",
+        label: "label_volumeType_generic_field_key",
+        required: false,
+        max: 1000,
+    },
+    secret: {
+        type: "string",
+        label: "label_volumeType_generic_field_secret",
+        required: false,
+        max: 1000,
+    },
+    opts: {
+        type: "string",
+        label: "label_volumeType_generic_field_opts",
+        required: false,
+        max: 1024 * 128,
     },
 };
 
 export const VOL_TYPE_LOCAL = "local";
 export const VOL_TYPE_S3 = "s3";
 export const VOL_TYPE_B2 = "b2";
+export const VOL_TYPE_GENERIC = "generic";
 
 const VOLUME_TYPES: Record<string, MobilettoOrmFieldDefConfigs> = {};
 VOLUME_TYPES[VOL_TYPE_LOCAL] = LOCAL_FIELDS;
 VOLUME_TYPES[VOL_TYPE_S3] = S3_FIELDS;
 VOLUME_TYPES[VOL_TYPE_B2] = B2_FIELDS;
+VOLUME_TYPES[VOL_TYPE_GENERIC] = GENERIC_FIELDS;
 
 const notKeyOrSecret = (k: string): boolean => k !== "key" && k !== "secret";
 
@@ -172,6 +192,7 @@ export const VOLUME_OPTS_FIELDS: Record<string, string[]> = {};
 VOLUME_OPTS_FIELDS[VOL_TYPE_LOCAL] = Object.keys(LOCAL_FIELDS).filter(notKeyOrSecret);
 VOLUME_OPTS_FIELDS[VOL_TYPE_S3] = Object.keys(S3_FIELDS).filter(notKeyOrSecret);
 VOLUME_OPTS_FIELDS[VOL_TYPE_B2] = Object.keys(B2_FIELDS).filter(notKeyOrSecret);
+VOLUME_OPTS_FIELDS[VOL_TYPE_GENERIC] = Object.keys(GENERIC_FIELDS).filter(notKeyOrSecret);
 
 export const DEFAULT_ENCRYPTION_ALGO = "aes-256-cbc";
 
@@ -197,11 +218,6 @@ export const VolumeTypeDef = new MobilettoOrmTypeDef({
                 { value: VOLUME_MOUNT_SOURCE, label: "admin_label_volume_mount_source" },
                 { value: VOLUME_MOUNT_DESTINATION, label: "admin_label_volume_mount_destination" },
             ],
-            updatable: false,
-        },
-        readOnly: {
-            type: "boolean",
-            control: "hidden",
             updatable: false,
         },
         system: {
