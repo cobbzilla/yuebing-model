@@ -1,6 +1,6 @@
 {
   "name": "yuebing-model",
-  "version": "2.2.20",
+  "version": "2.2.21",
   "type": "module",
   "description": "Data model for yuebing",
   "keywords": [
@@ -26,6 +26,7 @@
     "prettier:fix": "npm run prettier -- --write",
     "orm-gen": "node lib/esm/scripts/generate.js"
   },
+  "main": "./lib/esm/index.js",
   "module": "./lib/esm/index.js",
   "exports": {
     ".": "./lib/esm/index.js"
