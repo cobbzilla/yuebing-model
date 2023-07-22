@@ -5,13 +5,21 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-import { generateTypeScriptType, generateYup } from "mobiletto-orm-typedef-gen";
+import { MobilettoOrmTypeDef } from "mobiletto-orm-typedef";
+import { generateTypeScriptType, generateYup, generate } from "mobiletto-orm-typedef-gen";
 import { PublicConfigTypeDef, PrivateConfigTypeDef } from "../typedef/model/config.js";
 import { AccountTypeDef, AuthAccountTypeDef } from "../typedef/model/account.js";
 import { UsernameAndPasswordTypeDef } from "../typedef/auth/usernameAndPassword.js";
 import { RegistrationTypeDef } from "../typedef/auth/registration.js";
 import { VolumeTypeDef } from "../typedef/model/volume.js";
 import { SessionTypeDef } from "../typedef/auth/session.js";
+
+const generateService = (typeDef: MobilettoOrmTypeDef, outfile: string) => {
+    if (process.env.YUEBING_DIR) {
+        const ybDir = process.env.YUEBING_DIR;
+        generate(typeDef, `${__dirname}/../templates/service.ts.hbs`, { outfile: `${ybDir}/${outfile}` });
+    }
+};
 
 generateTypeScriptType(PublicConfigTypeDef, { outfile: `${__dirname}/../../../src/type/model/PublicConfigType.ts` });
 generateYup(PublicConfigTypeDef, { outfile: `${__dirname}/../../../src/type/model/PublicConfigSchema.ts` });
@@ -21,6 +29,7 @@ generateYup(PrivateConfigTypeDef, { outfile: `${__dirname}/../../../src/type/mod
 
 generateTypeScriptType(AccountTypeDef, { outfile: `${__dirname}/../../../src/type/model/AccountType.ts` });
 generateYup(AccountTypeDef, { outfile: `${__dirname}/../../../src/type/model/AccountSchema.ts` });
+generateService(AccountTypeDef, "utils/services/model/accountService.ts");
 
 generateTypeScriptType(AuthAccountTypeDef, { outfile: `${__dirname}/../../../src/type/model/AuthAccountType.ts` });
 generateYup(AuthAccountTypeDef, { outfile: `${__dirname}/../../../src/type/model/AuthAccountSchema.ts` });

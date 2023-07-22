@@ -1,0 +1,40 @@
+import {
+    {{ Name }}Type,
+    {{ Name }}TypeDef,
+    YbModelQuery
+} from "yuebing-model";
+import * as a from "~/utils/services/serviceUtil";
+import { MobilettoOrmObject, MobilettoOrmPurgeResults } from "mobiletto-orm";
+
+export const {{ name }}Service = {
+    query{{ Name }},
+    find{{ Name }},
+    update{{ Name }},
+    delete{{ Name }},
+};
+
+function query{{ Name }}(query?: YbModelQuery): Promise<{{ Name }}Type[]> {
+    return $fetch("/api/model/{{ name }}", a.authPostJson(query)).then(a.handleJsonResponse<{{ Name }}Type[]>);
+}
+
+function find{{ Name }}(id: string): Promise<{{ Name }}Type> {
+    return $fetch(`/api/model/{{ name }}/${id}`, a.authGet()).then(a.handleJsonResponse<{{ Name }}Type>);
+}
+
+function create{{ Name }}({{ name }}: {{ Name }}Type): Promise<{{ Name }}Type> {
+    return $fetch(`/api/model/{{ name }}/${ {{ Name }}TypeDef.id({{ name }}) }`, a.authPutJson({{ name }})).then(
+        a.handleJsonResponse<{{ Name }}Type>,
+    );
+}
+
+function update{{ Name }}({{ name }}: {{ Name }}Type): Promise<{{ Name }}Type> {
+    return $fetch(`/api/model/{{ name }}/${ {{ Name }}TypeDef.id({{ name }}) }`, a.authPostJson({{ name }})).then(
+        a.handleJsonResponse<{{ Name }}Type>,
+    );
+}
+
+function delete{{ Name }}(id: string, purge?: boolean): Promise<MobilettoOrmObject | MobilettoOrmPurgeResults> {
+    return $fetch(`/api/model/{{ name }}/${id}/${purge ? `?purge=${purge}` : ""}`, a.authDelete()).then(
+        a.handleJsonResponse<MobilettoOrmObject | MobilettoOrmPurgeResults>,
+    );
+}
