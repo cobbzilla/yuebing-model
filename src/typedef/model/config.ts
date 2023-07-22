@@ -43,6 +43,7 @@ export const PublicConfigTypeDef = new MobilettoOrmTypeDef({
         },
         emailEnabled: {
             required: true,
+            control: "label",
             default: false,
         },
         isDefault: {
