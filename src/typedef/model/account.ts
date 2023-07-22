@@ -78,6 +78,7 @@ export const primaryAccountFields: MobilettoOrmFieldDefConfigs = {
 
 export const ACCOUNT_TABLE_FIELDS = [
     "username",
+    "admin",
     "email",
     "firstName",
     "lastName",
@@ -93,11 +94,15 @@ export const AccountTypeDef = new MobilettoOrmTypeDef({
     tableFields: ACCOUNT_TABLE_FIELDS,
     fields: {
         ...primaryAccountFields,
+        admin: {
+            default: false,
+            tabIndex: 8,
+        },
         verified: {
             type: "number",
             control: "label",
             render: "datetime",
-            tabIndex: 8,
+            tabIndex: 9,
         },
     },
 });

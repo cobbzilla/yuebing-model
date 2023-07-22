@@ -1,6 +1,6 @@
 {
   "name": "yuebing-model",
-  "version": "2.2.21",
+  "version": "2.2.22",
   "type": "module",
   "description": "Data model for yuebing",
   "keywords": [
@@ -19,7 +19,7 @@
   },
   "license": "Apache-2.0",
   "scripts": {
-    "tsc": "tsc --module es2020 -p tsconfig.json && tsc --module es2020 -p tsconfig-cjs.json",
+    "tsc": "tsc --module es2020 -p tsconfig.json",
     "lint": "npx eslint src",
     "lint:fix": "npm run lint -- --fix",
     "prettier": "npx prettier src --check",

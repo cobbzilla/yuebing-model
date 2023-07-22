@@ -38,6 +38,9 @@ export const AuthAccountSchema = yup.object({
         .typeError('flags_invalid')
         .notRequired()
         .default(["flag_welcome_email","flag_can_comment","flag_can_tag"]),
+    admin: yup.boolean()
+        .typeError('admin_invalid')
+        .notRequired(),
     verified: yup.number()
         .typeError('verified_invalid')
         .notRequired(),

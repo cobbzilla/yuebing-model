@@ -7,6 +7,7 @@ export type AuthAccountType = MobilettoOrmObject & {
     lastName?: string;
     locale: string;
     flags?: string[];
+    admin?: boolean;
     verified?: number;
     session?: string;
 };
