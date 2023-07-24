@@ -2,27 +2,19 @@
 {{{header}}}{{/if}}{{/if}}
 
 export default defineEventHandler(async (event) => {
-    filterErrors(event, "{{ name }}.search", async (event) => {
-        {{#if typeDef.apiConfig.search.admin}}
-        requireAdminAccountObject(event, "{{ name }}.search", async (event, _session, _account) => {
-        {{else}}{{#if typeDef.apiConfig.search.owner}}
-        requireAccountObject(event, "{{ name }}.search", async (event, _session, _account) => {
-        {{else}}{{#if typeDef.apiConfig.search.session}}
-        requireAccount(event, "{{ name }}.search", async (event, _session) => {
-        {{/if}}{{/if}}{{/if}}
-            const {{ name }}Repo = {{ name }}Repository();
-            const opts: MobilettoOrmFindApiOpts = await readBody(event) || {};
-            if (opts.field && opts.value) {
-                return await {{ name }}Repo.safeFindBy(opts.field, opts.value, opts.opts || {});
-            } else {
-                return await {{ name }}Repo.find(opts.opts || {});
-            }
-        {{#if typeDef.apiConfig.search.admin}}
-        });
-        {{else}}{{#if typeDef.apiConfig.search.owner}}
-        });
-        {{else}}{{#if typeDef.apiConfig.search.session}}
-        });
-        {{/if}}{{/if}}{{/if}}
-    });
+  filterErrors(event, "{{ name }}.search", async (event) => {{{curlyOpen}}}{{#if typeDef.apiConfig.search.admin}}
+    requireAdminAccountObject(event, "{{ name }}.search", async (event, _session, _account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.search.owner}}
+    requireAccountObject(event, "{{ name }}.search", async (event, _session, _account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.search.session}}
+    requireAccount(event, "{{ name }}.search", async (event, _session) => {{{curlyOpen}}}{{/if}}{{/if}}{{/if}}
+      const {{ name }}Repo = {{ name }}Repository();
+      const opts: MobilettoOrmFindApiOpts = (await readBody(event)) || {};
+      if (opts.field && opts.value) {
+        return await {{ name }}Repo.safeFindBy(opts.field, opts.value, opts.opts || {});
+      } else {
+        return await {{ name }}Repo.find(opts.opts || {});
+      }{{#if typeDef.apiConfig.search.admin}}
+    });{{else}}{{#if typeDef.apiConfig.search.owner}}
+    });{{else}}{{#if typeDef.apiConfig.search.session}}
+    });{{/if}}{{/if}}{{/if}}
+  });
 });

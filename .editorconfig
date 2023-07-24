@@ -6,3 +6,9 @@ trim_trailing_whitespace = true
 insert_final_newline = true
 max_line_length = 120
 indent_style = space
+
+[*.hbs]
+indent_size = 2
+
+[*.ts]
+indent_size = 2

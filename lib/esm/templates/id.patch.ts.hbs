@@ -4,34 +4,26 @@
 import { {{ Name }}Type, {{ Name }}TypeDef } from "yuebing-model";
 
 export default defineEventHandler(async (event) => {
-    filterErrors(event, "{{ name }}.update", async (event) => {
-        {{#if typeDef.apiConfig.update.admin}}
-        requireAdminAccountObject(event, "{{ name }}.update", async (event, _session, _account) => {
-        {{else}}{{#if typeDef.apiConfig.update.owner}}
-        requireAccountObject(event, "{{ name }}.update", async (event, session, account) => {
-        {{else}}{{#if typeDef.apiConfig.update.session}}
-        requireAccount(event, "{{ name }}.update", async (event, _session) => {
-        {{/if}}{{/if}}{{/if}}
-            const id = event.context.params.id;
-            const {{ name }}Repo = {{ name }}Repository();
-            const obj: {{ Name }}Type = await readBody(event);
-            if (!obj) {
-                throw createError({ statusCode: 400, statusMessage: "bad request" });
-            }
-            if ({{ Name }}TypeDef.id(obj) !== id) {
-                throw createError({ statusCode: 422, statusMessage: "validation error", data: { id: ["mismatch"] } });
-            } else {
-                {{#if typeDef.apiConfig.update.owner}}
-                if (!account.admin && obj.account && obj.account !== session.account) throw forbidden();
-                {{/if}}
-                return await {{ name }}Repo.update(obj);
-            }
-        {{#if typeDef.apiConfig.update.admin}}
-        });
-        {{else}}{{#if typeDef.apiConfig.update.owner}}
-        });
-        {{else}}{{#if typeDef.apiConfig.update.session}}
-        });
-        {{/if}}{{/if}}{{/if}}
-    });
+  filterErrors(event, "{{ name }}.update", async (event) => {{{curlyOpen}}}{{#if typeDef.apiConfig.update.admin}}
+    requireAdminAccountObject(event, "{{ name }}.update", async (event, _session, _account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.update.owner}}
+    requireAccountObject(event, "{{ name }}.update", async (event, session, account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.update.session}}
+    requireAccount(event, "{{ name }}.update", async (event, _session) => {{{curlyOpen}}}{{/if}}{{/if}}{{/if}}
+      const id = event.context.params.id;
+      const {{ name }}Repo = {{ name }}Repository();
+      const obj: {{ Name }}Type = await readBody(event);
+      if (!obj) {
+        throw createError({ statusCode: 400, statusMessage: "bad request" });
+      }
+      if ({{ Name }}TypeDef.id(obj) !== id) {
+        throw createError({ statusCode: 422, statusMessage: "validation error", data: { id: ["mismatch"] } });
+      } else {
+        {{#if typeDef.apiConfig.update.owner}}
+        if (!account.admin && obj.account && obj.account !== session.account) throw forbidden();
+        {{/if}}
+        return await {{ name }}Repo.update(obj);
+      }{{#if typeDef.apiConfig.update.admin}}
+    });{{else}}{{#if typeDef.apiConfig.update.owner}}
+    });{{else}}{{#if typeDef.apiConfig.update.session}}
+    });{{/if}}{{/if}}{{/if}}
+  });
 });
