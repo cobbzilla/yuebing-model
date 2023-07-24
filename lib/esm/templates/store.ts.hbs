@@ -40,8 +40,8 @@ export const use{{ Name }}Store = defineStore("{{ name }}", {
       updateList(this.{{ name }}List, {{Name}}TypeDef.id(this.{{ name }}));
     },
     async {{name}}Delete({{ name }}: string): Promise<void> {
-      this.{{ name }} = await {{ name }}Service.delete{{ Name }}({{ name }});
-      updateList(this.{{ name }}List, {{Name}}TypeDef.id(this.{{ name }}), { remove: true });
+      await {{ name }}Service.delete{{ Name }}({{ name }});
+      updateList(this.{{ name }}List, {{ name }}, { remove: true });
     },
   },
 });
