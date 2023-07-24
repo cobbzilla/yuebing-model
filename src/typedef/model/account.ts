@@ -30,7 +30,7 @@ export const primaryAccountFields: MobilettoOrmFieldDefConfigs = {
         normalize: (v): string => (v as string).toLowerCase(),
         updatable: false,
         tabIndex: 2,
-        index: true,
+        unique: true,
     },
     password: {
         type: "string",
@@ -92,11 +92,13 @@ export const AccountTypeDef = new MobilettoOrmTypeDef({
     typeName: "account",
     idPrefix: "acct",
     tableFields: ACCOUNT_TABLE_FIELDS,
+    alternateLookupFields: ["email"],
     fields: {
         ...primaryAccountFields,
         admin: {
             default: false,
             tabIndex: 8,
+            index: true,
         },
         verified: {
             type: "number",

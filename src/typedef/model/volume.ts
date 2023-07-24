@@ -223,8 +223,7 @@ export const VolumeTypeDef = new MobilettoOrmTypeDef({
         system: {
             type: "boolean",
             default: false,
-            render: (v: MobilettoOrmRawValue, messages: Record<string, string>, title: string): string =>
-                valid.isSelfVolume(v as string) ? "true" : (v as string),
+            render: (v: MobilettoOrmRawValue): string => (valid.isSelfVolume(v as string) ? "true" : (v as string)),
         },
         type: {
             type: "string",

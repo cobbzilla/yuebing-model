@@ -6,9 +6,10 @@ export declare const PublicConfigSchema: yup.ObjectSchema<{
     registrationEnabled: NonNullable<boolean | undefined>;
     inviteFriendsEnabled: NonNullable<boolean | undefined>;
     limitRegistration: yup.Maybe<string | undefined>;
-    defaultLocale: NonNullable<"en" | "ar" | "bn" | "de" | "es" | "fr" | "ha" | "hi" | "id" | "it" | "ja" | "ko" | "mr" | "pl" | "pt" | "ru" | "sw" | "tl" | "tr" | "ur" | "vi" | "zh" | undefined>;
+    defaultLocale: NonNullable<"ar" | "bn" | "de" | "en" | "es" | "fr" | "ha" | "hi" | "id" | "it" | "ja" | "ko" | "mr" | "pl" | "pt" | "ru" | "sw" | "tl" | "tr" | "ur" | "vi" | "zh" | undefined>;
     emailEnabled: NonNullable<boolean | undefined>;
     isDefault: yup.Maybe<boolean | undefined>;
+    needsAdmin: yup.Maybe<boolean | undefined>;
 }, yup.AnyObject, {
     public: undefined;
     title: "Yuebing 🥮";
@@ -19,4 +20,5 @@ export declare const PublicConfigSchema: yup.ObjectSchema<{
     defaultLocale: "en";
     emailEnabled: undefined;
     isDefault: undefined;
+    needsAdmin: undefined;
 }, "">;

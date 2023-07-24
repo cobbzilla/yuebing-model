@@ -1,4 +1,4 @@
-import { MobilettoOrmFieldDefConfig, MobilettoOrmTypeDef } from "mobiletto-orm-typedef";
+import { MobilettoOrmTypeDef } from "mobiletto-orm-typedef";
 import { LIST_OF_EMAILS_REGEX, REGEX_VALIDATORS } from "../../validation.js";
 import { FALLBACK_DEFAULT_LANG, YUEBING_LOCALES } from "yuebing-messages";
 import { EMAIL_MAX_LENGTH, EMAIL_MIN_LENGTH } from "./account.js";
@@ -49,6 +49,11 @@ export const PublicConfigTypeDef = new MobilettoOrmTypeDef({
         isDefault: {
             required: false,
             default: false,
+        },
+        needsAdmin: {
+            required: false,
+            default: false,
+            control: "hidden",
         },
     },
 });

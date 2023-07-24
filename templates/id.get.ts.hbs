@@ -1,0 +1,31 @@
+{{#if disclaimer}}// {{{ disclaimer }}}{{#if header}}
+{{{header}}}{{/if}}{{/if}}
+// @eslint-disable camelcase
+
+export default defineEventHandler(async (event) => {
+    filterErrors(event, "{{ name }}.lookup", async (event) => {
+        {{#if typeDef.apiConfig.lookup.admin}}
+        requireAdminAccountObject(event, "{{ name }}.lookup", async (event, _session, _account) => {
+        {{else}}{{#if typeDef.apiConfig.lookup.owner}}
+        requireAccountObject(event, "{{ name }}.lookup", async (event, _session, _account) => {
+        {{else}}{{#if typeDef.apiConfig.lookup.session}}
+        requireAccount(event, "{{ name }}.lookup", async (event, _session) => {
+        {{/if}}{{/if}}{{/if}}
+            const id = event.context.params.id;
+            const {{ name }}Repo = {{ name }}Repository();
+            const {{ name }}_by_id = await {{ name }}Repo.safeFindById(id);
+            if ({{ name }}_by_id) return {{ name }}_by_id;
+            {{#each typeDef.alternateLookupFields}}
+            const {{ ../name }}_by_{{ this }} = await {{ ../name }}Repo.safeFindFirstBy("{{ this }}", id);
+            if ({{ ../name }}_by_{{ this }}) return {{ ../name }}_by_{{ this }};
+            {{/each}}
+            throw createError({statusCode: 404, statusMessage: "not found"});
+        {{#if typeDef.apiConfig.lookup.admin}}
+        });
+        {{else}}{{#if typeDef.apiConfig.lookup.owner}}
+        });
+        {{else}}{{#if typeDef.apiConfig.lookup.session}}
+        });
+        {{/if}}{{/if}}{{/if}}
+    });
+});

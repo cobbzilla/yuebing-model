@@ -1,0 +1,34 @@
+{{#if disclaimer}}// {{{ disclaimer }}}{{#if header}}
+{{{header}}}{{/if}}{{/if}}
+
+import { {{ Name }}Type, {{ Name }}TypeDef } from "yuebing-model";
+
+export default defineEventHandler(async (event) => {
+    filterErrors(event, "{{ name }}.create", async (event) => {
+        {{#if typeDef.apiConfig.create.admin}}
+        requireAdminAccountObject(event, "{{ name }}.create", async (event, session, account) => {
+        {{else}}{{#if typeDef.apiConfig.create.owner}}
+        requireAccountObject(event, "{{ name }}.create", async (event, session, account) => {
+        {{else}}{{#if typeDef.apiConfig.create.session}}
+        requireAccount(event, "{{ name }}.create", async (event, session) => {
+        {{/if}}{{/if}}{{/if}}
+            const id = event.context.params.id;
+            const {{ name }}Repo = {{ name }}Repository();
+            const obj: {{ Name }}Type = await readBody(event);
+            if (!obj) {
+                throw createError({ statusCode: 400, statusMessage: "bad request" });
+            }
+            if ({{ Name }}TypeDef.id(obj) !== id) {
+                throw createError({ statusCode: 422, statusMessage: "validation error", data: { id: ["mismatch"] } });
+            } else {
+                return await {{ name }}Repo.create(obj);
+            }
+        {{#if typeDef.apiConfig.create.admin}}
+        });
+        {{else}}{{#if typeDef.apiConfig.create.owner}}
+        });
+        {{else}}{{#if typeDef.apiConfig.create.session}}
+        });
+        {{/if}}{{/if}}{{/if}}
+    });
+});

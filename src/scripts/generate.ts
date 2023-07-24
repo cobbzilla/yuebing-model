@@ -14,10 +14,33 @@ import { RegistrationTypeDef } from "../typedef/auth/registration.js";
 import { VolumeTypeDef } from "../typedef/model/volume.js";
 import { SessionTypeDef } from "../typedef/auth/session.js";
 
+const uncapitalize = (s: string): string => s.substring(0, 1).toLowerCase() + s.substring(1);
+
 const generateService = (typeDef: MobilettoOrmTypeDef, outfile: string) => {
     if (process.env.YUEBING_DIR) {
         const ybDir = process.env.YUEBING_DIR;
         generate(typeDef, `${__dirname}/../templates/service.ts.hbs`, { outfile: `${ybDir}/${outfile}` });
+    }
+};
+
+const generateYuebing = (typeDef: MobilettoOrmTypeDef) => {
+    if (process.env.YUEBING_DIR) {
+        const ybDir = process.env.YUEBING_DIR;
+        const type = uncapitalize(typeDef.typeName);
+        const apiDir = `${ybDir}/server/api/model/${type}`;
+        generate(typeDef, `${__dirname}/../templates/id.put.ts.hbs`, { outfile: `${apiDir}/[id].put.ts` });
+        generate(typeDef, `${__dirname}/../templates/id.get.ts.hbs`, { outfile: `${apiDir}/[id].get.ts` });
+        generate(typeDef, `${__dirname}/../templates/id.patch.ts.hbs`, { outfile: `${apiDir}/[id].patch.ts` });
+        generate(typeDef, `${__dirname}/../templates/id.delete.ts.hbs`, {
+            outfile: `${apiDir}/[id].delete.ts`,
+        });
+        generate(typeDef, `${__dirname}/../templates/index.post.ts.hbs`, {
+            outfile: `${apiDir}/index.post.ts`,
+        });
+        const storeDir = `${ybDir}/stores`;
+        generate(typeDef, `${__dirname}/../templates/store.ts.hbs`, {
+            outfile: `${storeDir}/model/${type}.ts`,
+        });
     }
 };
 
@@ -30,6 +53,7 @@ generateYup(PrivateConfigTypeDef, { outfile: `${__dirname}/../../../src/type/mod
 generateTypeScriptType(AccountTypeDef, { outfile: `${__dirname}/../../../src/type/model/AccountType.ts` });
 generateYup(AccountTypeDef, { outfile: `${__dirname}/../../../src/type/model/AccountSchema.ts` });
 generateService(AccountTypeDef, "utils/services/model/accountService.ts");
+generateYuebing(AccountTypeDef);
 
 generateTypeScriptType(AuthAccountTypeDef, { outfile: `${__dirname}/../../../src/type/model/AuthAccountType.ts` });
 generateYup(AuthAccountTypeDef, { outfile: `${__dirname}/../../../src/type/model/AuthAccountSchema.ts` });

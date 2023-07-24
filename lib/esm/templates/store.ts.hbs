@@ -1,0 +1,47 @@
+{{#if disclaimer}}// {{{ disclaimer }}}{{#if header}}
+{{{header}}}{{/if}}{{/if}}
+
+import { defineStore } from "pinia";
+import { {{ Name }}Type, {{ Name }}TypeDef } from "yuebing-model";
+import { {{ name }}Service } from "~/utils/services/model/{{ name }}Service";
+
+const updateList = (list: {{Name}}Type[] | null, id: string, remove?: {remove?: boolean}) => {
+    if (list) {
+        const foundIndex = list.findIndex(e => {{Name}}TypeDef.id(e) === id)
+        if (foundIndex && foundIndex >= 0) {
+            if (remove && remove.remove === true) {
+                list.splice(foundIndex, 1)
+            } else {
+                list.splice(foundIndex, 1, this.{{ name }})
+            }
+        }
+    }
+}
+
+export const use{{ Name }}Store = defineStore("{{ name }}", {
+    state: () => ({
+        {{ name }}: null as {{ Name }}Type | null,
+        {{ name }}List: null as {{ Name }}Type[] | null,
+    }),
+    actions: {
+        async {{ name }}Lookup(id: string): Promise<void> {
+            this.{{ name }} = await {{ name }}Service.find{{ Name }}(id);
+            updateList(this.{{ name }}List, {{Name}}TypeDef.id(this.{{ name }}))
+        },
+        async {{ name }}Search(query?: MobilettoOrmFindApiOpts): Promise<void> {
+            this.{{ name }}List = await {{ name }}Service.search{{ Name }}(query);
+        },
+        async {{name}}Create({{ name }}: {{ Name }}Type): Promise<void> {
+            this.{{ name }} = await {{ name }}Service.create{{ Name }}({{ name }});
+            updateList(this.{{ name }}List, {{Name}}TypeDef.id(this.{{ name }}))
+        },
+        async {{name}}Update({{ name }}: {{ Name }}Type): Promise<void> {
+            this.{{ name }} = await {{ name }}Service.update{{ Name }}({{ name }});
+            updateList(this.{{ name }}List, {{Name}}TypeDef.id(this.{{ name }}))
+        },
+        async {{name}}Delete({{ name }}: string): Promise<void> {
+            this.{{ name }} = await {{ name }}Service.delete{{ Name }}({{ name }});
+            updateList(this.{{ name }}List, {{Name}}TypeDef.id(this.{{ name }}), { remove: true })
+        },
+    },
+});

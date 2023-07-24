@@ -10,4 +10,5 @@ export type PublicConfigType = MobilettoOrmObject & {
     defaultLocale: string;
     emailEnabled: boolean;
     isDefault?: boolean;
+    needsAdmin?: boolean;
 };

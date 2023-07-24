@@ -1,19 +1,21 @@
+{{#if disclaimer}}// {{{ disclaimer }}}{{#if header}}
+{{{header}}}{{/if}}{{/if}}
+
+import { MobilettoOrmObject, MobilettoOrmPurgeResults } from "mobiletto-orm";
 import {
     {{ Name }}Type,
     {{ Name }}TypeDef,
-    YbModelQuery
 } from "yuebing-model";
 import * as a from "~/utils/services/serviceUtil";
-import { MobilettoOrmObject, MobilettoOrmPurgeResults } from "mobiletto-orm";
 
 export const {{ name }}Service = {
-    query{{ Name }},
+    search{{ Name }},
     find{{ Name }},
     update{{ Name }},
     delete{{ Name }},
 };
 
-function query{{ Name }}(query?: YbModelQuery): Promise<{{ Name }}Type[]> {
+function search{{ Name }}(query?: MobilettoOrmFindApiOpts): Promise<{{ Name }}Type[]> {
     return $fetch("/api/model/{{ name }}", a.authPostJson(query)).then(a.handleJsonResponse<{{ Name }}Type[]>);
 }
 
