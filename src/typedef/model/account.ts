@@ -56,9 +56,8 @@ export const primaryAccountFields: MobilettoOrmFieldDefConfigs = {
   },
   locale: {
     type: "string",
-    items: YUEBING_LOCALES.map((loc) => {
-      return { value: loc, label: `locale_${loc}` };
-    }),
+    // note: title is an alias for label, this is convenient for v-select
+    items: YUEBING_LOCALES.map((loc) => ({ value: loc, label: `locale_${loc}`, title: `locale_${loc}` })),
     required: true,
     tabIndex: 6,
   },
