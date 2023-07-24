@@ -38,6 +38,7 @@ export const primaryAccountFields: MobilettoOrmFieldDefConfigs = {
     min: PASSWORD_MIN_LENGTH,
     max: PASSWORD_MAX_LENGTH,
     tabIndex: 3,
+    redact: true,
   },
   firstName: {
     type: "string",
