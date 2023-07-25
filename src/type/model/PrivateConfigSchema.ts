@@ -36,7 +36,7 @@ export const PrivateConfig_autoscanSchema = yup.object({
 });
 
 export const PrivateConfig_emailSchema = yup.object({
-    host: yup.string()
+    host: yup.string().trim().transform(v => v === '' ? undefined : v)
         .min(6, 'privateConfig_email_host_min')
         .max(128, 'privateConfig_email_host_max')
         .matches(/^([A-Z\d]{1,63}|[A-Z\d][A-Z\d-]{0,61}[A-Z\d])(.([A-Z\d]{1,63}|[A-Z\d][A-Z\d-]{0,61}[A-Z\d]))*$/i, 'privateConfig_email_host_regex')
@@ -49,13 +49,13 @@ export const PrivateConfig_emailSchema = yup.object({
         .typeError('privateConfig_email_port_invalid')
         .required('privateConfig_email_port_required')
         .default(25),
-    user: yup.string()
+    user: yup.string().trim().transform(v => v === '' ? undefined : v)
         .min(2, 'privateConfig_email_user_min')
         .max(100, 'privateConfig_email_user_max')
         .typeError('privateConfig_email_user_invalid')
         .required('privateConfig_email_user_required')
         .default("smtp_user"),
-    password: yup.string()
+    password: yup.string().trim().transform(v => v === '' ? undefined : v)
         .min(2, 'privateConfig_email_password_min')
         .max(100, 'privateConfig_email_password_max')
         .typeError('privateConfig_email_password_invalid')
@@ -63,7 +63,7 @@ export const PrivateConfig_emailSchema = yup.object({
     secure: yup.boolean()
         .typeError('privateConfig_email_secure_invalid')
         .required('privateConfig_email_secure_required'),
-    fromEmail: yup.string()
+    fromEmail: yup.string().trim().transform(v => v === '' ? undefined : v)
         .min(6, 'privateConfig_email_fromEmail_min')
         .max(200, 'privateConfig_email_fromEmail_max')
         .matches(/^[A-Z\d][A-Z\d._%+-]*@[A-Z\d.-]+\.[A-Z]{2,24}$/i, 'privateConfig_email_fromEmail_regex')

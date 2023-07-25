@@ -3,17 +3,17 @@ import { VOL_TYPE_LOCAL, VOL_TYPE_S3, VOL_TYPE_B2 } from "../../typedef/model/vo
 
 import * as yup from "yup";
 export const Volume_encryptionSchema = yup.object({
-    encryptionKey: yup.string()
+    encryptionKey: yup.string().trim().transform(v => v === '' ? undefined : v)
         .min(16, 'volume_encryption_encryptionKey_min')
         .max(1024, 'volume_encryption_encryptionKey_max')
         .typeError('volume_encryption_encryptionKey_invalid')
         .required('volume_encryption_encryptionKey_required'),
-    encryptionIV: yup.string()
+    encryptionIV: yup.string().trim().transform(v => v === '' ? undefined : v)
         .min(16, 'volume_encryption_encryptionIV_min')
         .max(1024, 'volume_encryption_encryptionIV_max')
         .typeError('volume_encryption_encryptionIV_invalid')
         .notRequired(),
-    encryptionAlgo: yup.string()
+    encryptionAlgo: yup.string().trim().transform(v => v === '' ? undefined : v)
         .oneOf(["aes-256-cbc"], 'volume_encryption_encryptionAlgo_enum')
         .typeError('volume_encryption_encryptionAlgo_invalid')
         .notRequired()
@@ -21,18 +21,18 @@ export const Volume_encryptionSchema = yup.object({
 });
 
 export const Volume_b2Schema = yup.object({
-    key: yup.string()
+    key: yup.string().trim().transform(v => v === '' ? undefined : v)
         .min(10, 'volume_b2_key_min')
         .max(50, 'volume_b2_key_max')
         .matches(/^[\dA-F]+$/i, 'volume_b2_key_regex')
         .typeError('volume_b2_key_invalid')
         .required('volume_b2_key_required'),
-    secret: yup.string()
+    secret: yup.string().trim().transform(v => v === '' ? undefined : v)
         .min(10, 'volume_b2_secret_min')
         .max(50, 'volume_b2_secret_max')
         .typeError('volume_b2_secret_invalid')
         .required('volume_b2_secret_required'),
-    bucket: yup.string()
+    bucket: yup.string().trim().transform(v => v === '' ? undefined : v)
         .min(6, 'volume_b2_bucket_min')
         .max(63, 'volume_b2_bucket_max')
         .matches(/$[a-z\d-]{6,63}$/i, 'volume_b2_bucket_regex')
@@ -43,10 +43,10 @@ export const Volume_b2Schema = yup.object({
         .max(2000000000, 'volume_b2_partSize_maxValue')
         .typeError('volume_b2_partSize_invalid')
         .notRequired(),
-    prefix: yup.string()
+    prefix: yup.string().trim().transform(v => v === '' ? undefined : v)
         .typeError('volume_b2_prefix_invalid')
         .notRequired(),
-    delimiter: yup.string()
+    delimiter: yup.string().trim().transform(v => v === '' ? undefined : v)
         .min(1, 'volume_b2_delimiter_min')
         .max(1, 'volume_b2_delimiter_max')
         .typeError('volume_b2_delimiter_invalid')
@@ -55,33 +55,33 @@ export const Volume_b2Schema = yup.object({
 });
 
 export const Volume_s3Schema = yup.object({
-    key: yup.string()
+    key: yup.string().trim().transform(v => v === '' ? undefined : v)
         .min(20, 'volume_s3_key_min')
         .max(20, 'volume_s3_key_max')
         .matches(/^AKIA[A-Z\d]{16}$/, 'volume_s3_key_regex')
         .typeError('volume_s3_key_invalid')
         .required('volume_s3_key_required'),
-    secret: yup.string()
+    secret: yup.string().trim().transform(v => v === '' ? undefined : v)
         .min(40, 'volume_s3_secret_min')
         .max(40, 'volume_s3_secret_max')
         .matches(/^[A-Z\d/+=]{40}$/, 'volume_s3_secret_regex')
         .typeError('volume_s3_secret_invalid')
         .required('volume_s3_secret_required'),
-    bucket: yup.string()
+    bucket: yup.string().trim().transform(v => v === '' ? undefined : v)
         .min(3, 'volume_s3_bucket_min')
         .max(63, 'volume_s3_bucket_max')
         .matches(/^[a-z\d.-]{3,63}$/, 'volume_s3_bucket_regex')
         .typeError('volume_s3_bucket_invalid')
         .required('volume_s3_bucket_required'),
-    region: yup.string()
+    region: yup.string().trim().transform(v => v === '' ? undefined : v)
         .oneOf(["us-east-2","us-east-1","us-west-1","us-west-2","af-south-1","ap-east-1","ap-south-2","ap-southeast-3","ap-southeast-4","ap-south-1","ap-northeast-3","ap-northeast-2","ap-southeast-1","ap-southeast-2","ap-northeast-1","ca-central-1","eu-central-1","eu-west-1","eu-west-2","eu-south-1","eu-west-3","eu-south-2","eu-north-1","eu-central-2","me-south-1","me-central-1","sa-east-1"], 'volume_s3_region_enum')
         .typeError('volume_s3_region_invalid')
         .notRequired()
         .default("us-east-1"),
-    prefix: yup.string()
+    prefix: yup.string().trim().transform(v => v === '' ? undefined : v)
         .typeError('volume_s3_prefix_invalid')
         .notRequired(),
-    delimiter: yup.string()
+    delimiter: yup.string().trim().transform(v => v === '' ? undefined : v)
         .min(1, 'volume_s3_delimiter_min')
         .max(1, 'volume_s3_delimiter_max')
         .typeError('volume_s3_delimiter_invalid')
@@ -90,13 +90,13 @@ export const Volume_s3Schema = yup.object({
 });
 
 export const Volume_localSchema = yup.object({
-    key: yup.string()
+    key: yup.string().trim().transform(v => v === '' ? undefined : v)
         .min(2, 'volume_local_key_min')
         .max(1024, 'volume_local_key_max')
         .matches(/^[A-Z\d ()=.,_+@/-]+$/i, 'volume_local_key_regex')
         .typeError('volume_local_key_invalid')
         .required('volume_local_key_required'),
-    mode: yup.string()
+    mode: yup.string().trim().transform(v => v === '' ? undefined : v)
         .min(4, 'volume_local_mode_min')
         .max(4, 'volume_local_mode_max')
         .matches(/^[01][0-7]{3}$/, 'volume_local_mode_regex')
@@ -106,19 +106,19 @@ export const Volume_localSchema = yup.object({
 });
 
 export const VolumeSchema = yup.object({
-    name: yup.string()
+    name: yup.string().trim().transform(v => v === '' ? undefined : v)
         .min(3, 'name_min')
         .max(100, 'name_max')
         .typeError('name_invalid')
         .required('name_required'),
-    mount: yup.string()
+    mount: yup.string().trim().transform(v => v === '' ? undefined : v)
         .oneOf(["source","destination"], 'mount_enum')
         .typeError('mount_invalid')
         .required('mount_required'),
     system: yup.boolean()
         .typeError('system_invalid')
         .notRequired(),
-    type: yup.string()
+    type: yup.string().trim().transform(v => v === '' ? undefined : v)
         .oneOf(["local","s3","b2","generic"], 'type_enum')
         .typeError('type_invalid')
         .required('type_required'),
