@@ -271,18 +271,18 @@ export const VolumeTypeDef = new MobilettoOrmTypeDef({
   fields: VolumeTypeDefFields,
 });
 
-export const SourceVolumeTypeDefFields: MobilettoOrmFieldDefConfigs = {
+export const SourceTypeDefFields: MobilettoOrmFieldDefConfigs = {
   ...VolumeTypeDefFields,
 };
 
-export const SourceVolumeTypeDef = new MobilettoOrmTypeDef({
+export const SourceTypeDef = new MobilettoOrmTypeDef({
   typeName: "source",
   idPrefix: "src",
   tableFields: ["name", "type", "ctime", "mtime"],
-  fields: SourceVolumeTypeDefFields,
+  fields: SourceTypeDefFields,
 });
 
-export const DestinationVolumeTypeDefFields: MobilettoOrmFieldDefConfigs = {
+export const DestinationTypeDefFields: MobilettoOrmFieldDefConfigs = {
   ...VolumeTypeDefFields,
   system: {
     type: "boolean",
@@ -292,9 +292,9 @@ export const DestinationVolumeTypeDefFields: MobilettoOrmFieldDefConfigs = {
   },
 };
 
-export const DestinationVolumeTypeDef = new MobilettoOrmTypeDef({
+export const DestinationTypeDef = new MobilettoOrmTypeDef({
   typeName: "destination",
   idPrefix: "dst",
   tableFields: ["name", "type", "system", "ctime", "mtime"],
-  fields: DestinationVolumeTypeDefFields,
+  fields: DestinationTypeDefFields,
 });
