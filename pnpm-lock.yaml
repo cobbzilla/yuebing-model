@@ -32,8 +32,8 @@ devDependencies:
     specifier: ^2.1.45
     version: 2.1.45
   mobiletto-orm-typedef-gen:
-    specifier: ^2.1.42
-    version: 2.1.42
+    specifier: ^2.1.43
+    version: 2.1.43
   prettier:
     specifier: ^2.8.8
     version: 2.8.8
@@ -845,8 +845,8 @@ packages:
     hasBin: true
     dev: true
 
-  /mobiletto-orm-typedef-gen@2.1.42:
-    resolution: {integrity: sha512-ngVwQyO5H7KMkcZmrX0tTfH38jEm+GqhcuIvbFeDXF+oDXnri/wFrRIj6xBumyIsPU2owKtYDWFp1O1oPzKmeA==}
+  /mobiletto-orm-typedef-gen@2.1.43:
+    resolution: {integrity: sha512-nSXzU1pMRcvVrxucxgZzM3KACHzBSI6ad7omUnVqqcJXg36Qb+FPAjU0JEdeiXaoPEK5QREgoRMcG7PBhOnDEw==}
     dependencies:
       handlebars: 4.7.7
     dev: true

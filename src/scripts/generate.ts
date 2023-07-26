@@ -19,7 +19,7 @@ const uncapitalize = (s: string): string => s.substring(0, 1).toLowerCase() + s.
 const generateService = (typeDef: MobilettoOrmTypeDef, outfile: string) => {
   if (process.env.YUEBING_DIR) {
     const ybDir = process.env.YUEBING_DIR;
-    generate(typeDef, `${__dirname}/../templates/service.ts.hbs`, { outfile: `${ybDir}/${outfile}` });
+    generate(typeDef, `${__dirname}/../templates/service.ts.hbs`, { rootOnly: true, outfile: `${ybDir}/${outfile}` });
   }
 };
 
@@ -28,17 +28,23 @@ const generateYuebing = (typeDef: MobilettoOrmTypeDef) => {
     const ybDir = process.env.YUEBING_DIR;
     const type = uncapitalize(typeDef.typeName);
     const apiDir = `${ybDir}/server/api/model/${type}`;
-    generate(typeDef, `${__dirname}/../templates/id.put.ts.hbs`, { outfile: `${apiDir}/[id].put.ts` });
-    generate(typeDef, `${__dirname}/../templates/id.get.ts.hbs`, { outfile: `${apiDir}/[id].get.ts` });
-    generate(typeDef, `${__dirname}/../templates/id.patch.ts.hbs`, { outfile: `${apiDir}/[id].patch.ts` });
+    generate(typeDef, `${__dirname}/../templates/id.put.ts.hbs`, { rootOnly: true, outfile: `${apiDir}/[id].put.ts` });
+    generate(typeDef, `${__dirname}/../templates/id.get.ts.hbs`, { rootOnly: true, outfile: `${apiDir}/[id].get.ts` });
+    generate(typeDef, `${__dirname}/../templates/id.patch.ts.hbs`, {
+      rootOnly: true,
+      outfile: `${apiDir}/[id].patch.ts`,
+    });
     generate(typeDef, `${__dirname}/../templates/id.delete.ts.hbs`, {
+      rootOnly: true,
       outfile: `${apiDir}/[id].delete.ts`,
     });
     generate(typeDef, `${__dirname}/../templates/index.post.ts.hbs`, {
+      rootOnly: true,
       outfile: `${apiDir}/index.post.ts`,
     });
     const storeDir = `${ybDir}/stores`;
     generate(typeDef, `${__dirname}/../templates/store.ts.hbs`, {
+      rootOnly: true,
       outfile: `${storeDir}/model/${type}.ts`,
     });
   }
