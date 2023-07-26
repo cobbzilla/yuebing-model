@@ -6,6 +6,7 @@ export declare const VOL_TYPE_GENERIC = "generic";
 export declare const VOLUME_OPTS_FIELDS: Record<string, string[]>;
 export declare const DEFAULT_ENCRYPTION_ALGO = "aes-256-cbc";
 export declare const VolumeTypeDefFields: MobilettoOrmFieldDefConfigs;
+export declare const VolumeTypeDef: MobilettoOrmTypeDef;
 export declare const SourceVolumeTypeDefFields: MobilettoOrmFieldDefConfigs;
 export declare const SourceVolumeTypeDef: MobilettoOrmTypeDef;
 export declare const DestinationVolumeTypeDefFields: MobilettoOrmFieldDefConfigs;

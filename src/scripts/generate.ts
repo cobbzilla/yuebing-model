@@ -11,7 +11,7 @@ import { PublicConfigTypeDef, PrivateConfigTypeDef } from "../typedef/model/conf
 import { AccountTypeDef, AuthAccountTypeDef } from "../typedef/model/account.js";
 import { UsernameAndPasswordTypeDef } from "../typedef/auth/usernameAndPassword.js";
 import { RegistrationTypeDef } from "../typedef/auth/registration.js";
-import { SourceVolumeTypeDef, DestinationVolumeTypeDef } from "../typedef/model/volume.js";
+import { VolumeTypeDef, SourceVolumeTypeDef, DestinationVolumeTypeDef } from "../typedef/model/volume.js";
 import { SessionTypeDef } from "../typedef/auth/session.js";
 
 const uncapitalize = (s: string): string => s.substring(0, 1).toLowerCase() + s.substring(1);
@@ -65,6 +65,8 @@ const volTypeImportHeader =
   "  VOL_TYPE_B2,\n" +
   "  VOL_TYPE_GENERIC\n" +
   '} from "../../typedef/model/volume.js";\n';
+
+generateTypeScriptType(VolumeTypeDef, { outfile: `${__dirname}/../../../src/type/model/VolumeType.ts` });
 
 generateTypeScriptType(SourceVolumeTypeDef, { outfile: `${__dirname}/../../../src/type/model/SourceVolumeType.ts` });
 generateYup(SourceVolumeTypeDef, {

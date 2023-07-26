@@ -264,6 +264,13 @@ export const VolumeTypeDefFields: MobilettoOrmFieldDefConfigs = {
   },
 };
 
+export const VolumeTypeDef = new MobilettoOrmTypeDef({
+  typeName: "volume",
+  idPrefix: "vol",
+  tableFields: ["name", "type", "ctime", "mtime"],
+  fields: VolumeTypeDefFields,
+});
+
 export const SourceVolumeTypeDefFields: MobilettoOrmFieldDefConfigs = {
   ...VolumeTypeDefFields,
 };
