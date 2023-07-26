@@ -3,9 +3,6 @@ import { MobilettoOrmTypeDef, MobilettoOrmFieldDefConfigs, MobilettoOrmRawValue 
 import * as valid from "../../validation.js";
 import { parseMessage } from "yuebing-messages";
 
-export const VOLUME_MOUNT_SOURCE = "source";
-export const VOLUME_MOUNT_DESTINATION = "destination";
-
 const LOCAL_FIELDS: MobilettoOrmFieldDefConfigs = {
   key: {
     type: "string",
@@ -196,88 +193,100 @@ VOLUME_OPTS_FIELDS[VOL_TYPE_GENERIC] = Object.keys(GENERIC_FIELDS).filter(notKey
 
 export const DEFAULT_ENCRYPTION_ALGO = "aes-256-cbc";
 
-export const VolumeTypeDef = new MobilettoOrmTypeDef({
-  typeName: "volume",
-  idPrefix: "vol",
-  tableFields: ["name", "type", "mount", "system", "ctime", "mtime"],
-  fields: {
-    name: {
-      type: "string",
-      primary: true,
-      min: 3,
-      max: 100,
-      render: (v: MobilettoOrmRawValue, messages: Record<string, string>, title: string): string =>
-        valid.isSelfVolume(v as string) ? parseMessage("admin_label_self_volume", messages, { title }) : (v as string),
-    },
-    mount: {
-      type: "string",
-      required: true,
-      items: [
-        { value: VOLUME_MOUNT_SOURCE, label: "admin_label_volume_mount_source" },
-        { value: VOLUME_MOUNT_DESTINATION, label: "admin_label_volume_mount_destination" },
-      ],
-      updatable: false,
-    },
-    system: {
-      type: "boolean",
-      default: false,
-      render: (v: MobilettoOrmRawValue): string => (valid.isSelfVolume(v as string) ? "true" : (v as string)),
-    },
-    type: {
-      type: "string",
-      items: Object.keys(VOLUME_TYPES).map((type) => {
-        return { value: type, label: `label_volumeType_${type}` };
-      }),
-      required: true,
-      updatable: false,
-      render: (v: MobilettoOrmRawValue, messages, title): string =>
-        valid.isSelfVolume(v as string) ? parseMessage("label_volumeType_system", messages, { title }) : (v as string),
-    },
-    local: {
-      when: (v: Record<string, unknown>) => v.type === VOL_TYPE_LOCAL,
-      fields: LOCAL_FIELDS,
-    },
-    s3: {
-      when: (v: Record<string, unknown>) => v.type === VOL_TYPE_S3,
-      fields: S3_FIELDS,
-    },
-    b2: {
-      when: (v: Record<string, unknown>) => v.type === VOL_TYPE_B2,
-      fields: B2_FIELDS,
-    },
-    cacheSize: {
-      type: "number",
-      minValue: 0,
-      maxValue: 10000000,
-      default: 100,
-    },
-    encryptionEnable: {
-      type: "boolean",
-      default: false,
-    },
-    encryption: {
-      when: (v: Record<string, unknown>) => v.encryptionEnable === true,
-      fields: {
-        encryptionKey: {
-          type: "string",
-          required: true,
-          min: 16,
-          max: 1024,
-          updatable: false,
-        },
-        encryptionIV: {
-          type: "string",
-          min: 16,
-          max: 1024,
-          updatable: false,
-        },
-        encryptionAlgo: {
-          type: "string",
-          items: [{ value: DEFAULT_ENCRYPTION_ALGO, rawLabel: true }],
-          default: DEFAULT_ENCRYPTION_ALGO,
-          updatable: false,
-        },
+export const VolumeTypeDefFields: MobilettoOrmFieldDefConfigs = {
+  name: {
+    type: "string",
+    primary: true,
+    min: 3,
+    max: 100,
+    render: (v: MobilettoOrmRawValue, messages: Record<string, string>, title: string): string =>
+      valid.isSelfVolume(v as string) ? parseMessage("admin_label_self_volume", messages, { title }) : (v as string),
+  },
+  type: {
+    type: "string",
+    items: Object.keys(VOLUME_TYPES).map((type) => {
+      return { value: type, label: `label_volumeType_${type}` };
+    }),
+    required: true,
+    updatable: false,
+    render: (v: MobilettoOrmRawValue, messages: Record<string, string>, title: string): string =>
+      valid.isSelfVolume(v as string) ? parseMessage("label_volumeType_system", messages, { title }) : (v as string),
+  },
+  local: {
+    when: (v: Record<string, unknown>) => v.type === VOL_TYPE_LOCAL,
+    fields: LOCAL_FIELDS,
+  },
+  s3: {
+    when: (v: Record<string, unknown>) => v.type === VOL_TYPE_S3,
+    fields: S3_FIELDS,
+  },
+  b2: {
+    when: (v: Record<string, unknown>) => v.type === VOL_TYPE_B2,
+    fields: B2_FIELDS,
+  },
+  generic: {
+    when: (v: Record<string, unknown>) => v.type === VOL_TYPE_GENERIC,
+    fields: GENERIC_FIELDS,
+  },
+  cacheSize: {
+    type: "number",
+    minValue: 0,
+    maxValue: 10000000,
+    default: 100,
+  },
+  encryptionEnable: {
+    type: "boolean",
+    default: false,
+  },
+  encryption: {
+    when: (v: Record<string, unknown>) => v.encryptionEnable === true,
+    fields: {
+      encryptionKey: {
+        type: "string",
+        required: true,
+        min: 16,
+        max: 1024,
+        updatable: false,
+      },
+      encryptionIV: {
+        type: "string",
+        min: 16,
+        max: 1024,
+        updatable: false,
+      },
+      encryptionAlgo: {
+        type: "string",
+        items: [{ value: DEFAULT_ENCRYPTION_ALGO, rawLabel: true }],
+        default: DEFAULT_ENCRYPTION_ALGO,
+        updatable: false,
       },
     },
   },
+};
+
+export const SourceVolumeTypeDefFields: MobilettoOrmFieldDefConfigs = {
+  ...VolumeTypeDefFields,
+};
+
+export const SourceVolumeTypeDef = new MobilettoOrmTypeDef({
+  typeName: "source",
+  idPrefix: "src",
+  tableFields: ["name", "type", "ctime", "mtime"],
+  fields: SourceVolumeTypeDefFields,
+});
+
+export const DestinationVolumeTypeDefFields: MobilettoOrmFieldDefConfigs = {
+  ...VolumeTypeDefFields,
+  system: {
+    type: "boolean",
+    default: false,
+    render: (v: MobilettoOrmRawValue): string => (valid.isSelfVolume(v as string) ? "true" : (v as string)),
+  },
+};
+
+export const DestinationVolumeTypeDef = new MobilettoOrmTypeDef({
+  typeName: "destination",
+  idPrefix: "dst",
+  tableFields: ["name", "type", "system", "ctime", "mtime"],
+  fields: DestinationVolumeTypeDefFields,
 });
