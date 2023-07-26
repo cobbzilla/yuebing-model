@@ -13,6 +13,7 @@ export * from "./type/model/AccountType.js";
 export * from "./type/model/AccountSchema.js";
 export * from "./type/model/AuthAccountType.js";
 export * from "./type/model/AuthAccountSchema.js";
+export * from "./type/model/VolumeType.js";
 export * from "./type/model/SourceVolumeType.js";
 export * from "./type/model/SourceVolumeSchema.js";
 export * from "./type/model/DestinationVolumeType.js";
