@@ -43,9 +43,6 @@ export const AccountSchemaFields = {
     admin: yup.boolean()
         .typeError('admin_invalid')
         .notRequired(),
-    verified: yup.number()
-        .typeError('verified_invalid')
-        .notRequired(),
 };
 
 export const AccountSchema = yup.object(AccountSchemaFields);

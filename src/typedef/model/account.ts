@@ -13,13 +13,13 @@ export const PASSWORD_MAX_LENGTH = 100;
 export const primaryAccountFields: MobilettoOrmFieldDefConfigs = {
   username: {
     type: "string",
-    primary: true,
     min: LOGIN_MIN_LENGTH,
     max: LOGIN_MAX_LENGTH,
     regex: valid.REGEX_VALIDATORS.username,
     normalize: (v): string => (v as string).toLowerCase(),
     updatable: false,
     tabIndex: 1,
+    unique: true,
   },
   email: {
     type: "string",
@@ -83,7 +83,6 @@ export const ACCOUNT_TABLE_FIELDS = [
   "firstName",
   "lastName",
   "locale",
-  "verified",
   "_meta.ctime",
   "_meta.mtime",
 ];
@@ -92,19 +91,12 @@ export const AccountTypeDef = new MobilettoOrmTypeDef({
   typeName: "account",
   idPrefix: "acct",
   tableFields: ACCOUNT_TABLE_FIELDS,
-  alternateLookupFields: ["email"],
   fields: {
     ...primaryAccountFields,
     admin: {
       default: false,
       tabIndex: 8,
       index: true,
-    },
-    verified: {
-      type: "number",
-      control: "label",
-      render: "datetime",
-      tabIndex: 9,
     },
   },
 });

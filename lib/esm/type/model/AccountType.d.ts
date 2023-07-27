@@ -8,5 +8,4 @@ export type AccountType = MobilettoOrmObject & {
     locale: string;
     flags?: string[];
     admin?: boolean;
-    verified?: number;
 };
