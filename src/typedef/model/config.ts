@@ -58,6 +58,8 @@ export const PublicConfigTypeDef = new MobilettoOrmTypeDef({
   },
 });
 
+export const DEFAULT_BCRYPT_TIME_TARGET = 350;
+
 export const PrivateConfigTypeDef = new MobilettoOrmTypeDef({
   typeName: "privateConfig",
   idPrefix: "cfg~private",
@@ -85,6 +87,13 @@ export const PrivateConfigTypeDef = new MobilettoOrmTypeDef({
           maxValue: 1000 * 60 * 60 * 24 * 366 * 100, // >100 years
           default: 1000 * 60 * 60 * 24 * 90, // 90 days
           control: "duration",
+        },
+        bcryptTimeTarget: {
+          required: true,
+          minValue: 200, // 200 milliseconds
+          maxValue: 1000 * 5, // 5 seconds
+          default: DEFAULT_BCRYPT_TIME_TARGET, // 350 milliseconds
+          control: "range",
         },
       },
     },

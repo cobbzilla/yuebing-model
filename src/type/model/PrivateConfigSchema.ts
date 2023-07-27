@@ -99,6 +99,12 @@ export const PrivateConfig_authSchemaFields = {
         .typeError('privateConfig_auth_sessionTimeout_invalid')
         .required('privateConfig_auth_sessionTimeout_required')
         .default(7776000000),
+    bcryptTimeTarget: yup.number()
+        .min(200, 'privateConfig_auth_bcryptTimeTarget_minValue')
+        .max(5000, 'privateConfig_auth_bcryptTimeTarget_maxValue')
+        .typeError('privateConfig_auth_bcryptTimeTarget_invalid')
+        .required('privateConfig_auth_bcryptTimeTarget_required')
+        .default(350),
 };
 
 export const PrivateConfig_authSchema = yup.object(PrivateConfig_authSchemaFields);

@@ -52,25 +52,30 @@ export declare const PrivateConfig_authSchemaFields: {
     verifyAccountTimeout: yup.NumberSchema<number, yup.AnyObject, 172800000, "d">;
     resetPasswordTimeout: yup.NumberSchema<number, yup.AnyObject, 3600000, "d">;
     sessionTimeout: yup.NumberSchema<number, yup.AnyObject, 7776000000, "d">;
+    bcryptTimeTarget: yup.NumberSchema<number, yup.AnyObject, 350, "d">;
 };
 export declare const PrivateConfig_authSchema: yup.ObjectSchema<{
     verifyAccountTimeout: number;
     resetPasswordTimeout: number;
     sessionTimeout: number;
+    bcryptTimeTarget: number;
 }, yup.AnyObject, {
     verifyAccountTimeout: 172800000;
     resetPasswordTimeout: 3600000;
     sessionTimeout: 7776000000;
+    bcryptTimeTarget: 350;
 }, "">;
 export declare const PrivateConfigSchemaFields: {
     auth: yup.ObjectSchema<yup.Maybe<{
         verifyAccountTimeout: number;
         resetPasswordTimeout: number;
         sessionTimeout: number;
+        bcryptTimeTarget: number;
     }>, yup.AnyObject, {
         verifyAccountTimeout: 172800000;
         resetPasswordTimeout: 3600000;
         sessionTimeout: 7776000000;
+        bcryptTimeTarget: 350;
     }, "">;
     emailEnabled: yup.BooleanSchema<NonNullable<boolean | undefined>, yup.AnyObject, undefined, "">;
     email: yup.ObjectSchema<yup.Maybe<{
@@ -112,6 +117,7 @@ export declare const PrivateConfigSchema: yup.ObjectSchema<{
         verifyAccountTimeout: number;
         resetPasswordTimeout: number;
         sessionTimeout: number;
+        bcryptTimeTarget: number;
     } | null | undefined;
     emailEnabled: NonNullable<boolean | undefined>;
     email: {
@@ -137,6 +143,7 @@ export declare const PrivateConfigSchema: yup.ObjectSchema<{
         verifyAccountTimeout: 172800000;
         resetPasswordTimeout: 3600000;
         sessionTimeout: 7776000000;
+        bcryptTimeTarget: 350;
     };
     emailEnabled: undefined;
     email: {

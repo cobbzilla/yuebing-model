@@ -21,6 +21,7 @@ export type PrivateConfig_authType = {
     verifyAccountTimeout: number;
     resetPasswordTimeout: number;
     sessionTimeout: number;
+    bcryptTimeTarget: number;
 };
 export type PrivateConfigType = MobilettoOrmObject & {
     auth?: PrivateConfig_authType;
