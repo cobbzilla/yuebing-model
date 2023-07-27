@@ -29,11 +29,11 @@ devDependencies:
     specifier: ^8.8.0
     version: 8.8.0(eslint@8.44.0)
   mobiletto-orm-typedef:
-    specifier: ^2.1.48
-    version: 2.1.48
+    specifier: ^2.1.49
+    version: 2.1.49
   mobiletto-orm-typedef-gen:
-    specifier: ^2.1.45
-    version: 2.1.45
+    specifier: ^2.1.46
+    version: 2.1.46
   prettier:
     specifier: ^2.8.8
     version: 2.8.8
@@ -845,14 +845,14 @@ packages:
     hasBin: true
     dev: true
 
-  /mobiletto-orm-typedef-gen@2.1.45:
-    resolution: {integrity: sha512-ZL/Mgx7oK25fR4+RZ6Xn6NfvAgnh8PFp1VSH6p2JsdukSi0jN8CRPgGO4r0ALOqBB8jnSmF4/YmVwBxj49//lw==}
+  /mobiletto-orm-typedef-gen@2.1.46:
+    resolution: {integrity: sha512-1JgLisVYFxwBowhFPFoFDbnplV7P1kSa+kmX7+jX06QFdSAwFGzLdyCCC3ogQwaDnVlxh1st9EXNSkwumR4rxA==}
     dependencies:
       handlebars: 4.7.7
     dev: true
 
-  /mobiletto-orm-typedef@2.1.48:
-    resolution: {integrity: sha512-sF291R6griF/IueTUqar/+wtyEx+w1iG9lHkREpkBHfeZHqH2whh1vPSfcCv4Eo8ebF3AH8E7osUl0DDJ4maLg==}
+  /mobiletto-orm-typedef@2.1.49:
+    resolution: {integrity: sha512-eOMjlx4hRutPmdKkY0PIYcOLqHKEUkJET1llw79azwxmyQCN/nL4v/RkuSNIzzoMOti22LKhhNwvb9c2y/xfzA==}
     dependencies:
       shasum: 1.0.2
       uuid: 9.0.0

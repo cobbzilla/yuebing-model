@@ -129,7 +129,7 @@ const B2_FIELDS: MobilettoOrmFieldDefConfigs = {
     label: "label_volumeType_b2_field_partSize",
     minValue: 5000000,
     maxValue: 2000000000,
-    normalize: (v: unknown) => Math.floor(v as number),
+    normalize: async (v: unknown) => Promise.resolve(Math.floor(v as number)),
   },
   prefix: {
     type: "string",

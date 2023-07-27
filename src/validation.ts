@@ -33,6 +33,9 @@ export const isExactRegexMatch = (value: string, regex: RegExp): boolean => {
 
 export const isValidEmail = (value: string): boolean => isExactRegexMatch(value, EMAIL_REGEX);
 
+export const NORMALIZE_LOWERCASE = async (v: unknown): Promise<string> =>
+  Promise.resolve(`${v ? v : typeof v === "undefined" ? "undefined" : v == null ? "null" : v}`.toLowerCase());
+
 // find valid emails in some muck
 // if muck is a string, it is split into tokens: whitespace, commas and angle-brackets. it is now an array
 // when muck is an array, things that are not email addresses are filtered out

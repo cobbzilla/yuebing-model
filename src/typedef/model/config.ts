@@ -32,7 +32,7 @@ export const PublicConfigTypeDef = new MobilettoOrmTypeDef({
       required: false,
       type: "string",
       regex: LIST_OF_EMAILS_REGEX,
-      normalize: (v) => (v ? v.toString().replace(/[,\s]+/, "\n") : v),
+      normalize: async (v) => Promise.resolve(v ? v.toString().replace(/[,\s]+/, "\n") : v),
       default: "",
     },
     defaultLocale: {

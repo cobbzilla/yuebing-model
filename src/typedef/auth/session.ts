@@ -10,7 +10,7 @@ export const SessionTypeDef = new MobilettoOrmTypeDef({
       control: "password",
       min: MIN_ID_LENGTH,
       max: MIN_ID_LENGTH + 100,
-      normalize: () => {
+      normalize: async (): Promise<string> => {
         console.log("session.normalize");
         return generateId("sess~tok");
       },
