@@ -2,12 +2,15 @@
 {{{header}}}{{/if}}{{/if}}
 // @eslint-disable camelcase
 
-export default defineEventHandler(async (event) => {
-  filterErrors(event, "{{ name }}.lookup", async (event) => {{{curlyOpen}}}{{#if typeDef.apiConfig.lookup.admin}}
-    requireAdminAccountObject(event, "{{ name }}.lookup", async (event, _session, _account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.lookup.owner}}
-    requireAccountObject(event, "{{ name }}.lookup", async (event, _session, _account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.lookup.session}}
-    requireAccount(event, "{{ name }}.lookup", async (event, _session) => {{{curlyOpen}}}{{/if}}{{/if}}{{/if}}
-      const id = event.context.params.id;
+import { H3Event } from "h3";
+
+export default defineEventHandler(async (event: H3Event) => {
+  filterErrors(event, "{{ name }}.lookup", async (event: H3Event) => {{{curlyOpen}}}{{#if typeDef.apiConfig.lookup.admin}}
+    requireAdminAccountObject(event, "{{ name }}.lookup", async (event: H3Event, session, account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.lookup.owner}}
+    requireAccountObject(event, "{{ name }}.lookup", async (event: H3Event, session, account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.lookup.session}}
+    requireAccount(event, "{{ name }}.lookup", async (event: H3Event, session) => {{{curlyOpen}}}{{/if}}{{/if}}{{/if}}
+      const id = event?.context?.params?.id;
+      if (!id) throw notFound("");
       const {{ name }}Repo = {{ name }}Repository();
       const {{ name }}_by_id = await {{ name }}Repo.safeFindById(id);
       if ({{ name }}_by_id) return {{ name }}_by_id;
@@ -15,7 +18,7 @@ export default defineEventHandler(async (event) => {
       const {{ ../name }}_by_{{ this }} = await {{ ../name }}Repo.safeFindFirstBy("{{ this }}", id);
       if ({{ ../name }}_by_{{ this }}) return {{ ../name }}_by_{{ this }};
       {{/each}}
-      throw createError({ statusCode: 404, statusMessage: "not found" });{{#if typeDef.apiConfig.lookup.admin}}
+      throw notFound(id);{{#if typeDef.apiConfig.lookup.admin}}
     });{{else}}{{#if typeDef.apiConfig.lookup.owner}}
     });{{else}}{{#if typeDef.apiConfig.lookup.session}}
     });{{/if}}{{/if}}{{/if}}

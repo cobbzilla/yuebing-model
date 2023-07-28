@@ -1,21 +1,22 @@
 {{#if disclaimer}}// {{{ disclaimer }}}{{#if header}}
 {{{header}}}{{/if}}{{/if}}
 
+import { H3Event } from "h3";
 import { {{ Name }}Type, {{ Name }}TypeDef } from "yuebing-model";
 
-export default defineEventHandler(async (event) => {
-  filterErrors(event, "{{ name }}.create", async (event) => {{{curlyOpen}}}{{#if typeDef.apiConfig.create.admin}}
-    requireAdminAccountObject(event, "{{ name }}.create", async (event, session, account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.create.owner}}
-    requireAccountObject(event, "{{ name }}.create", async (event, session, account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.create.session}}
-    requireAccount(event, "{{ name }}.create", async (event, session) => {{{curlyOpen}}}{{/if}}{{/if}}{{/if}}
-      const id = event.context.params.id;
-      const {{ name }}Repo = {{ name }}Repository();
+export default defineEventHandler(async (event: H3Event) => {
+  filterErrors(event, "{{ name }}.create", async (event: H3Event) => {{{curlyOpen}}}{{#if typeDef.apiConfig.create.admin}}
+    requireAdminAccountObject(event, "{{ name }}.create", async (event: H3Event, session, account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.create.owner}}
+    requireAccountObject(event, "{{ name }}.create", async (event: H3Event, session, account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.create.session}}
+    requireAccount(event, "{{ name }}.create", async (event: H3Event, session) => {{{curlyOpen}}}{{/if}}{{/if}}{{/if}}
+      const id = event?.context?.params?.id;
+      if (!id) throw notFound("");
       const obj: {{ Name }}Type = await readBody(event);
       if (!obj) {
-        throw createError({ statusCode: 400, statusMessage: "bad request" });
+        throw badRequest();
       }
       if ({{ Name }}TypeDef.id(obj) !== id) {
-        throw createError({ statusCode: 422, statusMessage: "validation error", data: { id: ["mismatch"] } });
+        throw validationError({ id: ["mismatch"] });
       } else {
         return await {{ name }}Repo.create(obj);
       }{{#if typeDef.apiConfig.create.admin}}

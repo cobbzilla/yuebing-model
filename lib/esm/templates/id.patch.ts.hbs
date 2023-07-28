@@ -1,21 +1,22 @@
 {{#if disclaimer}}// {{{ disclaimer }}}{{#if header}}
 {{{header}}}{{/if}}{{/if}}
 
+import { H3Event } from "h3";
 import { {{ Name }}Type, {{ Name }}TypeDef } from "yuebing-model";
 
-export default defineEventHandler(async (event) => {
-  filterErrors(event, "{{ name }}.update", async (event) => {{{curlyOpen}}}{{#if typeDef.apiConfig.update.admin}}
-    requireAdminAccountObject(event, "{{ name }}.update", async (event, _session, _account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.update.owner}}
-    requireAccountObject(event, "{{ name }}.update", async (event, session, account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.update.session}}
-    requireAccount(event, "{{ name }}.update", async (event, _session) => {{{curlyOpen}}}{{/if}}{{/if}}{{/if}}
-      const id = event.context.params.id;
-      const {{ name }}Repo = {{ name }}Repository();
+export default defineEventHandler(async (event: H3Event) => {
+  filterErrors(event, "{{ name }}.update", async (event: H3Event) => {{{curlyOpen}}}{{#if typeDef.apiConfig.update.admin}}
+    requireAdminAccountObject(event, "{{ name }}.update", async (event: H3Event, session, account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.update.owner}}
+    requireAccountObject(event, "{{ name }}.update", async (event: H3Event, session, account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.update.session}}
+    requireAccount(event, "{{ name }}.update", async (event: H3Event, session) => {{{curlyOpen}}}{{/if}}{{/if}}{{/if}}
+      const id = event?.context?.params?.id;
+      if (!id) throw notFound("");
       const obj: {{ Name }}Type = await readBody(event);
       if (!obj) {
-        throw createError({ statusCode: 400, statusMessage: "bad request" });
+        throw badRequest();
       }
       if ({{ Name }}TypeDef.id(obj) !== id) {
-        throw createError({ statusCode: 422, statusMessage: "validation error", data: { id: ["mismatch"] } });
+        throw validationError({ id: ["mismatch"] });
       } else {
         {{#if typeDef.apiConfig.update.owner}}
         if (!account.admin && obj.account && obj.account !== session.account) throw forbidden();
