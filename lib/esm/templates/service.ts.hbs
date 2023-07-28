@@ -28,7 +28,7 @@ function create{{ Name }}({{ name }}: {{ Name }}Type): Promise<{{ Name }}Type> {
 
 function update{{ Name }}({{ name }}: {{ Name }}Type): Promise<{{ Name }}Type> {
   const id = {{ Name }}TypeDef.id({{ name }});
-  return $fetch(`/api/model/{{ name }}/${{{curlyOpen}}}id{{{curlyClose}}}`, a.authPostJson({{ name }})).then(a.handleJsonResponse<{{ Name }}Type>);
+  return $fetch(`/api/model/{{ name }}/${{{curlyOpen}}}id{{{curlyClose}}}`, a.authPatchJson({{ name }})).then(a.handleJsonResponse<{{ Name }}Type>);
 }
 
 function delete{{ Name }}(id: string, purge?: boolean): Promise<MobilettoOrmObject | MobilettoOrmPurgeResults> {
