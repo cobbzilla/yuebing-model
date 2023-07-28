@@ -7,17 +7,14 @@ export const SessionTypeDef = new MobilettoOrmTypeDef({
   fields: {
     token: {
       primary: true,
-      control: "password",
+      control: "label",
       min: MIN_ID_LENGTH,
       max: MIN_ID_LENGTH + 100,
-      normalize: async (): Promise<string> => {
-        console.log("session.normalize");
-        return generateId("sess~tok");
-      },
+      normalize: async (): Promise<string> => generateId("sess~tok"),
     },
     account: {
       required: true,
-      type: "string",
+      control: "label",
       min: MIN_ID_LENGTH,
       max: MIN_ID_LENGTH + 100, // let's be generous
       updatable: false,
