@@ -99,7 +99,6 @@ export const AccountTypeDef = new MobilettoOrmTypeDef({
       default: false,
       tabIndex: 8,
       index: true,
-      indexLevels: 0,
     },
   },
 });
