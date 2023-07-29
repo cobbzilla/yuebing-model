@@ -1,6 +1,6 @@
 import * as yup from "yup";
 export declare const RegistrationSchemaFields: {
-    username: yup.StringSchema<string, yup.AnyObject, undefined, "">;
+    username: yup.StringSchema<yup.Maybe<string | undefined>, yup.AnyObject, undefined, "">;
     email: yup.StringSchema<string, yup.AnyObject, undefined, "">;
     password: yup.StringSchema<string, yup.AnyObject, undefined, "">;
     firstName: yup.StringSchema<yup.Maybe<string | undefined>, yup.AnyObject, undefined, "">;
@@ -9,7 +9,7 @@ export declare const RegistrationSchemaFields: {
     flags: yup.ArraySchema<yup.Maybe<("flag_welcome_email" | "flag_can_comment" | "flag_can_tag" | "flag_can_edit_metadata" | "flag_can_set_thumbnail" | undefined)[] | undefined>, yup.AnyObject, ("flag_welcome_email" | "flag_can_comment" | "flag_can_tag")[], "d">;
 };
 export declare const RegistrationSchema: yup.ObjectSchema<{
-    username: string;
+    username: yup.Maybe<string | undefined>;
     email: string;
     password: string;
     firstName: yup.Maybe<string | undefined>;

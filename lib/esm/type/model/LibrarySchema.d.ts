@@ -11,7 +11,7 @@ export declare const Library_autoscanSchema: yup.ObjectSchema<{
     interval: 86400000;
 }, "">;
 export declare const LibrarySchemaFields: {
-    name: yup.StringSchema<string, yup.AnyObject, undefined, "">;
+    name: yup.StringSchema<yup.Maybe<string | undefined>, yup.AnyObject, undefined, "">;
     sources: yup.ArraySchema<yup.Maybe<("" | undefined)[] | undefined>, yup.AnyObject, "", "">;
     destinations: yup.ArraySchema<yup.Maybe<("" | undefined)[] | undefined>, yup.AnyObject, "", "">;
     autoscanEnabled: yup.BooleanSchema<NonNullable<boolean | undefined>, yup.AnyObject, undefined, "">;
@@ -24,7 +24,7 @@ export declare const LibrarySchemaFields: {
     }, "">;
 };
 export declare const LibrarySchema: yup.ObjectSchema<{
-    name: string;
+    name: yup.Maybe<string | undefined>;
     sources: yup.Maybe<("" | undefined)[] | undefined>;
     destinations: yup.Maybe<("" | undefined)[] | undefined>;
     autoscanEnabled: NonNullable<boolean | undefined>;

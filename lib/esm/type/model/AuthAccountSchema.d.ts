@@ -1,6 +1,6 @@
 import * as yup from "yup";
 export declare const AuthAccountSchemaFields: {
-    username: yup.StringSchema<string, yup.AnyObject, undefined, "">;
+    username: yup.StringSchema<yup.Maybe<string | undefined>, yup.AnyObject, undefined, "">;
     email: yup.StringSchema<string, yup.AnyObject, undefined, "">;
     password: yup.StringSchema<string, yup.AnyObject, undefined, "">;
     firstName: yup.StringSchema<yup.Maybe<string | undefined>, yup.AnyObject, undefined, "">;
@@ -11,7 +11,7 @@ export declare const AuthAccountSchemaFields: {
     session: yup.StringSchema<yup.Maybe<string | undefined>, yup.AnyObject, undefined, "">;
 };
 export declare const AuthAccountSchema: yup.ObjectSchema<{
-    username: string;
+    username: yup.Maybe<string | undefined>;
     email: string;
     password: string;
     firstName: yup.Maybe<string | undefined>;

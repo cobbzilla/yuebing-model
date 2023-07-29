@@ -5,7 +5,7 @@ export type Library_autoscanType = {
     interval?: number;
 };
 export type LibraryType = MobilettoOrmObject & {
-    name: string;
+    name?: string;
     sources?: string[];
     destinations?: string[];
     autoscanEnabled: boolean;
