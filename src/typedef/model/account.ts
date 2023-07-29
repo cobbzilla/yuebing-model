@@ -20,6 +20,7 @@ export const primaryAccountFields: MobilettoOrmFieldDefConfigs = {
     updatable: false,
     tabIndex: 1,
     unique: true,
+    indexLevels: 2,
   },
   email: {
     type: "string",
@@ -31,6 +32,7 @@ export const primaryAccountFields: MobilettoOrmFieldDefConfigs = {
     updatable: false,
     tabIndex: 2,
     unique: true,
+    indexLevels: 2,
   },
   password: {
     type: "string",
@@ -97,6 +99,7 @@ export const AccountTypeDef = new MobilettoOrmTypeDef({
       default: false,
       tabIndex: 8,
       index: true,
+      indexLevels: 0,
     },
   },
 });
