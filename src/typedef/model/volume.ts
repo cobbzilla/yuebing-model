@@ -289,6 +289,7 @@ export const DestinationTypeDefFields: MobilettoOrmFieldDefConfigs = {
     default: false,
     render: (v: MobilettoOrmRawValue): string => (valid.isSelfVolume(v as string) ? "true" : (v as string)),
     index: true,
+    indexLevels: 0,
   },
 };
 

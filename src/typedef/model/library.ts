@@ -4,6 +4,7 @@ import * as valid from "../../validation.js";
 export const LibraryTypeDefFields: MobilettoOrmFieldDefConfigs = {
   name: {
     unique: true,
+    indexLevels: 2,
     min: 1,
     max: 500,
     regex: valid.REGEX_VALIDATORS.username,
