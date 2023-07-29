@@ -46,7 +46,7 @@ const generateYuebing = (typeDef: MobilettoOrmTypeDef) => {
     const storeDir = `${ybDir}/stores`;
     generate(typeDef, `${__dirname}/../templates/store.ts.hbs`, {
       rootOnly: true,
-      outfile: `${storeDir}/model/${type}.ts`,
+      outfile: `${storeDir}/model/${type}Store.ts`,
     });
   }
 };

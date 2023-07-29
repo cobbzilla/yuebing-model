@@ -2,46 +2,46 @@
 {{{header}}}{{/if}}{{/if}}
 
 import { defineStore } from "pinia";
-import { {{ Name }}Type, {{ Name }}TypeDef } from "yuebing-model";
-import { {{ name }}Service } from "~/utils/services/model/{{ name }}Service";
+import { {{Name}}Type, {{Name}}TypeDef } from "yuebing-model";
+import { {{name}}Service } from "~/utils/services/model/{{name}}Service";
 
-const updateList = (list: {{Name}}Type[] | null, id: string, remove?: { remove?: boolean }) => {
+const updateList = (list: {{Name}}Type[] | null, id: string, opts?: { {{name}}?: {{Name}}Type, remove?: boolean }) => {
+  if (!opts) return;
   if (list) {
     const foundIndex = list.findIndex((e) => {{Name}}TypeDef.id(e) === id);
     if (foundIndex && foundIndex >= 0) {
-      if (remove && remove.remove === true) {
+      if (opts && opts.remove === true) {
         list.splice(foundIndex, 1);
-      } else {
-        list.splice(foundIndex, 1, this.{{ name }});
+      } else if (opts && opts.{{name}}) {
+        list.splice(foundIndex, 1, opts.{{name}});
       }
     }
   }
 };
 
-export const use{{ Name }}Store = defineStore("{{ name }}", {
+export const use{{Name}}Store = defineStore("{{name}}", {
   state: () => ({
-    {{ name }}: null as {{ Name }}Type | null,
-    {{ name }}List: null as {{ Name }}Type[] | null,
+    {{name}}: null as {{Name}}Type | null,
+    {{name}}List: null as {{Name}}Type[] | null,
   }),
   actions: {
-    async {{ name }}Lookup(id: string): Promise<void> {
-      this.{{ name }} = await {{ name }}Service.find{{ Name }}(id);
-      updateList(this.{{ name }}List, {{Name}}TypeDef.id(this.{{ name }}));
+    async {{name}}Lookup(id: string): Promise<void> {
+      this.{{name}} = await {{name}}Service.find{{Name}}(id);
+      updateList(this.{{name}}List, {{Name}}TypeDef.id(this.{{name}}), { {{name}}: this.{{name}} });
     },
-    async {{ name }}Search(query?: MobilettoOrmFindApiOpts): Promise<void> {
-      this.{{ name }}List = await {{ name }}Service.search{{ Name }}(query);
+    async {{name}}Search(query?: MobilettoOrmFindApiOpts): Promise<void> {
+      this.{{name}}List = await {{name}}Service.search{{Name}}(query);
     },
-    async {{name}}Create({{ name }}: {{ Name }}Type): Promise<void> {
-      this.{{ name }} = await {{ name }}Service.create{{ Name }}({{ name }});
-      updateList(this.{{ name }}List, {{Name}}TypeDef.id(this.{{ name }}));
+    async {{name}}Create({{name}}: {{Name}}Type): Promise<void> {
+      this.{{name}} = await {{name}}Service.create{{Name}}({{name}});
     },
-    async {{name}}Update({{ name }}: {{ Name }}Type): Promise<void> {
-      this.{{ name }} = await {{ name }}Service.update{{ Name }}({{ name }});
-      updateList(this.{{ name }}List, {{Name}}TypeDef.id(this.{{ name }}));
+    async {{name}}Update({{name}}: {{Name}}Type): Promise<void> {
+      this.{{name}} = await {{name}}Service.update{{Name}}({{name}});
+      updateList(this.{{name}}List, {{Name}}TypeDef.id(this.{{name}}), { {{name}}: this.{{name}} });
     },
-    async {{name}}Delete({{ name }}: string): Promise<void> {
-      await {{ name }}Service.delete{{ Name }}({{ name }});
-      updateList(this.{{ name }}List, {{ name }}, { remove: true });
+    async {{name}}Delete({{name}}: string): Promise<void> {
+      await {{name}}Service.delete{{Name}}({{name}});
+      updateList(this.{{name}}List, {{name}}, { remove: true });
     },
   },
 });
