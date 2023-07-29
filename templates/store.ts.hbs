@@ -1,3 +1,4 @@
+import {boolean} from "yup";
 {{#if disclaimer}}// {{{ disclaimer }}}{{#if header}}
 {{{header}}}{{/if}}{{/if}}
 
@@ -25,23 +26,28 @@ export const use{{Name}}Store = defineStore("{{name}}", {
     {{name}}List: null as {{Name}}Type[] | null,
   }),
   actions: {
-    async {{name}}Lookup(id: string): Promise<void> {
+    async {{name}}Lookup(id: string): Promise<{{Name}}Type> {
       this.{{name}} = await {{name}}Service.find{{Name}}(id);
       updateList(this.{{name}}List, {{Name}}TypeDef.id(this.{{name}}), { {{name}}: this.{{name}} });
+      return this.{{name}};
     },
-    async {{name}}Search(query?: MobilettoOrmFindApiOpts): Promise<void> {
+    async {{name}}Search(query?: MobilettoOrmFindApiOpts): Promise<{{Name}}Type[]> {
       this.{{name}}List = await {{name}}Service.search{{Name}}(query);
+      return this.{{name}}List || [];
     },
-    async {{name}}Create({{name}}: {{Name}}Type): Promise<void> {
+    async {{name}}Create({{name}}: {{Name}}Type): Promise<{{Name}}Type> {
       this.{{name}} = await {{name}}Service.create{{Name}}({{name}});
+      return this.{{name}};
     },
-    async {{name}}Update({{name}}: {{Name}}Type): Promise<void> {
+    async {{name}}Update({{name}}: {{Name}}Type): Promise<{{Name}}Type> {
       this.{{name}} = await {{name}}Service.update{{Name}}({{name}});
       updateList(this.{{name}}List, {{Name}}TypeDef.id(this.{{name}}), { {{name}}: this.{{name}} });
+      return this.{{name}};
     },
-    async {{name}}Delete({{name}}: string): Promise<void> {
+    async {{name}}Delete({{name}}: string): Promise<boolean> {
       await {{name}}Service.delete{{Name}}({{name}});
       updateList(this.{{name}}List, {{name}}, { remove: true });
+      return true;
     },
   },
 });
