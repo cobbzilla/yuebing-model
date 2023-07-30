@@ -2,6 +2,7 @@ import { MobilettoOrmTypeDef } from "mobiletto-orm-typedef";
 import { LIST_OF_EMAILS_REGEX, REGEX_VALIDATORS } from "../../validation.js";
 import { FALLBACK_DEFAULT_LANG, YUEBING_LOCALES } from "yuebing-messages";
 import { EMAIL_MAX_LENGTH, EMAIL_MIN_LENGTH } from "./account.js";
+import { DEFAULT_ENCRYPTION_ALGO } from "./volume.js";
 
 export const PublicConfigTypeDef = new MobilettoOrmTypeDef({
   typeName: "publicConfig",
@@ -184,6 +185,17 @@ export const PrivateConfigTypeDef = new MobilettoOrmTypeDef({
         isDefault: {
           required: false,
           default: false,
+        },
+      },
+    },
+    crypto: {
+      required: false,
+      fields: {
+        ciphers: {
+          required: false,
+          default: DEFAULT_ENCRYPTION_ALGO,
+          values: [DEFAULT_ENCRYPTION_ALGO], // filled out by the server
+          control: "label",
         },
       },
     },

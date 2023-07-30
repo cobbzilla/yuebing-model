@@ -1,4 +1,7 @@
 import { MobilettoOrmObject } from "mobiletto-orm-typedef";
+export type PrivateConfig_cryptoType = {
+    ciphers?: string;
+};
 export type PrivateConfig_autoscanType = {
     initialDelay: number;
     interval?: number;
@@ -28,4 +31,5 @@ export type PrivateConfigType = MobilettoOrmObject & {
     email?: PrivateConfig_emailType;
     autoscanEnabled: boolean;
     autoscan?: PrivateConfig_autoscanType;
+    crypto?: PrivateConfig_cryptoType;
 };

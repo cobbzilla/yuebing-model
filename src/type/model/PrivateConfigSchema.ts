@@ -2,6 +2,17 @@
 
 import * as yup from "yup";
 
+export const PrivateConfig_cryptoSchemaFields = {
+    ciphers: yup.string().trim().transform(v => v === '' ? undefined : v)
+        .oneOf(["aes-256-cbc"], 'privateConfig_crypto_ciphers_enum')
+        .typeError('privateConfig_crypto_ciphers_invalid')
+        .notRequired()
+        .default("aes-256-cbc"),
+};
+
+export const PrivateConfig_cryptoSchema = yup.object(PrivateConfig_cryptoSchemaFields);
+
+
 export const PrivateConfig_autoscanSchemaFields = {
     initialDelay: yup.number()
         .min(60000, 'privateConfig_autoscan_initialDelay_minValue')
@@ -141,6 +152,8 @@ export const PrivateConfigSchemaFields = {
             then: (schema) => schema.required('autoscan_required'),
             otherwise: (schema) => schema.notRequired(),
         }),
+    crypto: PrivateConfig_cryptoSchema
+        .notRequired(),
 };
 
 export const PrivateConfigSchema = yup.object(PrivateConfigSchemaFields);

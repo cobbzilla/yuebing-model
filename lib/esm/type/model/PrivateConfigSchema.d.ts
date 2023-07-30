@@ -1,4 +1,12 @@
 import * as yup from "yup";
+export declare const PrivateConfig_cryptoSchemaFields: {
+    ciphers: yup.StringSchema<yup.Maybe<"aes-256-cbc" | undefined>, yup.AnyObject, "aes-256-cbc", "d">;
+};
+export declare const PrivateConfig_cryptoSchema: yup.ObjectSchema<{
+    ciphers: "aes-256-cbc" | null;
+}, yup.AnyObject, {
+    ciphers: "aes-256-cbc";
+}, "">;
 export declare const PrivateConfig_autoscanSchemaFields: {
     initialDelay: yup.NumberSchema<number, yup.AnyObject, 600000, "d">;
     interval: yup.NumberSchema<yup.Maybe<number | undefined>, yup.AnyObject, 86400000, "d">;
@@ -111,6 +119,11 @@ export declare const PrivateConfigSchemaFields: {
         transformConcurrency: 1;
         isDefault: undefined;
     }, "">;
+    crypto: yup.ObjectSchema<yup.Maybe<{
+        ciphers: "aes-256-cbc" | null;
+    }>, yup.AnyObject, {
+        ciphers: "aes-256-cbc";
+    }, "">;
 };
 export declare const PrivateConfigSchema: yup.ObjectSchema<{
     auth: {
@@ -138,6 +151,9 @@ export declare const PrivateConfigSchema: yup.ObjectSchema<{
         deleteIncompleteUploads: NonNullable<boolean | undefined>;
         transformConcurrency: number;
     } | null | undefined;
+    crypto: {
+        ciphers: "aes-256-cbc" | null;
+    } | null | undefined;
 }, yup.AnyObject, {
     auth: {
         verifyAccountTimeout: 172800000;
@@ -163,5 +179,8 @@ export declare const PrivateConfigSchema: yup.ObjectSchema<{
         deleteIncompleteUploads: true;
         transformConcurrency: 1;
         isDefault: undefined;
+    };
+    crypto: {
+        ciphers: "aes-256-cbc";
     };
 }, "">;
