@@ -18,6 +18,7 @@ export default defineEventHandler(async (event: H3Event) => {
       if ({{ Name }}TypeDef.id(obj) !== id) {
         throw validationError({ id: ["mismatch"] });
       } else {
+        const {{ name }}Repo = {{ name }}Repository();
         return await {{ name }}Repo.create(obj);
       }{{#if typeDef.apiConfig.create.admin}}
     });{{else}}{{#if typeDef.apiConfig.create.owner}}

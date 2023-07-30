@@ -21,6 +21,7 @@ export default defineEventHandler(async (event: H3Event) => {
         {{#if typeDef.apiConfig.update.owner}}
         if (!account.admin && obj.account && obj.account !== session.account) throw forbidden();
         {{/if}}
+        const {{ name }}Repo = {{ name }}Repository();
         return await {{ name }}Repo.update(obj);
       }{{#if typeDef.apiConfig.update.admin}}
     });{{else}}{{#if typeDef.apiConfig.update.owner}}
