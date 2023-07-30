@@ -254,6 +254,7 @@ export const VolumeTypeDefFields: MobilettoOrmFieldDefConfigs = {
   },
   cacheSize: {
     type: "number",
+    control: "text",
     tabIndex: 100,
     minValue: 0,
     maxValue: 10000000,
