@@ -28,6 +28,7 @@ export type Source_s3Type = {
 };
 export type Source_localType = {
     key: string;
+    createIfNotExist?: boolean;
     mode?: string;
 };
 export type SourceType = MobilettoOrmObject & {

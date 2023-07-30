@@ -134,6 +134,9 @@ export const Source_localSchemaFields = {
         .matches(/^[A-Z\d ()=.,_+@/-]+$/i, 'source_local_key_regex')
         .typeError('source_local_key_invalid')
         .required('source_local_key_required'),
+    createIfNotExist: yup.boolean()
+        .typeError('source_local_createIfNotExist_invalid')
+        .notRequired(),
     mode: yup.string().trim().transform(v => v === '' ? undefined : v)
         .min(4, 'source_local_mode_min')
         .max(4, 'source_local_mode_max')

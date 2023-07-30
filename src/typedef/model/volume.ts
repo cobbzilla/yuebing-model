@@ -6,6 +6,7 @@ import { parseMessage } from "yuebing-messages";
 const LOCAL_FIELDS: MobilettoOrmFieldDefConfigs = {
   key: {
     type: "string",
+    tabIndex: 10,
     label: "label_volumeType_local_field_key",
     required: true,
     min: 2,
@@ -13,8 +14,13 @@ const LOCAL_FIELDS: MobilettoOrmFieldDefConfigs = {
     regex: valid.REGEX_VALIDATORS.local_path,
     updatable: false,
   },
+  createIfNotExist: {
+    default: false,
+    tabIndex: 11,
+  },
   mode: {
     type: "string",
+    tabIndex: 12,
     label: "label_volumeType_local_field_mode",
     default: "0700",
     min: 4,
@@ -26,6 +32,7 @@ const LOCAL_FIELDS: MobilettoOrmFieldDefConfigs = {
 const S3_FIELDS: MobilettoOrmFieldDefConfigs = {
   key: {
     type: "string",
+    tabIndex: 10,
     label: "label_volumeType_s3_field_key",
     required: true,
     min: 20,
@@ -35,6 +42,7 @@ const S3_FIELDS: MobilettoOrmFieldDefConfigs = {
   },
   secret: {
     type: "string",
+    tabIndex: 11,
     label: "label_volumeType_s3_field_secret",
     required: true,
     min: 40,
@@ -44,6 +52,7 @@ const S3_FIELDS: MobilettoOrmFieldDefConfigs = {
   },
   bucket: {
     type: "string",
+    tabIndex: 12,
     label: "label_volumeType_s3_field_bucket",
     required: true,
     min: 3,
@@ -52,6 +61,7 @@ const S3_FIELDS: MobilettoOrmFieldDefConfigs = {
   },
   region: {
     type: "string",
+    tabIndex: 13,
     label: "label_volumeType_s3_field_region",
     items: [
       "us-east-2",
@@ -88,11 +98,13 @@ const S3_FIELDS: MobilettoOrmFieldDefConfigs = {
   },
   prefix: {
     type: "string",
+    tabIndex: 14,
     label: "label_volumeType_s3_field_prefix",
     default: "",
   },
   delimiter: {
     type: "string",
+    tabIndex: 15,
     label: "label_volumeType_s3_field_delimiter",
     default: "/",
     min: 1,
@@ -103,6 +115,7 @@ const S3_FIELDS: MobilettoOrmFieldDefConfigs = {
 const B2_FIELDS: MobilettoOrmFieldDefConfigs = {
   key: {
     type: "string",
+    tabIndex: 10,
     label: "label_volumeType_b2_field_key",
     required: true,
     min: 10,
@@ -111,6 +124,7 @@ const B2_FIELDS: MobilettoOrmFieldDefConfigs = {
   },
   secret: {
     type: "string",
+    tabIndex: 11,
     label: "label_volumeType_b2_field_secret",
     required: true,
     min: 10,
@@ -118,6 +132,7 @@ const B2_FIELDS: MobilettoOrmFieldDefConfigs = {
   },
   bucket: {
     type: "string",
+    tabIndex: 12,
     label: "label_volumeType_b2_field_bucket",
     required: true,
     min: 6,
@@ -126,6 +141,7 @@ const B2_FIELDS: MobilettoOrmFieldDefConfigs = {
   },
   partSize: {
     type: "number",
+    tabIndex: 13,
     label: "label_volumeType_b2_field_partSize",
     minValue: 5000000,
     maxValue: 2000000000,
@@ -133,11 +149,13 @@ const B2_FIELDS: MobilettoOrmFieldDefConfigs = {
   },
   prefix: {
     type: "string",
+    tabIndex: 14,
     label: "label_volumeType_b2_field_prefix",
     default: "",
   },
   delimiter: {
     type: "string",
+    tabIndex: 15,
     label: "label_volumeType_b2_field_delimiter",
     default: "/",
     min: 1,
@@ -148,24 +166,28 @@ const B2_FIELDS: MobilettoOrmFieldDefConfigs = {
 const GENERIC_FIELDS: MobilettoOrmFieldDefConfigs = {
   driver: {
     type: "string",
+    tabIndex: 10,
     label: "label_volumeType_generic_field_driver",
     required: true,
     max: 1000,
   },
   key: {
     type: "string",
+    tabIndex: 11,
     label: "label_volumeType_generic_field_key",
     required: false,
     max: 1000,
   },
   secret: {
     type: "string",
+    tabIndex: 12,
     label: "label_volumeType_generic_field_secret",
     required: false,
     max: 1000,
   },
   opts: {
     type: "string",
+    tabIndex: 13,
     label: "label_volumeType_generic_field_opts",
     required: false,
     max: 1024 * 128,
@@ -197,6 +219,7 @@ export const VolumeTypeDefFields: MobilettoOrmFieldDefConfigs = {
   name: {
     type: "string",
     primary: true,
+    tabIndex: 1,
     min: 3,
     max: 100,
     render: (v: MobilettoOrmRawValue, messages: Record<string, string>, title: string): string =>
@@ -204,6 +227,7 @@ export const VolumeTypeDefFields: MobilettoOrmFieldDefConfigs = {
   },
   type: {
     type: "string",
+    tabIndex: 2,
     items: Object.keys(VOLUME_TYPES).map((type) => {
       return { value: type, label: `label_volumeType_${type}` };
     }),
@@ -230,12 +254,14 @@ export const VolumeTypeDefFields: MobilettoOrmFieldDefConfigs = {
   },
   cacheSize: {
     type: "number",
+    tabIndex: 100,
     minValue: 0,
     maxValue: 10000000,
     default: 100,
   },
   encryptionEnable: {
     type: "boolean",
+    tabIndex: 101,
     default: false,
   },
   encryption: {
@@ -243,6 +269,7 @@ export const VolumeTypeDefFields: MobilettoOrmFieldDefConfigs = {
     fields: {
       encryptionKey: {
         type: "string",
+        tabIndex: 102,
         required: true,
         min: 16,
         max: 1024,
@@ -250,12 +277,14 @@ export const VolumeTypeDefFields: MobilettoOrmFieldDefConfigs = {
       },
       encryptionIV: {
         type: "string",
+        tabIndex: 103,
         min: 16,
         max: 1024,
         updatable: false,
       },
       encryptionAlgo: {
         type: "string",
+        tabIndex: 104,
         items: [{ value: DEFAULT_ENCRYPTION_ALGO, rawLabel: true }],
         default: DEFAULT_ENCRYPTION_ALGO,
         updatable: false,

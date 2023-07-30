@@ -28,6 +28,7 @@ export type Destination_s3Type = {
 };
 export type Destination_localType = {
     key: string;
+    createIfNotExist?: boolean;
     mode?: string;
 };
 export type DestinationType = MobilettoOrmObject & {

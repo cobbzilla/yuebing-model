@@ -28,6 +28,7 @@ export type Volume_s3Type = {
 };
 export type Volume_localType = {
     key: string;
+    createIfNotExist?: boolean;
     mode?: string;
 };
 export type VolumeType = MobilettoOrmObject & {

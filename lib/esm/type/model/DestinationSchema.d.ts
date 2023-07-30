@@ -78,13 +78,16 @@ export declare const Destination_s3Schema: yup.ObjectSchema<{
 }, "">;
 export declare const Destination_localSchemaFields: {
     key: yup.StringSchema<string, yup.AnyObject, undefined, "">;
+    createIfNotExist: yup.BooleanSchema<yup.Maybe<boolean | undefined>, yup.AnyObject, undefined, "">;
     mode: yup.StringSchema<yup.Maybe<string | undefined>, yup.AnyObject, "0700", "d">;
 };
 export declare const Destination_localSchema: yup.ObjectSchema<{
     key: string;
+    createIfNotExist: yup.Maybe<boolean | undefined>;
     mode: string | null;
 }, yup.AnyObject, {
     key: undefined;
+    createIfNotExist: undefined;
     mode: "0700";
 }, "">;
 export declare const DestinationSchemaFields: {
@@ -92,9 +95,11 @@ export declare const DestinationSchemaFields: {
     type: yup.StringSchema<NonNullable<"local" | "s3" | "b2" | "generic" | undefined>, yup.AnyObject, undefined, "">;
     local: yup.ObjectSchema<yup.Maybe<{
         key: string;
+        createIfNotExist: yup.Maybe<boolean | undefined>;
         mode: string | null;
     }>, yup.AnyObject, {
         key: undefined;
+        createIfNotExist: undefined;
         mode: "0700";
     }, "">;
     s3: yup.ObjectSchema<yup.Maybe<{
@@ -155,6 +160,7 @@ export declare const DestinationSchema: yup.ObjectSchema<{
     name: string;
     type: NonNullable<"local" | "s3" | "b2" | "generic" | undefined>;
     local: {
+        createIfNotExist?: yup.Maybe<boolean | undefined>;
         key: string;
         mode: string | null;
     } | null | undefined;
@@ -193,6 +199,7 @@ export declare const DestinationSchema: yup.ObjectSchema<{
     type: undefined;
     local: {
         key: undefined;
+        createIfNotExist: undefined;
         mode: "0700";
     };
     s3: {
