@@ -36,3 +36,19 @@ describe("test source volume validation", () => {
         }
     });
 });
+
+describe("test tab index ordering", () => {
+    it("SourceType has correct tab indexes", () => {
+        const ti = SourceTypeDef.tabIndexes;
+        expect(ti.length).eq(9);
+        expect(ti[0]).eq("name");
+        expect(ti[1]).eq("type");
+        expect(ti[2]).eq("local");
+        expect(ti[3]).eq("s3");
+        expect(ti[4]).eq("b2");
+        expect(ti[5]).eq("generic");
+        expect(ti[6]).eq("cacheSize");
+        expect(ti[7]).eq("encryptionEnable");
+        expect(ti[8]).eq("encryption");
+    });
+});

@@ -6,7 +6,7 @@ import { parseMessage } from "yuebing-messages";
 const LOCAL_FIELDS: MobilettoOrmFieldDefConfigs = {
   key: {
     type: "string",
-    tabIndex: 10,
+    tabIndex: 11,
     label: "label_volumeType_local_key",
     required: true,
     min: 2,
@@ -16,12 +16,12 @@ const LOCAL_FIELDS: MobilettoOrmFieldDefConfigs = {
   },
   createIfNotExist: {
     default: false,
-    tabIndex: 11,
+    tabIndex: 12,
     label: "label_volumeType_local_createIfNotExist",
   },
   mode: {
     type: "string",
-    tabIndex: 12,
+    tabIndex: 13,
     label: "label_volumeType_local_mode",
     default: "0700",
     min: 4,
@@ -33,7 +33,7 @@ const LOCAL_FIELDS: MobilettoOrmFieldDefConfigs = {
 const S3_FIELDS: MobilettoOrmFieldDefConfigs = {
   key: {
     type: "string",
-    tabIndex: 10,
+    tabIndex: 21,
     label: "label_volumeType_s3_key",
     required: true,
     min: 20,
@@ -43,7 +43,7 @@ const S3_FIELDS: MobilettoOrmFieldDefConfigs = {
   },
   secret: {
     type: "string",
-    tabIndex: 11,
+    tabIndex: 22,
     label: "label_volumeType_s3_secret",
     required: true,
     min: 40,
@@ -53,7 +53,7 @@ const S3_FIELDS: MobilettoOrmFieldDefConfigs = {
   },
   bucket: {
     type: "string",
-    tabIndex: 12,
+    tabIndex: 23,
     label: "label_volumeType_s3_bucket",
     required: true,
     min: 3,
@@ -62,7 +62,7 @@ const S3_FIELDS: MobilettoOrmFieldDefConfigs = {
   },
   region: {
     type: "string",
-    tabIndex: 13,
+    tabIndex: 24,
     label: "label_volumeType_s3_region",
     items: [
       "us-east-2",
@@ -99,13 +99,13 @@ const S3_FIELDS: MobilettoOrmFieldDefConfigs = {
   },
   prefix: {
     type: "string",
-    tabIndex: 14,
+    tabIndex: 25,
     label: "label_volumeType_s3_prefix",
     default: "",
   },
   delimiter: {
     type: "string",
-    tabIndex: 15,
+    tabIndex: 26,
     label: "label_volumeType_s3_delimiter",
     default: "/",
     min: 1,
@@ -116,7 +116,7 @@ const S3_FIELDS: MobilettoOrmFieldDefConfigs = {
 const B2_FIELDS: MobilettoOrmFieldDefConfigs = {
   key: {
     type: "string",
-    tabIndex: 10,
+    tabIndex: 31,
     label: "label_volumeType_b2_key",
     required: true,
     min: 10,
@@ -125,7 +125,7 @@ const B2_FIELDS: MobilettoOrmFieldDefConfigs = {
   },
   secret: {
     type: "string",
-    tabIndex: 11,
+    tabIndex: 32,
     label: "label_volumeType_b2_secret",
     required: true,
     min: 10,
@@ -133,7 +133,7 @@ const B2_FIELDS: MobilettoOrmFieldDefConfigs = {
   },
   bucket: {
     type: "string",
-    tabIndex: 12,
+    tabIndex: 33,
     label: "label_volumeType_b2_bucket",
     required: true,
     min: 6,
@@ -142,7 +142,7 @@ const B2_FIELDS: MobilettoOrmFieldDefConfigs = {
   },
   partSize: {
     type: "number",
-    tabIndex: 13,
+    tabIndex: 34,
     control: "text",
     label: "label_volumeType_b2_partSize",
     minValue: 5000000,
@@ -151,13 +151,13 @@ const B2_FIELDS: MobilettoOrmFieldDefConfigs = {
   },
   prefix: {
     type: "string",
-    tabIndex: 14,
+    tabIndex: 35,
     label: "label_volumeType_b2_prefix",
     default: "",
   },
   delimiter: {
     type: "string",
-    tabIndex: 15,
+    tabIndex: 36,
     label: "label_volumeType_b2_delimiter",
     default: "/",
     min: 1,
@@ -168,28 +168,28 @@ const B2_FIELDS: MobilettoOrmFieldDefConfigs = {
 const GENERIC_FIELDS: MobilettoOrmFieldDefConfigs = {
   driver: {
     type: "string",
-    tabIndex: 10,
+    tabIndex: 41,
     label: "label_volumeType_generic_driver",
     required: true,
     max: 1000,
   },
   key: {
     type: "string",
-    tabIndex: 11,
+    tabIndex: 42,
     label: "label_volumeType_generic_key",
     required: false,
     max: 1000,
   },
   secret: {
     type: "string",
-    tabIndex: 12,
+    tabIndex: 43,
     label: "label_volumeType_generic_secret",
     required: false,
     max: 1000,
   },
   opts: {
     type: "string",
-    tabIndex: 13,
+    tabIndex: 44,
     label: "label_volumeType_generic_opts",
     required: false,
     max: 1024 * 128,
@@ -239,18 +239,22 @@ export const VolumeTypeDefFields: MobilettoOrmFieldDefConfigs = {
       valid.isSelfVolume(v as string) ? parseMessage("label_volumeType_system", messages, { title }) : (v as string),
   },
   local: {
+    tabIndex: 10,
     when: (v: Record<string, unknown>) => v.type === VOL_TYPE_LOCAL,
     fields: LOCAL_FIELDS,
   },
   s3: {
+    tabIndex: 20,
     when: (v: Record<string, unknown>) => v.type === VOL_TYPE_S3,
     fields: S3_FIELDS,
   },
   b2: {
+    tabIndex: 30,
     when: (v: Record<string, unknown>) => v.type === VOL_TYPE_B2,
     fields: B2_FIELDS,
   },
   generic: {
+    tabIndex: 40,
     when: (v: Record<string, unknown>) => v.type === VOL_TYPE_GENERIC,
     fields: GENERIC_FIELDS,
   },
