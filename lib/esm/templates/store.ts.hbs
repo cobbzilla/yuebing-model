@@ -1,7 +1,9 @@
 {{#if disclaimer}}// {{{ disclaimer }}}{{#if header}}
 {{{header}}}{{/if}}{{/if}}
 
+import { Ref } from "vue";
 import { defineStore } from "pinia";
+import { MobilettoOrmValidationErrors } from "mobiletto-orm";
 import { {{Name}}Type, {{Name}}TypeDef } from "yuebing-model";
 import { {{name}}Service } from "~/utils/services/model/{{name}}Service";
 
@@ -25,8 +27,8 @@ export const use{{Name}}Store = defineStore("{{name}}", {
     {{name}}List: null as {{Name}}Type[] | null,
   }),
   actions: {
-    async {{name}}Lookup(id: string): Promise<{{Name}}Type> {
-      this.{{name}} = await {{name}}Service.find{{Name}}(id);
+    async {{name}}Lookup(id: string, serverErrors: Ref<MobilettoOrmValidationErrors>): Promise<{{Name}}Type> {
+      this.{{name}} = await {{name}}Service.find{{Name}}(id, serverErrors);
       updateList(this.{{name}}List, {{Name}}TypeDef.id(this.{{name}}), { {{name}}: this.{{name}} });
       return this.{{name}};
     },
@@ -34,19 +36,22 @@ export const use{{Name}}Store = defineStore("{{name}}", {
       this.{{name}}List = await {{name}}Service.search{{Name}}(query);
       return this.{{name}}List || [];
     },
-    async {{name}}Create({{name}}: {{Name}}Type): Promise<{{Name}}Type> {
-      this.{{name}} = await {{name}}Service.create{{Name}}({{name}});
+    async {{name}}Create({{name}}: {{Name}}Type, serverErrors: Ref<MobilettoOrmValidationErrors>): Promise<{{Name}}Type> {
+      this.{{name}} = await {{name}}Service.create{{Name}}({{name}}, serverErrors);
       return this.{{name}};
     },
-    async {{name}}Update({{name}}: {{Name}}Type): Promise<{{Name}}Type> {
-      this.{{name}} = await {{name}}Service.update{{Name}}({{name}});
+    async {{name}}Update({{name}}: {{Name}}Type, serverErrors: Ref<MobilettoOrmValidationErrors>): Promise<{{Name}}Type> {
+      this.{{name}} = await {{name}}Service.update{{Name}}({{name}}, serverErrors);
       updateList(this.{{name}}List, {{Name}}TypeDef.id(this.{{name}}), { {{name}}: this.{{name}} });
       return this.{{name}};
     },
-    async {{name}}Delete({{name}}: string): Promise<boolean> {
-      await {{name}}Service.delete{{Name}}({{name}});
-      updateList(this.{{name}}List, {{name}}, { remove: true });
-      return true;
+    async {{name}}Delete({{name}}: string, serverErrors: Ref<MobilettoOrmValidationErrors>, purge?: boolean): Promise<boolean> {
+      const deleteResult = await {{name}}Service.delete{{Name}}({{name}}, serverErrors, !!purge);
+      if (deleteResult) {
+        updateList(this.{{name}}List, {{name}}, serverErrors, { remove: true });
+        return true;
+      }
+      return false
     },
   },
 });
