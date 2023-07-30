@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 import { MobilettoOrmTypeDef } from "mobiletto-orm-typedef";
-import { generateTypeScriptType, generateYup, generate } from "mobiletto-orm-typedef-gen";
+import { generateTypeScriptType, generate } from "mobiletto-orm-typedef-gen";
 import { PublicConfigTypeDef, PrivateConfigTypeDef } from "../typedef/model/config.js";
 import { AccountTypeDef, AuthAccountTypeDef } from "../typedef/model/account.js";
 import { UsernameAndPasswordTypeDef } from "../typedef/auth/usernameAndPassword.js";
@@ -53,19 +53,14 @@ const generateYuebing = (typeDef: MobilettoOrmTypeDef) => {
 
 // Configuration Singletons
 generateTypeScriptType(PublicConfigTypeDef, { outfile: `${__dirname}/../../../src/type/model/PublicConfigType.ts` });
-generateYup(PublicConfigTypeDef, { outfile: `${__dirname}/../../../src/type/model/PublicConfigSchema.ts` });
-
 generateTypeScriptType(PrivateConfigTypeDef, { outfile: `${__dirname}/../../../src/type/model/PrivateConfigType.ts` });
-generateYup(PrivateConfigTypeDef, { outfile: `${__dirname}/../../../src/type/model/PrivateConfigSchema.ts` });
 
 // Accounts
 generateTypeScriptType(AccountTypeDef, { outfile: `${__dirname}/../../../src/type/model/AccountType.ts` });
-generateYup(AccountTypeDef, { outfile: `${__dirname}/../../../src/type/model/AccountSchema.ts` });
 generateService(AccountTypeDef, "utils/services/model/accountService.ts");
 generateYuebing(AccountTypeDef);
 
 generateTypeScriptType(AuthAccountTypeDef, { outfile: `${__dirname}/../../../src/type/model/AuthAccountType.ts` });
-generateYup(AuthAccountTypeDef, { outfile: `${__dirname}/../../../src/type/model/AuthAccountSchema.ts` });
 
 // Generic Volume Stuff
 const volTypeImportHeader =
@@ -80,20 +75,12 @@ generateTypeScriptType(VolumeTypeDef, { outfile: `${__dirname}/../../../src/type
 
 // Source Volumes
 generateTypeScriptType(SourceTypeDef, { outfile: `${__dirname}/../../../src/type/model/SourceType.ts` });
-generateYup(SourceTypeDef, {
-  outfile: `${__dirname}/../../../src/type/model/SourceSchema.ts`,
-  header: volTypeImportHeader,
-});
 generateService(SourceTypeDef, "utils/services/model/sourceService.ts");
 generateYuebing(SourceTypeDef);
 
 // Destination Volumes
 generateTypeScriptType(DestinationTypeDef, {
   outfile: `${__dirname}/../../../src/type/model/DestinationType.ts`,
-});
-generateYup(DestinationTypeDef, {
-  outfile: `${__dirname}/../../../src/type/model/DestinationSchema.ts`,
-  header: volTypeImportHeader,
 });
 generateService(DestinationTypeDef, "utils/services/model/destinationService.ts");
 generateYuebing(DestinationTypeDef);
@@ -102,9 +89,6 @@ generateYuebing(DestinationTypeDef);
 generateTypeScriptType(LibraryTypeDef, {
   outfile: `${__dirname}/../../../src/type/model/LibraryType.ts`,
 });
-generateYup(LibraryTypeDef, {
-  outfile: `${__dirname}/../../../src/type/model/LibrarySchema.ts`,
-});
 generateService(LibraryTypeDef, "utils/services/model/libraryService.ts");
 generateYuebing(LibraryTypeDef);
 
@@ -112,18 +96,11 @@ generateYuebing(LibraryTypeDef);
 generateTypeScriptType(SessionTypeDef, {
   outfile: `${__dirname}/../../../src/type/auth/SessionType.ts`,
 });
-generateYup(SessionTypeDef, {
-  outfile: `${__dirname}/../../../src/type/auth/SessionSchema.ts`,
-});
 
 // Login objects (not persisted)
 generateTypeScriptType(UsernameAndPasswordTypeDef, {
   outfile: `${__dirname}/../../../src/type/auth/UsernameAndPasswordType.ts`,
 });
-generateYup(UsernameAndPasswordTypeDef, {
-  outfile: `${__dirname}/../../../src/type/auth/UsernameAndPasswordSchema.ts`,
-});
 
 // Registration objects (not persisted)
 generateTypeScriptType(RegistrationTypeDef, { outfile: `${__dirname}/../../../src/type/auth/RegistrationType.ts` });
-generateYup(RegistrationTypeDef, { outfile: `${__dirname}/../../../src/type/auth/RegistrationSchema.ts` });

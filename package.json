@@ -1,6 +1,6 @@
 {
   "name": "yuebing-model",
-  "version": "2.3.30",
+  "version": "2.3.31",
   "type": "module",
   "description": "Data model for yuebing",
   "keywords": [
@@ -19,6 +19,7 @@
   },
   "license": "Apache-2.0",
   "scripts": {
+    "test": "mocha ./test/*.spec.js",
     "tsc": "tsc --module es2020 -p tsconfig.json && copyfiles --flat --error templates/*.hbs lib/esm/templates/ ",
     "lint": "npx eslint src",
     "lint:fix": "npm run lint -- --fix",
@@ -35,21 +36,22 @@
     "lib/"
   ],
   "devDependencies": {
+    "@types/chai": "^4.3.5",
+    "@types/mocha": "^10.0.1",
     "@types/node": "^20.3.3",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "@typescript-eslint/parser": "^5.61.0",
+    "chai": "^4.3.6",
     "copyfiles": "^2.4.1",
     "eslint": "^8.44.0",
     "eslint-config-prettier": "^8.8.0",
-    "mobiletto-orm-typedef": "^2.2.11",
-    "mobiletto-orm-typedef-gen": "^2.1.56",
+    "handlebars": "^4.7.7",
+    "mobiletto-orm-typedef": "^2.2.12",
+    "mobiletto-orm-typedef-gen": "^2.1.59",
+    "mocha": "^10.2.0",
     "prettier": "^2.8.8",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^5.1.6",
-    "yuebing-messages": "^2.0.1",
-    "yup": "^1.2.0"
-  },
-  "dependencies": {
-    "handlebars": "^4.7.7"
+    "yuebing-messages": "^2.0.1"
   }
 }
