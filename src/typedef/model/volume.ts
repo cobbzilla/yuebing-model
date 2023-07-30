@@ -17,6 +17,7 @@ const LOCAL_FIELDS: MobilettoOrmFieldDefConfigs = {
   createIfNotExist: {
     default: false,
     tabIndex: 11,
+    label: "label_volumeType_local_field_createIfNotExist",
   },
   mode: {
     type: "string",
@@ -142,6 +143,7 @@ const B2_FIELDS: MobilettoOrmFieldDefConfigs = {
   partSize: {
     type: "number",
     tabIndex: 13,
+    control: "text",
     label: "label_volumeType_b2_field_partSize",
     minValue: 5000000,
     maxValue: 2000000000,
