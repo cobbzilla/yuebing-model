@@ -318,6 +318,7 @@ export const SourceTypeDefFields: MobilettoOrmFieldDefConfigs = {
 
 export const SourceTypeDef = new MobilettoOrmTypeDef({
   typeName: "source",
+  indexLevels: 2,
   idPrefix: "src",
   tableFields: ["name", "type", "ctime", "mtime"],
   fields: SourceTypeDefFields,
@@ -343,6 +344,7 @@ export const DestinationTypeDefFields: MobilettoOrmFieldDefConfigs = {
 
 export const DestinationTypeDef = new MobilettoOrmTypeDef({
   typeName: "destination",
+  indexLevels: 2,
   idPrefix: "dst",
   tableFields: ["name", "type", "system", "ctime", "mtime"],
   fields: DestinationTypeDefFields,
