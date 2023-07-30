@@ -274,7 +274,7 @@ export const VolumeTypeDefFields: MobilettoOrmFieldDefConfigs = {
     fields: {
       encryptionKey: {
         type: "string",
-        label: "label_volumeType_encryptionKey",
+        label: "label_volumeType_encryption_encryptionKey",
         tabIndex: 102,
         required: true,
         min: 16,
@@ -283,7 +283,7 @@ export const VolumeTypeDefFields: MobilettoOrmFieldDefConfigs = {
       },
       encryptionIV: {
         type: "string",
-        label: "label_volumeType_encryptionIV",
+        label: "label_volumeType_encryption_encryptionIV",
         tabIndex: 103,
         min: 16,
         max: 1024,
@@ -291,7 +291,7 @@ export const VolumeTypeDefFields: MobilettoOrmFieldDefConfigs = {
       },
       encryptionAlgo: {
         type: "string",
-        label: "label_volumeType_encryptionAlgo",
+        label: "label_volumeType_encryption_encryptionAlgo",
         tabIndex: 104,
         items: [{ value: DEFAULT_ENCRYPTION_ALGO, rawLabel: true }],
         default: DEFAULT_ENCRYPTION_ALGO,
