@@ -2,6 +2,17 @@
 
 import * as yup from "yup";
 
+export const PublicConfig_cryptoSchemaFields = {
+    ciphers: yup.string().trim().transform(v => v === '' ? undefined : v)
+        .oneOf(["aes-256-cbc"], 'publicConfig_crypto_ciphers_enum')
+        .typeError('publicConfig_crypto_ciphers_invalid')
+        .notRequired()
+        .default("aes-256-cbc"),
+};
+
+export const PublicConfig_cryptoSchema = yup.object(PublicConfig_cryptoSchemaFields);
+
+
 export const PublicConfigSchemaFields = {
     public: yup.boolean()
         .typeError('public_invalid')
@@ -39,6 +50,8 @@ export const PublicConfigSchemaFields = {
         .notRequired(),
     needsAdmin: yup.boolean()
         .typeError('needsAdmin_invalid')
+        .notRequired(),
+    crypto: PublicConfig_cryptoSchema
         .notRequired(),
 };
 

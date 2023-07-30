@@ -1,4 +1,12 @@
 import * as yup from "yup";
+export declare const PublicConfig_cryptoSchemaFields: {
+    ciphers: yup.StringSchema<yup.Maybe<"aes-256-cbc" | undefined>, yup.AnyObject, "aes-256-cbc", "d">;
+};
+export declare const PublicConfig_cryptoSchema: yup.ObjectSchema<{
+    ciphers: "aes-256-cbc" | null;
+}, yup.AnyObject, {
+    ciphers: "aes-256-cbc";
+}, "">;
 export declare const PublicConfigSchemaFields: {
     public: yup.BooleanSchema<NonNullable<boolean | undefined>, yup.AnyObject, undefined, "">;
     title: yup.StringSchema<string, yup.AnyObject, "Yuebing 🥮", "d">;
@@ -10,6 +18,11 @@ export declare const PublicConfigSchemaFields: {
     emailEnabled: yup.BooleanSchema<NonNullable<boolean | undefined>, yup.AnyObject, undefined, "">;
     isDefault: yup.BooleanSchema<yup.Maybe<boolean | undefined>, yup.AnyObject, undefined, "">;
     needsAdmin: yup.BooleanSchema<yup.Maybe<boolean | undefined>, yup.AnyObject, undefined, "">;
+    crypto: yup.ObjectSchema<yup.Maybe<{
+        ciphers: "aes-256-cbc" | null;
+    }>, yup.AnyObject, {
+        ciphers: "aes-256-cbc";
+    }, "">;
 };
 export declare const PublicConfigSchema: yup.ObjectSchema<{
     public: NonNullable<boolean | undefined>;
@@ -22,6 +35,9 @@ export declare const PublicConfigSchema: yup.ObjectSchema<{
     emailEnabled: NonNullable<boolean | undefined>;
     isDefault: yup.Maybe<boolean | undefined>;
     needsAdmin: yup.Maybe<boolean | undefined>;
+    crypto: {
+        ciphers: "aes-256-cbc" | null;
+    } | null | undefined;
 }, yup.AnyObject, {
     public: undefined;
     title: "Yuebing 🥮";
@@ -33,4 +49,7 @@ export declare const PublicConfigSchema: yup.ObjectSchema<{
     emailEnabled: undefined;
     isDefault: undefined;
     needsAdmin: undefined;
+    crypto: {
+        ciphers: "aes-256-cbc";
+    };
 }, "">;

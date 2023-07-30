@@ -56,6 +56,17 @@ export const PublicConfigTypeDef = new MobilettoOrmTypeDef({
       default: false,
       control: "hidden",
     },
+    crypto: {
+      required: false,
+      fields: {
+        ciphers: {
+          required: false,
+          default: DEFAULT_ENCRYPTION_ALGO,
+          values: [DEFAULT_ENCRYPTION_ALGO], // filled out by the server
+          control: "label",
+        },
+      },
+    },
   },
 });
 
@@ -185,17 +196,6 @@ export const PrivateConfigTypeDef = new MobilettoOrmTypeDef({
         isDefault: {
           required: false,
           default: false,
-        },
-      },
-    },
-    crypto: {
-      required: false,
-      fields: {
-        ciphers: {
-          required: false,
-          default: DEFAULT_ENCRYPTION_ALGO,
-          values: [DEFAULT_ENCRYPTION_ALGO], // filled out by the server
-          control: "label",
         },
       },
     },
