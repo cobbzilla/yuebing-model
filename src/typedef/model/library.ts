@@ -3,7 +3,7 @@ import * as valid from "../../validation.js";
 
 export const LibraryTypeDefFields: MobilettoOrmFieldDefConfigs = {
   name: {
-    unique: true,
+    primary: true,
     indexLevels: 2,
     min: 1,
     max: 500,

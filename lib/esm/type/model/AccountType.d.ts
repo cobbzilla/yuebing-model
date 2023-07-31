@@ -1,6 +1,6 @@
 import { MobilettoOrmObject } from "mobiletto-orm-typedef";
 export type AccountType = MobilettoOrmObject & {
-    username?: string;
+    username: string;
     email: string;
     password: string;
     firstName?: string;
