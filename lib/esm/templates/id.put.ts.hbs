@@ -1,25 +1,28 @@
-{{#if disclaimer}}// {{{ disclaimer }}}{{#if header}}
+{{#if disclaimer}}// {{{disclaimer}}}{{#if header}}
 {{{header}}}{{/if}}{{/if}}
 
 import { H3Event } from "h3";
-import { {{ Name }}Type, {{ Name }}TypeDef } from "yuebing-model";
+import {MobilettoOrmValidationErrors} from "mobiletto-orm-typedef";
+import { {{Name}}Type, {{Name}}TypeDef } from "yuebing-model";
 
 export default defineEventHandler(async (event: H3Event) => {
-  return await filterErrors(event, "{{ name }}.create", async (event: H3Event) => {{{curlyOpen}}}{{#if typeDef.apiConfig.create.admin}}
-    return await requireAdminAccountObject(event, "{{ name }}.create", async (event: H3Event, session, account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.create.owner}}
-    return await requireAccountObject(event, "{{ name }}.create", async (event: H3Event, session, account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.create.session}}
-    return await requireAccount(event, "{{ name }}.create", async (event: H3Event, session) => {{{curlyOpen}}}{{/if}}{{/if}}{{/if}}
+  return await filterErrors(event, "{{name}}.create", async (event: H3Event) => {{{curlyOpen}}}{{#if typeDef.apiConfig.create.admin}}
+    return await requireAdminAccountObject(event, "{{name}}.create", async (event: H3Event, session, account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.create.owner}}
+    return await requireAccountObject(event, "{{name}}.create", async (event: H3Event, session, account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.create.session}}
+    return await requireAccount(event, "{{name}}.create", async (event: H3Event, session) => {{{curlyOpen}}}{{/if}}{{/if}}{{/if}}
+      const {{name}}Repo = {{name}}Repository();
       const id = event?.context?.params?.id;
-      if (!id) throw notFound("id");
-      const obj: {{ Name }}Type = await readBody(event);
+      if (!id) throw notFound({{name}}Repo.typeDef.idFieldName());
+      const obj: {{Name}}Type = await readBody(event);
       if (!obj) {
         throw badRequest();
       }
-      if ({{ Name }}TypeDef.id(obj) !== id) {
-        throw validationError({ id: ["mismatch"] });
+      if ({{Name}}TypeDef.id(obj) !== id) {
+        const errs: MobilettoOrmValidationErrors = {};
+        errs[{{name}}Repo.typeDef.idFieldName()] = ["mismatch"];
+        throw validationError(errs);
       } else {
-        const {{ name }}Repo = {{ name }}Repository();
-        return await {{ name }}Repo.create(obj);
+        return await {{name}}Repo.create(obj);
       }{{#if typeDef.apiConfig.create.admin}}
     });{{else}}{{#if typeDef.apiConfig.create.owner}}
     });{{else}}{{#if typeDef.apiConfig.create.session}}

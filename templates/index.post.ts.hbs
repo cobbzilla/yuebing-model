@@ -1,19 +1,19 @@
-{{#if disclaimer}}// {{{ disclaimer }}}{{#if header}}
+{{#if disclaimer}}// {{{disclaimer}}}{{#if header}}
 {{{header}}}{{/if}}{{/if}}
 
 import { H3Event } from "h3";
 
 export default defineEventHandler(async (event: H3Event) => {
-  return await filterErrors(event, "{{ name }}.search", async (event: H3Event) => {{{curlyOpen}}}{{#if typeDef.apiConfig.search.admin}}
-    return await requireAdminAccountObject(event, "{{ name }}.search", async (event: H3Event, session, account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.search.owner}}
-    return await requireAccountObject(event, "{{ name }}.search", async (event: H3Event, session, account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.search.session}}
-    return await requireAccount(event, "{{ name }}.search", async (event: H3Event, session) => {{{curlyOpen}}}{{/if}}{{/if}}{{/if}}
+  return await filterErrors(event, "{{name}}.search", async (event: H3Event) => {{{curlyOpen}}}{{#if typeDef.apiConfig.search.admin}}
+    return await requireAdminAccountObject(event, "{{name}}.search", async (event: H3Event, session, account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.search.owner}}
+    return await requireAccountObject(event, "{{name}}.search", async (event: H3Event, session, account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.search.session}}
+    return await requireAccount(event, "{{name}}.search", async (event: H3Event, session) => {{{curlyOpen}}}{{/if}}{{/if}}{{/if}}
       const opts: MobilettoOrmFindApiOpts = (await readBody(event)) || {};
-      const {{ name }}Repo = {{ name }}Repository();
+      const {{name}}Repo = {{name}}Repository();
       if (opts.field && opts.value) {
-        return await {{ name }}Repo.safeFindBy(opts.field, opts.value, opts.opts || {});
+        return await {{name}}Repo.safeFindBy(opts.field, opts.value, opts.opts || {});
       } else {
-        return await {{ name }}Repo.find(opts.opts || {});
+        return await {{name}}Repo.find(opts.opts || {});
       }{{#if typeDef.apiConfig.search.admin}}
     });{{else}}{{#if typeDef.apiConfig.search.owner}}
     });{{else}}{{#if typeDef.apiConfig.search.session}}

@@ -1,4 +1,4 @@
-{{#if disclaimer}}// {{{ disclaimer }}}{{#if header}}
+{{#if disclaimer}}// {{{disclaimer}}}{{#if header}}
 {{{header}}}{{/if}}{{/if}}
 // @eslint-disable camelcase
 
@@ -6,36 +6,36 @@ import { H3Event } from "h3";
 import { MobilettoOrmSyncError } from "mobiletto-orm-typedef";
 
 export default defineEventHandler(async (event: H3Event) => {
-  return await filterErrors(event, "{{ name }}.delete", async (event: H3Event) => {{{curlyOpen}}}{{#if typeDef.apiConfig.delete.admin}}
-    return await requireAdminAccountObject(event, "{{ name }}.delete", async (event: H3Event, session, account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.delete.owner}}
-    return await requireAccountObject(event, "{{ name }}.delete", async (event: H3Event, session, account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.delete.session}}
-    return await requireAccount(event, "{{ name }}.delete", async (event: H3Event, session) => {{{curlyOpen}}}{{/if}}{{/if}}{{/if}}
+  return await filterErrors(event, "{{name}}.delete", async (event: H3Event) => {{{curlyOpen}}}{{#if typeDef.apiConfig.delete.admin}}
+    return await requireAdminAccountObject(event, "{{name}}.delete", async (event: H3Event, session, account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.delete.owner}}
+    return await requireAccountObject(event, "{{name}}.delete", async (event: H3Event, session, account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.delete.session}}
+    return await requireAccount(event, "{{name}}.delete", async (event: H3Event, session) => {{{curlyOpen}}}{{/if}}{{/if}}{{/if}}
+      const {{name}}Repo = {{name}}Repository();
       const id = event?.context?.params?.id;
-      if (!id) throw notFound("id");
-      const {{ name }}Repo = {{ name }}Repository();
+      if (!id) throw notFound({{name}}Repo.typeDef.idFieldName());
       try {
-        const {{ name }}_by_id = await {{ name }}Repo.safeFindById(id);
-        if ({{ name }}_by_id) {
+        const {{name}}_by_id = await {{name}}Repo.safeFindById(id);
+        if ({{name}}_by_id) {
           {{#if typeDef.apiConfig.delete.owner}}
-          if (!account.admin && {{ name }}_by_id.account !== session.account) throw forbidden();
+          if (!account.admin && {{name}}_by_id.account !== session.account) throw forbidden();
           {{/if}}
-          return await {{ name }}Repo.remove({{ name }}_by_id);
+          return await {{name}}Repo.remove({{name}}_by_id);
         }
         {{#each alternateLookupFields}}
-          const {{ name }}_by_{{ this }} = await {{ name }}Repo.safeFindBy("{{ this }}", id);
-          if ({{ name }}_by_{{ this }}) {
+          const {{name}}_by_{{this}} = await {{name}}Repo.safeFindBy("{{this}}", id);
+          if ({{name}}_by_{{this}}) {
             {{#if typeDef.apiConfig.delete.owner}}
-            if (!account.admin && {{ name }}_by_{{ this }}.account !== session.account) throw forbidden();
+            if (!account.admin && {{name}}_by_{{this}}.account !== session.account) throw forbidden();
             {{/if}}
-            return await {{ name }}Repo.remove({{ name }}_by_{{ this }});
+            return await {{name}}Repo.remove({{name}}_by_{{this}});
           }
         {{/each}}
       } catch (e) {
         if (e instanceof MobilettoOrmSyncError) {
-          logger.warn(`{{ name }}.delete: sync error: ${e}`);
+          logger.warn(`{{name}}.delete: sync error: ${e}`);
           throw conflict();
         }
-        logger.error(`{{ name }}.delete: unexpected error: ${e}`);
+        logger.error(`{{name}}.delete: unexpected error: ${e}`);
         throw serverError();
       }
       throw notFound(id);{{#if typeDef.apiConfig.delete.admin}}
