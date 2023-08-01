@@ -6,7 +6,7 @@ import { DEFAULT_ENCRYPTION_ALGO } from "./volume.js";
 
 export const PublicConfigTypeDef = new MobilettoOrmTypeDef({
   typeName: "publicConfig",
-  idPrefix: "cfg~public",
+  shortName: "cfg~public",
   singleton: "public",
   fields: {
     public: {
@@ -74,7 +74,7 @@ export const DEFAULT_BCRYPT_TIME_TARGET = 350;
 
 export const PrivateConfigTypeDef = new MobilettoOrmTypeDef({
   typeName: "privateConfig",
-  idPrefix: "cfg~private",
+  shortName: "cfg~private",
   singleton: "private",
   fields: {
     auth: {

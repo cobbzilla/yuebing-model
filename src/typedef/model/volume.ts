@@ -307,7 +307,6 @@ export const VolumeTypeDefFields: MobilettoOrmFieldDefConfigs = {
 
 export const VolumeTypeDef = new MobilettoOrmTypeDef({
   typeName: "volume",
-  idPrefix: "vol",
   tableFields: ["name", "type", "ctime", "mtime"],
   fields: VolumeTypeDefFields,
 });
@@ -319,11 +318,10 @@ export const SourceTypeDefFields: MobilettoOrmFieldDefConfigs = {
 export const SourceTypeDef = new MobilettoOrmTypeDef({
   typeName: "source",
   indexLevels: 2,
-  idPrefix: "src",
+  shortName: "src",
   tableFields: ["name", "type", "ctime", "mtime"],
   fields: SourceTypeDefFields,
 }).extend({
-  typeName: "source",
   fields: {
     name: { label: "label_sourceType_name" },
     type: { label: "label_sourceType_type" },
@@ -345,11 +343,10 @@ export const DestinationTypeDefFields: MobilettoOrmFieldDefConfigs = {
 export const DestinationTypeDef = new MobilettoOrmTypeDef({
   typeName: "destination",
   indexLevels: 2,
-  idPrefix: "dst",
+  shortName: "dst",
   tableFields: ["name", "type", "system", "ctime", "mtime"],
   fields: DestinationTypeDefFields,
 }).extend({
-  typeName: "destination",
   fields: {
     name: { label: "label_destinationType_name" },
     type: { label: "label_destinationType_type" },

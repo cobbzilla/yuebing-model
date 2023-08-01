@@ -10,7 +10,7 @@ import {
 
 export const UsernameAndPasswordTypeDef = new MobilettoOrmTypeDef({
   typeName: "usernameAndPassword",
-  idPrefix: "auth~uap",
+  shortName: "auth~uap",
   fields: {
     usernameOrEmail: {
       required: true,

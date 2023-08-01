@@ -54,7 +54,7 @@ export const LibraryTypeDefFields: MobilettoOrmFieldDefConfigs = {
 
 export const LibraryTypeDef = new MobilettoOrmTypeDef({
   typeName: "library",
-  idPrefix: "lbry",
+  shortName: "lbry",
   tableFields: ["name", "sources", "destinations"],
   fields: { ...LibraryTypeDefFields },
 });

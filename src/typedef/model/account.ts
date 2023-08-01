@@ -91,7 +91,7 @@ export const ACCOUNT_TABLE_FIELDS = [
 
 export const AccountTypeDef = new MobilettoOrmTypeDef({
   typeName: "account",
-  idPrefix: "acct",
+  shortName: "acct",
   tableFields: ACCOUNT_TABLE_FIELDS,
   fields: {
     ...primaryAccountFields,
@@ -106,7 +106,7 @@ export const AccountTypeDef = new MobilettoOrmTypeDef({
 
 export const AuthAccountTypeDef = new MobilettoOrmTypeDef({
   typeName: "authAccount",
-  idPrefix: "acct",
+  shortName: "acct",
   tableFields: ACCOUNT_TABLE_FIELDS,
   fields: {
     ...AccountTypeDef.fields,

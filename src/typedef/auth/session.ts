@@ -3,7 +3,7 @@ import { generateId, MIN_ID_LENGTH } from "mobiletto-orm-typedef";
 
 export const SessionTypeDef = new MobilettoOrmTypeDef({
   typeName: "session",
-  idPrefix: "sess",
+  shortName: "sess",
   indexLevels: 3,
   fields: {
     token: {
