@@ -13,7 +13,7 @@ export const UsernameAndPasswordTypeDef = new MobilettoOrmTypeDef({
   shortName: "auth~uap",
   fields: {
     usernameOrEmail: {
-      required: true,
+      primary: true,
       min: Math.min(LOGIN_MIN_LENGTH, EMAIL_MIN_LENGTH),
       max: Math.max(LOGIN_MAX_LENGTH, EMAIL_MAX_LENGTH),
     },
