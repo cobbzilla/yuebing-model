@@ -3,8 +3,8 @@ import { MobilettoOrmTypeDef, MobilettoOrmFieldDefConfigs } from "mobiletto-orm-
 import * as valid from "../../validation.js";
 import { YUEBING_LOCALES } from "yuebing-messages";
 
-export const LOGIN_MIN_LENGTH = 2;
-export const LOGIN_MAX_LENGTH = 100;
+export const USERNAME_MIN_LENGTH = 2;
+export const USERNAME_MAX_LENGTH = 100;
 export const EMAIL_MIN_LENGTH = 6;
 export const EMAIL_MAX_LENGTH = 200;
 export const PASSWORD_MIN_LENGTH = 8;
@@ -14,8 +14,8 @@ export const primaryAccountFields: MobilettoOrmFieldDefConfigs = {
   username: {
     type: "string",
     primary: true,
-    min: LOGIN_MIN_LENGTH,
-    max: LOGIN_MAX_LENGTH,
+    min: USERNAME_MIN_LENGTH,
+    max: USERNAME_MAX_LENGTH,
     regex: valid.REGEX_VALIDATORS.username,
     normalize: valid.NORMALIZE_LOWERCASE,
     updatable: false,
