@@ -24,7 +24,13 @@ export const LibraryTypeDefFields: MobilettoOrmFieldDefConfigs = {
     tabIndex: 3,
   },
   media: {
-    values: ["music", "video", "photo", "document", "mixed"],
+    items: [
+      { label: "label_media_music", value: "music" },
+      { label: "label_media_video", value: "video" },
+      { label: "label_media_photo", value: "photo" },
+      { label: "label_media_document", value: "document" },
+      { label: "label_media_mixed", value: "mixed" },
+    ],
     tabIndex: 4,
   },
   autoscanEnabled: {
