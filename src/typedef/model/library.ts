@@ -23,10 +23,14 @@ export const LibraryTypeDefFields: MobilettoOrmFieldDefConfigs = {
     values: [""], // these get filled in on-demand
     tabIndex: 3,
   },
+  media: {
+    values: ["music", "video", "photo", "document", "mixed"],
+    tabIndex: 4,
+  },
   autoscanEnabled: {
     required: true,
     default: false,
-    tabIndex: 4,
+    tabIndex: 5,
   },
   autoscan: {
     when: (v) => v.autoscanEnabled === true,

@@ -8,6 +8,7 @@ export type LibraryType = MobilettoOrmObject & {
     name: string;
     sources?: string[];
     destinations?: string[];
+    media?: string;
     autoscanEnabled: boolean;
     autoscan?: Library_autoscanType;
 };
