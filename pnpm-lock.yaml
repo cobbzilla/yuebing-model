@@ -54,8 +54,8 @@ devDependencies:
     specifier: ^5.1.6
     version: 5.1.6
   yuebing-messages:
-    specifier: ^2.0.1
-    version: 2.0.1
+    specifier: ^2.0.27
+    version: 2.0.27
 
 packages:
 
@@ -1525,8 +1525,6 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /yuebing-messages@2.0.1:
-    resolution: {integrity: sha512-F+Qs1IoJduOzseIw1RyCABYtcWkIoVp8Od+kUa4+pcLshfwuRX0tLJWP+GO4ZkzcijiJklyl33ByjZcc4LcLSg==}
-    dependencies:
-      handlebars: 4.7.7
+  /yuebing-messages@2.0.27:
+    resolution: {integrity: sha512-bWHUUzxkEiAxAISiZE9AZS3HFU/kIwX7RDNw8ssuN7siad9IH5iuC/Se0gsYwQipy7UwZ6T9NWnp3S+Cdp15ew==}
     dev: true
