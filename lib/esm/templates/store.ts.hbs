@@ -7,7 +7,7 @@ import { MobilettoOrmValidationErrors } from "mobiletto-orm";
 import { {{Name}}Type, {{Name}}TypeDef } from "yuebing-model";
 import { {{name}}Service } from "~/utils/services/model/{{name}}Service";
 
-const updateList = (list: {{Name}}Type[] | null, id: string, opts?: { {{name}}?: {{Name}}Type, remove?: boolean }) => {
+const updateList = (list: {{Name}}Type[] | null, id: string, opts?: { {{name}}?: {{Name}}Type; remove?: boolean }) => {
   if (!opts) return;
   if (list) {
     const foundIndex = list.findIndex((e) => {{Name}}TypeDef.id(e) === id);
@@ -51,7 +51,7 @@ export const use{{Name}}Store = defineStore("{{name}}", {
         updateList(this.{{name}}List, {{name}}, serverErrors, { remove: true });
         return true;
       }
-      return false
+      return false;
     },
   },
 });
