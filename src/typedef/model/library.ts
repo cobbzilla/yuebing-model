@@ -25,13 +25,13 @@ export const LibraryTypeDefFields: MobilettoOrmFieldDefConfigs = {
   sources: {
     type: "array",
     control: "multi",
-    values: [""], // these get filled in on-demand
+    values: [""], // these get filled in by the vue template
     tabIndex: 3,
   },
   destinations: {
     type: "array",
     control: "multi",
-    values: [""], // these get filled in on-demand
+    values: [""], // these get filled in by the vue template
     tabIndex: 4,
   },
   autoscanEnabled: {
@@ -42,14 +42,6 @@ export const LibraryTypeDefFields: MobilettoOrmFieldDefConfigs = {
   autoscan: {
     when: (v) => v.autoscanEnabled === true,
     fields: {
-      initialDelay: {
-        required: false, // if not set, default value in private config is used
-        minValue: 1000 * 60, // 1 minute
-        maxValue: 1000 * 60 * 60, // 1 hour
-        default: 1000 * 60 * 10, // 10 minutes
-        control: "duration",
-        tabIndex: 5,
-      },
       interval: {
         required: false, // if not set, default value in private config is used
         type: "number",
