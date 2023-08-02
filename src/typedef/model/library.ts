@@ -11,26 +11,26 @@ export const LibraryTypeDefFields: MobilettoOrmFieldDefConfigs = {
     updatable: false,
     tabIndex: 1,
   },
-  sources: {
-    type: "array",
-    control: "multi",
-    values: [""], // these get filled in on-demand
+  media: {
+    items: [
+      { value: "audio", label: "label_media_audio", hint: "label_media_audio_description" },
+      { value: "video", label: "label_media_video", hint: "label_media_video_description" },
+      { value: "photo", label: "label_media_photo", hint: "label_media_photo_description" },
+      { value: "document", label: "label_media_document", hint: "label_media_document_description" },
+      { value: "mixed", label: "label_media_mixed", hint: "label_media_mixed_description" },
+    ],
     tabIndex: 2,
   },
-  destinations: {
+  sources: {
     type: "array",
     control: "multi",
     values: [""], // these get filled in on-demand
     tabIndex: 3,
   },
-  media: {
-    items: [
-      { label: "label_media_audio", value: "audio" },
-      { label: "label_media_video", value: "video" },
-      { label: "label_media_photo", value: "photo" },
-      { label: "label_media_document", value: "document" },
-      { label: "label_media_mixed", value: "mixed" },
-    ],
+  destinations: {
+    type: "array",
+    control: "multi",
+    values: [""], // these get filled in on-demand
     tabIndex: 4,
   },
   autoscanEnabled: {
