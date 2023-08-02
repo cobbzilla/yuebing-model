@@ -25,7 +25,7 @@ export const LibraryTypeDefFields: MobilettoOrmFieldDefConfigs = {
   },
   media: {
     items: [
-      { label: "label_media_music", value: "music" },
+      { label: "label_media_audio", value: "audio" },
       { label: "label_media_video", value: "video" },
       { label: "label_media_photo", value: "photo" },
       { label: "label_media_document", value: "document" },
