@@ -12,6 +12,8 @@ export const LibraryTypeDefFields: MobilettoOrmFieldDefConfigs = {
     tabIndex: 1,
   },
   media: {
+    required: true,
+    index: true,
     items: [
       { value: "audio", label: "label_media_audio", hint: "label_media_audio_description" },
       { value: "video", label: "label_media_video", hint: "label_media_video_description" },
@@ -23,19 +25,20 @@ export const LibraryTypeDefFields: MobilettoOrmFieldDefConfigs = {
     tabIndex: 2,
   },
   sources: {
+    required: true,
     type: "array",
     control: "multi",
     values: [""], // these get filled in by the vue template
     tabIndex: 3,
   },
   destinations: {
+    required: true,
     type: "array",
     control: "multi",
     values: [""], // these get filled in by the vue template
     tabIndex: 4,
   },
   autoscanEnabled: {
-    required: true,
     default: false,
     tabIndex: 5,
   },
