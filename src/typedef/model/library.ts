@@ -28,14 +28,14 @@ export const LibraryTypeDefFields: MobilettoOrmFieldDefConfigs = {
     required: true,
     type: "array",
     control: "multi",
-    values: [""], // these get filled in by the vue template
+    ref: { refType: "source" },
     tabIndex: 3,
   },
   destinations: {
     required: true,
     type: "array",
     control: "multi",
-    values: [""], // these get filled in by the vue template
+    ref: { refType: "destination" },
     tabIndex: 4,
   },
   autoscanEnabled: {
