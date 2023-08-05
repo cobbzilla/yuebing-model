@@ -16,6 +16,7 @@ import { SessionTypeDef } from "../typedef/auth/session.js";
 import { LibraryTypeDef } from "../typedef/model/library.js";
 
 const uncapitalize = (s: string): string => s.substring(0, 1).toLowerCase() + s.substring(1);
+const capitalize = (s: string): string => s.substring(0, 1).toUpperCase() + s.substring(1);
 
 const generateService = (typeDef: MobilettoOrmTypeDef, outfile: string) => {
   if (process.env.YUEBING_DIR) {
@@ -47,6 +48,11 @@ const generateYuebing = (typeDef: MobilettoOrmTypeDef) => {
     generate(typeDef, `${__dirname}/../templates/store.ts.hbs`, {
       rootOnly: true,
       outfile: `${storeDir}/model/${type}Store.ts`,
+    });
+    const adminComponentsDir = `${ybDir}/components/model/${type}/`;
+    generate(typeDef, `${__dirname}/../templates/admin.vue.hbs`, {
+      rootOnly: true,
+      outfile: `${adminComponentsDir}/Model${capitalize(type)}Admin.vue`,
     });
   }
 };

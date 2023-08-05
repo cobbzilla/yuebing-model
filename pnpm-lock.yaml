@@ -36,11 +36,11 @@ devDependencies:
     specifier: ^4.7.7
     version: 4.7.7
   mobiletto-orm-typedef:
-    specifier: ^2.3.5
-    version: 2.3.5
+    specifier: ^2.3.8
+    version: 2.3.8
   mobiletto-orm-typedef-gen:
-    specifier: ^2.2.5
-    version: 2.2.5
+    specifier: ^2.2.9
+    version: 2.2.9
   mocha:
     specifier: ^10.2.0
     version: 10.2.0
@@ -54,8 +54,8 @@ devDependencies:
     specifier: ^5.1.6
     version: 5.1.6
   yuebing-messages:
-    specifier: ^2.0.30
-    version: 2.0.30
+    specifier: ^2.0.34
+    version: 2.0.34
 
 packages:
 
@@ -1020,12 +1020,12 @@ packages:
     hasBin: true
     dev: true
 
-  /mobiletto-orm-typedef-gen@2.2.5:
-    resolution: {integrity: sha512-BrOtFVFx3HyvUd3YDgBJAxqyflqD4/+B+Z0EQXB5hGRVZbVL+W7GyA6iViktvB60VObxwDkD10y3gzkiaTutQg==}
+  /mobiletto-orm-typedef-gen@2.2.9:
+    resolution: {integrity: sha512-sI2A+fkHfju+fGnwTYfYOdeywf2PXHIRuNibGgrj7IzQoazfdO6ZkcbQ+clMkLUUxvs3fmRZdvgQ8v/xq8JWRA==}
     dev: true
 
-  /mobiletto-orm-typedef@2.3.5:
-    resolution: {integrity: sha512-U10ZtgLUieKWMx92eBNaOqbfSN6+weTyHLOddlPk9ilfwTV8ckf0LcMCCC/YCekoPuQ0YV1JVamHXOxdKi0U0g==}
+  /mobiletto-orm-typedef@2.3.8:
+    resolution: {integrity: sha512-0Ga9ihtyCggiDedHPJpArFf/aCnj3KSMDNzpsbk/uA4LqgqRUoiylnWsCz9cGMrL5vFiedIihEdCZMR9kITWkg==}
     dependencies:
       shasum: 1.0.2
       uuid: 9.0.0
@@ -1525,6 +1525,6 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /yuebing-messages@2.0.30:
-    resolution: {integrity: sha512-QIZoNubyxJWIiwBEv0UENZRIKac4gQVTHluQTEl7GD0O5HOjtDKt5m7aOnzgpwd/TlHU3MsErGAgLl0bpASVJg==}
+  /yuebing-messages@2.0.34:
+    resolution: {integrity: sha512-ZHrHAZZjC2EBebB8HGPGXQVHmuPwRxkA1JKiHeqwT2kkyYfzJY8ltW1ylsQbnrB05w8R2ztaOYahuWYnC/aeHQ==}
     dev: true

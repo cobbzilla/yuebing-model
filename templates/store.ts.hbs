@@ -6,52 +6,86 @@ import { defineStore } from "pinia";
 import { MobilettoOrmValidationErrors } from "mobiletto-orm";
 import { {{Name}}Type, {{Name}}TypeDef } from "yuebing-model";
 import { {{name}}Service } from "~/utils/services/model/{{name}}Service";
+import { MobilettoOrmFindApiOpts } from "~/utils/search";
+import { updateOrmList } from "~/utils/orm";
 
-const updateList = (list: {{Name}}Type[] | null, id: string, opts?: { {{name}}?: {{Name}}Type; remove?: boolean }) => {
-  if (!opts) return;
-  if (list) {
-    const foundIndex = list.findIndex((e) => {{Name}}TypeDef.id(e) === id);
-    if (foundIndex && foundIndex >= 0) {
-      if (opts && opts.remove === true) {
-        list.splice(foundIndex, 1);
-      } else if (opts && opts.{{name}}) {
-        list.splice(foundIndex, 1, opts.{{name}});
-      }
-    }
-  }
+const updateList = (list: {{Name}}Type[] | null, id: string, opts?: { object?: {{Name}}Type; remove?: boolean }) => {
+  return updateOrmList<{{Name}}Type>({{Name}}TypeDef, list, id, opts);
 };
 
 export const use{{Name}}Store = defineStore("{{name}}", {
   state: () => ({
-    {{name}}: null as {{Name}}Type | null,
+    finding: false,
+    found: null as {{Name}}Type | null,
+    creating: false,
+    created: null as {{Name}}Type | null,
+    updating: false,
+    updated: null as {{Name}}Type | null,
+    deleting: false,
+    deleted: null as boolean | null,
+    searching: false,
     {{name}}List: null as {{Name}}Type[] | null,
   }),
+  getters: {
+      {{name}}Busy: (state) => state.finding || state.creating || state.updating || state.deleting || state.searching,
+  },
   actions: {
-    async {{name}}Lookup(id: string, serverErrors: Ref<MobilettoOrmValidationErrors>): Promise<{{Name}}Type> {
-      this.{{name}} = await {{name}}Service.find{{Name}}(id, serverErrors);
-      updateList(this.{{name}}List, {{Name}}TypeDef.id(this.{{name}}), { {{name}}: this.{{name}} });
-      return this.{{name}};
-    },
-    async {{name}}Search(query?: MobilettoOrmFindApiOpts): Promise<{{Name}}Type[]> {
-      this.{{name}}List = await {{name}}Service.search{{Name}}(query);
-      return this.{{name}}List || [];
-    },
-    async {{name}}Create({{name}}: {{Name}}Type, serverErrors: Ref<MobilettoOrmValidationErrors>): Promise<{{Name}}Type> {
-      this.{{name}} = await {{name}}Service.create{{Name}}({{name}}, serverErrors);
-      return this.{{name}};
-    },
-    async {{name}}Update({{name}}: {{Name}}Type, serverErrors: Ref<MobilettoOrmValidationErrors>): Promise<{{Name}}Type> {
-      this.{{name}} = await {{name}}Service.update{{Name}}({{name}}, serverErrors);
-      updateList(this.{{name}}List, {{Name}}TypeDef.id(this.{{name}}), { {{name}}: this.{{name}} });
-      return this.{{name}};
-    },
-    async {{name}}Delete({{name}}: string, serverErrors: Ref<MobilettoOrmValidationErrors>, purge?: boolean): Promise<boolean> {
-      const deleteResult = await {{name}}Service.delete{{Name}}({{name}}, serverErrors, !!purge);
-      if (deleteResult) {
-        updateList(this.{{name}}List, {{name}}, serverErrors, { remove: true });
-        return true;
+    async lookup(id: string, serverErrors: Ref<MobilettoOrmValidationErrors>): Promise<{{Name}}Type> {
+      this.found = null;
+      this.finding = true;
+      try {
+        this.found = await {{name}}Service.find{{Name}}(id, serverErrors);
+        updateList(this.{{name}}List, {{Name}}TypeDef.id(this.found), {object: this.found});
+        return this.found;
+      } finally {
+        this.finding = false;
       }
-      return false;
+    },
+    async search(query?: MobilettoOrmFindApiOpts): Promise<{{Name}}Type[]> {
+      try {
+        this.searching = true;
+        this.{{name}}List = await {{name}}Service.search{{Name}}(query);
+        return this.{{name}}List || [];
+      } finally {
+        this.searching = false;
+      }
+    },
+    async create(object: {{Name}}Type, serverErrors: Ref<MobilettoOrmValidationErrors>): Promise<{{Name}}Type> {
+      try {
+        this.created = null;
+        this.creating = true;
+        this.created = await {{name}}Service.create{{Name}}(object, serverErrors);
+        return this.created;
+      } finally {
+        this.creating = false;
+      }
+    },
+    async update(object: {{Name}}Type, serverErrors: Ref<MobilettoOrmValidationErrors>): Promise<{{Name}}Type> {
+      try {
+        this.updated = null;
+        this.updating = true;
+        this.updated = await {{name}}Service.update{{Name}}(object, serverErrors);
+        updateList(this.{{name}}List, {{Name}}TypeDef.id(this.updated), {object: this.updated});
+        return this.updated;
+      } finally {
+        this.updating = false;
+      }
+    },
+    async delete(id: string, serverErrors: Ref<MobilettoOrmValidationErrors>, purge?: boolean): Promise<boolean> {
+      try {
+        this.deleted = null;
+        this.deleting = true;
+        const deleteResult = await {{name}}Service.delete{{Name}}(id, serverErrors, !!purge);
+        if (deleteResult) {
+          updateList(this.{{name}}List, id, {remove: true});
+          this.deleted = true;
+        } else {
+          this.deleted = false;
+        }
+        return this.deleted;
+      } finally {
+        this.deleting = false;
+      }
     },
   },
 });
