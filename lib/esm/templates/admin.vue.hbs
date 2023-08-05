@@ -94,7 +94,7 @@
                   <tbody>
                   <tr v-for="(obj, objIndex) in {{name}}List" :key="objIndex">
                     <td v-for="(fieldName, fieldIndex) in tableFields" :key="fieldIndex">
-                      <OrmFieldDisplay v-if="{{name}}TypeDef.fields[fieldName] || fieldName.startsWith('_meta')" :field="fieldName.startsWith('_meta') ? { name: fieldName.substring(fieldName.lastIndexOf('.')+1) } : {{name}}TypeDef.fields[fieldName]" :value="deepGet(obj, fieldName)" />
+                      <OrmFieldDisplay v-if="{{name}}TypeDef.fields[fieldName] || fieldName.startsWith('_meta')" :field="fieldName.startsWith('_meta') ? metaField(fieldName) : {{name}}TypeDef.fields[fieldName]" :value="deepGet(obj, fieldName)" />
                     </td>
                     <td v-if="Object.keys(actionConfigs).length > 0">
                       <div v-for="(action, actionIndex) in Object.keys(actionConfigs)" :key="actionIndex">
@@ -150,6 +150,7 @@
     MobilettoOrmObject,
     MobilettoOrmTypeDef,
     MobilettoOrmValidationErrors,
+    metaField
   } from "mobiletto-orm-typedef";
   import { {{Name}}Type, {{Name}}TypeDef } from "yuebing-model";
   import { fieldErrorMessage, findMessage, messageExists, parseMessage } from "yuebing-messages";
@@ -332,14 +333,14 @@
   }
 
   const showEditOrm = (obj: MobilettoOrmObject) => {
-    if (editingObject.value) {
+    if (Object.keys(editingObject.value).length > 0) {
       // already editing something else
       return;
     }
     if (obj) {
       const id = {{Name}}TypeDef.id(obj);
       if (id && id.length > 0) {
-        editingObject.value = structuredClone(obj) as {{Name}}Type;
+        editingObject.value = JSON.parse(JSON.stringify(obj)) as {{Name}}Type;
         // emit("editObjectStart", editingObject.value);
       }
     }
