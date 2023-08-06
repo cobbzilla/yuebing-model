@@ -137,7 +137,7 @@ export const AccountTypeDef = new MobilettoOrmTypeDef({
         // admins cannot unset their own admin flag. another admin must change it for them
         if (AccountTypeDef.id(caller) === AccountTypeDef.id(target as MobilettoOrmObject) && caller.admin) {
           if (!(target as MobilettoOrmObject).admin) {
-            return { admin: ["cannotUnsetOnSelf"] };
+            return { admin: ["cannotUnsetAdminOnSelf"] };
           }
         }
         return true;

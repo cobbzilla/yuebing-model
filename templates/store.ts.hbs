@@ -35,7 +35,9 @@ export const use{{Name}}Store = defineStore("{{name}}", {
       this.finding = true;
       try {
         this.found = await {{name}}Service.find{{Name}}(id, serverErrors);
-        updateList(this.{{name}}List, {{Name}}TypeDef.id(this.found), {object: this.found});
+        if (this.found) {
+          updateList(this.{{name}}List, {{Name}}TypeDef.id(this.found), {object: this.found});
+        }
         return this.found;
       } finally {
         this.finding = false;
@@ -65,7 +67,9 @@ export const use{{Name}}Store = defineStore("{{name}}", {
         this.updated = null;
         this.updating = true;
         this.updated = await {{name}}Service.update{{Name}}(object, serverErrors);
-        updateList(this.{{name}}List, {{Name}}TypeDef.id(this.updated), {object: this.updated});
+        if (this.updated) {
+          updateList(this.{{name}}List, {{Name}}TypeDef.id(this.updated), {object: this.updated});
+        }
         return this.updated;
       } finally {
         this.updating = false;
@@ -77,7 +81,7 @@ export const use{{Name}}Store = defineStore("{{name}}", {
         this.deleting = true;
         const deleteResult = await {{name}}Service.delete{{Name}}(id, serverErrors, !!purge);
         if (deleteResult) {
-          updateList(this.{{name}}List, id, {remove: true});
+          updateList(this.{{name}}List, id, { remove: true });
           this.deleted = true;
         } else {
           this.deleted = false;
