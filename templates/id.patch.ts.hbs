@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 {{#if disclaimer}}// {{{disclaimer}}}{{#if header}}
 {{{header}}}{{/if}}{{/if}}
 
@@ -24,9 +25,15 @@ export default defineEventHandler(async (event: H3Event) => {
       } else {
         {{#if typeDef.apiConfig.update.permission.owner}}
         if (!account.admin && obj.account && obj.account !== session.account) throw forbidden();
-        {{/if}}{{#if typeDef.apiConfig.update.hasValidate}}
-        if (!(await {{Name}}TypeDef.apiConfig.update.validate(account, obj))) {
-          throw validationError({ global: ["unknown"]});
+        {{/if}}{{#if typeDef.apiConfig.update.hasValidate}}if (typeof {{Name}}TypeDef.apiConfig.update?.validate === "function") {
+          const validated = await {{Name}}TypeDef.apiConfig.update.validate(account, obj);
+          if (validated === true || typeof validated === "object" && Object.keys(validated).length === 0) {
+            // successfully validated
+          } else if (typeof validated === "object" && Object.keys(validated).length > 0) {
+            throw validationError(validated);
+          } else {
+            throw validationError({global: ["validation"]});
+          }
         }{{/if}}
         return await {{name}}Repo.update(obj);
       }{{#if typeDef.apiConfig.update.permission.admin}}

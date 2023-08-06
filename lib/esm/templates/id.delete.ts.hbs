@@ -1,8 +1,8 @@
+/* eslint-disable camelcase,@typescript-eslint/no-unused-vars */
 {{#if disclaimer}}// {{{disclaimer}}}{{#if header}}
 {{{header}}}{{/if}}{{/if}}
-// @eslint-disable camelcase
 
-import { H3Event } from "h3";{{#if typeDef.apiConfig.delete.hasValidate}}
+import { H3Event, H3Error } from "h3";{{#if typeDef.apiConfig.delete.hasValidate}}
 import { {{Name}}TypeDef } from "yuebing-model";{{/if}}
 import { MobilettoOrmSyncError } from "mobiletto-orm-typedef";
 
@@ -19,9 +19,15 @@ export default defineEventHandler(async (event: H3Event) => {
         if ({{name}}_by_id) {
           {{#if typeDef.apiConfig.delete.permission.owner}}
           if (!account.admin && {{name}}_by_id.account !== session.account) throw forbidden();
-          {{/if}}{{#if typeDef.apiConfig.delete.hasValidate}}
-          if (!(await {{Name}}TypeDef.apiConfig.delete.validate(account, {{name}}_by_id))) {
-            throw validationError({ global: ["unknown"]});
+          {{/if}}{{#if typeDef.apiConfig.delete.hasValidate}}if (typeof {{Name}}TypeDef.apiConfig.delete?.validate === "function") {
+            const validated = await {{Name}}TypeDef.apiConfig.delete.validate(account, {{name}}_by_id);
+            if (validated === true || typeof validated === "object" && Object.keys(validated).length === 0) {
+              // successfully validated
+            } else if (typeof validated === "object" && Object.keys(validated).length > 0) {
+              throw validationError(validated);
+            } else {
+              throw validationError({global: ["validation"]});
+            }
           }{{/if}}
           return await {{name}}Repo.remove({{name}}_by_id);
         }
@@ -30,14 +36,21 @@ export default defineEventHandler(async (event: H3Event) => {
           if ({{name}}_by_{{this}}) {
             {{#if typeDef.apiConfig.delete.permission.owner}}
             if (!account.admin && {{name}}_by_{{this}}.account !== session.account) throw forbidden();
-            {{/if}}{{#if typeDef.apiConfig.delete.hasValidate}}
-            if (!(await {{Name}}TypeDef.apiConfig.delete.validate(account, {{name}}_by_{{this}}))) {
-              throw validationError({ global: ["unknown"]});
+            {{/if}}{{#if typeDef.apiConfig.delete.hasValidate}}if (typeof {{Name}}TypeDef.apiConfig.delete?.validate === "function") {
+              const validated = await {{Name}}TypeDef.apiConfig.delete.validate(account, {{name}}_by_{{this}});
+              if (validated === true || typeof validated === "object" && Object.keys(validated).length === 0) {
+                // successfully validated
+              } else if (typeof validated === "object" && Object.keys(validated).length > 0) {
+                throw validationError(validated);
+              } else {
+                throw validationError({global: ["validation"]});
+              }
             }{{/if}}
             return await {{name}}Repo.remove({{name}}_by_{{this}});
           }
         {{/each}}
       } catch (e) {
+        if (e instanceof H3Error) throw e;
         if (e instanceof MobilettoOrmSyncError) {
           logger.warn(`{{name}}.delete: sync error: ${e}`);
           throw conflict();

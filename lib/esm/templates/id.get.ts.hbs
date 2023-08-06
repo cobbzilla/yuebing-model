@@ -1,6 +1,6 @@
+/* eslint-disable camelcase,@typescript-eslint/no-unused-vars */
 {{#if disclaimer}}// {{{ disclaimer }}}{{#if header}}
 {{{header}}}{{/if}}{{/if}}
-// @eslint-disable camelcase
 
 import { H3Event } from "h3";{{#if typeDef.apiConfig.lookup.hasValidate}}
 import { {{Name}}TypeDef } from "yuebing-model";{{/if}}
@@ -13,8 +13,15 @@ export default defineEventHandler(async (event: H3Event) => {
       const {{name}}Repo = {{name}}Repository();
       const id = event?.context?.params?.id;
       if (!id) throw notFound({{name}}Repo.typeDef.idFieldName());{{#if typeDef.apiConfig.lookup.hasValidate}}
-      if (!(await {{Name}}TypeDef.apiConfig.lookup.validate(account, id))) {
-        throw validationError({ global: ["unknown"]});
+      if (typeof {{Name}}TypeDef.apiConfig.lookup?.validate === "function") {
+        const validated = await {{Name}}TypeDef.apiConfig.lookup.validate(account, id);
+        if (validated === true || typeof validated === "object" && Object.keys(validated).length === 0) {
+          // successfully validated
+        } else if (typeof validated === "object" && Object.keys(validated).length > 0) {
+          throw validationError(validated);
+        } else {
+          throw validationError({global: ["validation"]});
+        }
       }{{/if}}
       const {{name}}_by_id = await {{name}}Repo.safeFindById(id);
       if ({{name}}_by_id) return {{name}}_by_id;

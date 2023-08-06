@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 {{#if disclaimer}}// {{{disclaimer}}}{{#if header}}
 {{{header}}}{{/if}}{{/if}}
 
@@ -22,11 +23,17 @@ export default defineEventHandler(async (event: H3Event) => {
         errs[{{name}}Repo.typeDef.idFieldName()] = ["mismatch"];
         throw validationError(errs);
       } else {
-        {{#if typeDef.apiConfig.create.hasValidate}}
-        if (!(await {{Name}}TypeDef.apiConfig.create.validate(account, obj))) {
-          throw validationError({ global: ["unknown"]});
-        }{{/if}}
-        return await {{name}}Repo.create(obj);
+        {{#if typeDef.apiConfig.create.hasValidate}}if (typeof {{Name}}TypeDef.apiConfig.create?.validate === "function") {
+          const validated = await {{Name}}TypeDef.apiConfig.create.validate(account, obj);
+          if (validated === true || typeof validated === "object" && Object.keys(validated).length === 0) {
+            // successfully validated
+          } else if (typeof validated === "object" && Object.keys(validated).length > 0) {
+            throw validationError(validated);
+          } else {
+            throw validationError({global: ["validation"]});
+          }
+        }
+        {{/if}}return await {{name}}Repo.create(obj);
       }{{#if typeDef.apiConfig.create.permission.admin}}
     });{{else}}{{#if typeDef.apiConfig.create.permission.owner}}
     });{{else}}{{#if typeDef.apiConfig.create.permission.session}}
