@@ -4,6 +4,7 @@
 
 import { H3Event } from "h3";
 import { {{Name}}TypeDef } from "yuebing-model";
+import { MobilettoOrmFindApiOpts } from "~/utils/search";
 
 export default defineEventHandler(async (event: H3Event) => {
   return await filterErrors(event, "{{name}}.search", async (event: H3Event) => {{{curlyOpen}}}{{#if typeDef.apiConfig.search.permission.admin}}
@@ -25,7 +26,7 @@ export default defineEventHandler(async (event: H3Event) => {
       if (opts.field && opts.value) {
         return await {{name}}Repo.safeFindBy(opts.field, opts.value, opts.opts || {});
       } else if (opts.textSearch && {{Name}}TypeDef.textSearchFields.length > 0) {
-        return await {{name}}Repo.find({ predicate: (obj) => {{Name}}TypeDef.textMatch(obj, opts.textSearch) });
+        return await {{name}}Repo.find({ predicate: (obj) => {{Name}}TypeDef.textMatch(obj, opts.textSearch || "") });
       } else {
         return await {{name}}Repo.find(opts.opts || {});
       }{{#if typeDef.apiConfig.search.permission.admin}}
