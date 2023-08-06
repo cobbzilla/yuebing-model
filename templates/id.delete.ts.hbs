@@ -21,7 +21,7 @@ export default defineEventHandler(async (event: H3Event) => {
           if (!account.admin && {{name}}_by_id.account !== session.account) throw forbidden();
           {{/if}}{{#if typeDef.apiConfig.delete.hasValidate}}if (typeof {{Name}}TypeDef.apiConfig.delete?.validate === "function") {
             const validated = await {{Name}}TypeDef.apiConfig.delete.validate(account, {{name}}_by_id);
-            if (validated === true || typeof validated === "object" && Object.keys(validated).length === 0) {
+            if (validated === true || (typeof validated === "object" && Object.keys(validated).length === 0)) {
               // successfully validated
             } else if (typeof validated === "object" && Object.keys(validated).length > 0) {
               throw validationError(validated);
@@ -38,7 +38,7 @@ export default defineEventHandler(async (event: H3Event) => {
             if (!account.admin && {{name}}_by_{{this}}.account !== session.account) throw forbidden();
             {{/if}}{{#if typeDef.apiConfig.delete.hasValidate}}if (typeof {{Name}}TypeDef.apiConfig.delete?.validate === "function") {
               const validated = await {{Name}}TypeDef.apiConfig.delete.validate(account, {{name}}_by_{{this}});
-              if (validated === true || typeof validated === "object" && Object.keys(validated).length === 0) {
+              if (validated === true || (typeof validated === "object" && Object.keys(validated).length === 0)) {
                 // successfully validated
               } else if (typeof validated === "object" && Object.keys(validated).length > 0) {
                 throw validationError(validated);

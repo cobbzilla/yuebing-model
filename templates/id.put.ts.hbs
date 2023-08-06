@@ -25,7 +25,7 @@ export default defineEventHandler(async (event: H3Event) => {
       } else {
         {{#if typeDef.apiConfig.create.hasValidate}}if (typeof {{Name}}TypeDef.apiConfig.create?.validate === "function") {
           const validated = await {{Name}}TypeDef.apiConfig.create.validate(account, obj);
-          if (validated === true || typeof validated === "object" && Object.keys(validated).length === 0) {
+          if (validated === true || (typeof validated === "object" && Object.keys(validated).length === 0)) {
             // successfully validated
           } else if (typeof validated === "object" && Object.keys(validated).length > 0) {
             throw validationError(validated);

@@ -3,6 +3,7 @@ import {
   MobilettoOrmFieldDefConfigs,
   MobilettoOrmObject,
   MobilettoOrmIdArg,
+  MobilettoOrmValidationErrors,
 } from "mobiletto-orm-typedef";
 
 import * as valid from "../../validation.js";
@@ -113,12 +114,18 @@ export const AccountTypeDef = new MobilettoOrmTypeDef({
       validate: async (
         caller: MobilettoOrmObject,
         target: MobilettoOrmObject | MobilettoOrmIdArg
-      ): Promise<boolean> => {
+      ): Promise<boolean | MobilettoOrmValidationErrors> => {
         const targetId = typeof target === "object" ? AccountTypeDef.id(target as MobilettoOrmObject) : target;
         const callerId = AccountTypeDef.id(caller);
         // admins cannot delete themselves. another admin must unset their admin flag first.
         // non-admins can ONLY delete themselves.
-        return (caller.admin && callerId !== targetId) || (!caller.admin && callerId === targetId);
+        if (caller.admin && callerId === targetId) {
+          return { username: ["cannotDeleteSelf"] };
+        }
+        if (!caller.admin && callerId !== targetId) {
+          return { username: ["cannotDeleteOther"] };
+        }
+        return true;
       },
     },
     update: {
@@ -126,10 +133,12 @@ export const AccountTypeDef = new MobilettoOrmTypeDef({
       validate: async (
         caller: MobilettoOrmObject,
         target: MobilettoOrmObject | MobilettoOrmIdArg
-      ): Promise<boolean> => {
+      ): Promise<boolean | MobilettoOrmValidationErrors> => {
         // admins cannot unset their own admin flag. another admin must change it for them
         if (AccountTypeDef.id(caller) === AccountTypeDef.id(target as MobilettoOrmObject) && caller.admin) {
-          return (target as MobilettoOrmObject).admin;
+          if (!(target as MobilettoOrmObject).admin) {
+            return { admin: ["cannotUnsetOnSelf"] };
+          }
         }
         return true;
       },
