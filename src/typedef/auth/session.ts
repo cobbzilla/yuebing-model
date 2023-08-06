@@ -1,6 +1,6 @@
 import { MobilettoOrmTypeDef } from "mobiletto-orm-typedef";
 import { generateId, MIN_ID_LENGTH } from "mobiletto-orm-typedef";
-import {USERNAME_MIN_LENGTH} from "../model/account.js";
+import { USERNAME_MAX_LENGTH, USERNAME_MIN_LENGTH } from "../model/account.js";
 
 export const SessionTypeDef = new MobilettoOrmTypeDef({
   typeName: "session",
@@ -18,7 +18,7 @@ export const SessionTypeDef = new MobilettoOrmTypeDef({
       required: true,
       control: "label",
       min: USERNAME_MIN_LENGTH,
-      max: MIN_ID_LENGTH + 100, // let's be generous
+      max: USERNAME_MAX_LENGTH,
       updatable: false,
     },
   },

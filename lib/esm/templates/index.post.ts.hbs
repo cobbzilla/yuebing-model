@@ -24,6 +24,8 @@ export default defineEventHandler(async (event: H3Event) => {
       const {{name}}Repo = {{name}}Repository();
       if (opts.field && opts.value) {
         return await {{name}}Repo.safeFindBy(opts.field, opts.value, opts.opts || {});
+      } else if (opts.textSearch && {{Name}}TypeDef.textSearchFields.length > 0) {
+        return await {{name}}Repo.find({ predicate: (obj) => {{Name}}TypeDef.textMatch(obj, opts.textSearch) });
       } else {
         return await {{name}}Repo.find(opts.opts || {});
       }{{#if typeDef.apiConfig.search.permission.admin}}

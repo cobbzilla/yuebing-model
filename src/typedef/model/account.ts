@@ -95,10 +95,13 @@ export const ACCOUNT_TABLE_FIELDS = [
   "_meta.mtime",
 ];
 
+export const ACCOUNT_TEXT_SEARCH_FIELDS = ["username", "email", "firstName", "lastName"];
+
 export const AccountTypeDef = new MobilettoOrmTypeDef({
   typeName: "account",
   shortName: "acct",
   tableFields: ACCOUNT_TABLE_FIELDS,
+  textSearchFields: ACCOUNT_TEXT_SEARCH_FIELDS,
   fields: {
     ...primaryAccountFields,
     admin: {

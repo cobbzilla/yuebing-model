@@ -320,6 +320,7 @@ export const SourceTypeDef = new MobilettoOrmTypeDef({
   indexLevels: 2,
   shortName: "src",
   tableFields: ["name", "type", "ctime", "mtime"],
+  textSearchFields: ["name", "type", "local", "s3", "b2", "generic"],
   fields: SourceTypeDefFields,
 }).extend({
   fields: {
@@ -345,6 +346,7 @@ export const DestinationTypeDef = new MobilettoOrmTypeDef({
   indexLevels: 2,
   shortName: "dst",
   tableFields: ["name", "type", "system", "ctime", "mtime"],
+  textSearchFields: ["name", "type", "local", "s3", "b2", "generic"],
   fields: DestinationTypeDefFields,
 }).extend({
   fields: {
