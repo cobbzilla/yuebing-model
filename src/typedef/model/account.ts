@@ -1,4 +1,9 @@
-import { MobilettoOrmTypeDef, MobilettoOrmFieldDefConfigs } from "mobiletto-orm-typedef";
+import {
+  MobilettoOrmTypeDef,
+  MobilettoOrmFieldDefConfigs,
+  MobilettoOrmObject,
+  MobilettoOrmIdArg,
+} from "mobiletto-orm-typedef";
 
 import * as valid from "../../validation.js";
 import { YUEBING_LOCALES } from "yuebing-messages";
@@ -101,6 +106,39 @@ export const AccountTypeDef = new MobilettoOrmTypeDef({
       index: true,
       indexLevels: 0,
     },
+  },
+  apiConfig: {
+    delete: {
+      permission: { owner: true },
+      validate: async (
+        caller: MobilettoOrmObject,
+        target: MobilettoOrmObject | MobilettoOrmIdArg
+      ): Promise<boolean> => {
+        const targetId = typeof target === "object" ? AccountTypeDef.id(target as MobilettoOrmObject) : target;
+        const callerId = AccountTypeDef.id(caller);
+        // admins cannot delete themselves. another admin must unset their admin flag first.
+        // non-admins can ONLY delete themselves.
+        return (caller.admin && callerId !== targetId) || (!caller.admin && callerId === targetId);
+      },
+    },
+    update: {
+      permission: { owner: true },
+      validate: async (
+        caller: MobilettoOrmObject,
+        target: MobilettoOrmObject | MobilettoOrmIdArg
+      ): Promise<boolean> => {
+        // admins cannot unset their own admin flag. another admin must change it for them
+        if (AccountTypeDef.id(caller) === AccountTypeDef.id(target as MobilettoOrmObject) && caller.admin) {
+          return (target as MobilettoOrmObject).admin;
+        }
+        return true;
+      },
+    },
+    // accounts can find themselves
+    lookup: { permission: { owner: true } },
+    // only admins can search or create. new accounts can use the registration form, if enabled
+    search: { permission: { admin: true } },
+    create: { permission: { admin: true } },
   },
 });
 

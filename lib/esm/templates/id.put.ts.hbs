@@ -6,9 +6,9 @@ import { MobilettoOrmValidationErrors } from "mobiletto-orm-typedef";
 import { {{Name}}Type, {{Name}}TypeDef } from "yuebing-model";
 
 export default defineEventHandler(async (event: H3Event) => {
-  return await filterErrors(event, "{{name}}.create", async (event: H3Event) => {{{curlyOpen}}}{{#if typeDef.apiConfig.create.admin}}
-    return await requireAdminAccountObject(event, "{{name}}.create", async (event: H3Event, session, account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.create.owner}}
-    return await requireAccountObject(event, "{{name}}.create", async (event: H3Event, session, account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.create.session}}
+  return await filterErrors(event, "{{name}}.create", async (event: H3Event) => {{{curlyOpen}}}{{#if typeDef.apiConfig.create.permission.admin}}
+    return await requireAdminAccountObject(event, "{{name}}.create", async (event: H3Event, session, account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.create.permission.owner}}
+    return await requireAccountObject(event, "{{name}}.create", async (event: H3Event, session, account) => {{{curlyOpen}}}{{else}}{{#if typeDef.apiConfig.create.permission.session}}
     return await requireAccount(event, "{{name}}.create", async (event: H3Event, session) => {{{curlyOpen}}}{{/if}}{{/if}}{{/if}}
       const {{name}}Repo = {{name}}Repository();
       const id = event?.context?.params?.id;
@@ -22,10 +22,14 @@ export default defineEventHandler(async (event: H3Event) => {
         errs[{{name}}Repo.typeDef.idFieldName()] = ["mismatch"];
         throw validationError(errs);
       } else {
+        {{#if typeDef.apiConfig.create.hasValidate}}
+        if (!(await {{Name}}TypeDef.apiConfig.create.validate(account, obj))) {
+          throw validationError({ global: ["unknown"]});
+        }{{/if}}
         return await {{name}}Repo.create(obj);
-      }{{#if typeDef.apiConfig.create.admin}}
-    });{{else}}{{#if typeDef.apiConfig.create.owner}}
-    });{{else}}{{#if typeDef.apiConfig.create.session}}
+      }{{#if typeDef.apiConfig.create.permission.admin}}
+    });{{else}}{{#if typeDef.apiConfig.create.permission.owner}}
+    });{{else}}{{#if typeDef.apiConfig.create.permission.session}}
     });{{/if}}{{/if}}{{/if}}
   });
 });
