@@ -322,10 +322,11 @@
     }
   };
 
-  const onEditSubmitted = (obj: MobilettoOrmObject) => {
-    return {{name}}Store
-      .update(obj as {{Name}}Type, edit{{Name}}ServerErrors)
-      .then(() => {{name}}Store.search());
+  const onEditSubmitted = async (obj: MobilettoOrmObject) => {
+    await {{name}}Store
+      .update(obj as {{Name}}Type, edit{{Name}}ServerErrors);
+    editingObject.value = {} as {{Name}}Type;
+    return await {{name}}Store.search();
   }
 
   const showEditOrm = (obj: MobilettoOrmObject) => {
