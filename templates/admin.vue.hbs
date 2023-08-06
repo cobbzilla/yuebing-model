@@ -304,11 +304,13 @@
   const onAddUpdated = (update: { field: string; value: any }) => {
     deepUpdate(addObject.value, update.field, update.value);
   };
-  const onAddSubmitted = (obj: MobilettoOrmObject) => {
-    return {{name}}Store
-      .create(obj as {{Name}}Type, create{{Name}}ServerErrors)
-      .then(() => {{name}}Store.search());
+  const onAddSubmitted = async (obj: MobilettoOrmObject) => {
+    await {{name}}Store
+      .create(obj as {{Name}}Type, create{{Name}}ServerErrors);
+    addingObject.value = false;
+    return await {{name}}Store.search();
   }
+
   const showAddOrm = () => {
     addingObject.value = true;
   };
