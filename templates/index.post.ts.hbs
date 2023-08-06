@@ -2,8 +2,8 @@
 {{#if disclaimer}}// {{{disclaimer}}}{{#if header}}
 {{{header}}}{{/if}}{{/if}}
 
-import { H3Event } from "h3";{{#if typeDef.apiConfig.search.hasValidate}}
-import { {{Name}}TypeDef } from "yuebing-model";{{/if}}
+import { H3Event } from "h3";
+import { {{Name}}TypeDef } from "yuebing-model";
 
 export default defineEventHandler(async (event: H3Event) => {
   return await filterErrors(event, "{{name}}.search", async (event: H3Event) => {{{curlyOpen}}}{{#if typeDef.apiConfig.search.permission.admin}}
