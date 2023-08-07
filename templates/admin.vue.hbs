@@ -24,7 +24,7 @@
             :create="true"
             :read-only-object="() => false"
             :server-errors="create{{Name}}ServerErrors"
-            :label-prefixes="['admin_label_{{name}}_', 'label_']"
+            :label-prefixes="labelPfx"
             :hint-suffixes="['_description']"
             @submitted="onAddSubmitted"
             @update="onAddUpdated"
@@ -44,7 +44,7 @@
             :create="false"
             :read-only-object="() => false"
             :server-errors="edit{{Name}}ServerErrors"
-            :label-prefixes="['admin_label_{{name}}_', 'label_']"
+            :label-prefixes="labelPfx"
             :hint-suffixes="['_description']"
             @submitted="onEditSubmitted"
             @update="onEditUpdated"
@@ -59,10 +59,11 @@
               <v-col>
                 <div>
                   <v-form @submit.prevent="searchObjects">
-                    <div class="form-group">
+                    <div class="form-group" style="flex-wrap: nowrap;">
                       <v-text-field
                         v-model="searchTerms"
                         :label="messages.label_search"
+                        :disabled="libraryStore.libraryBusy"
                         type="text"
                         name="searchTerms"
                         class="form-control"
@@ -183,6 +184,13 @@
     },
   );
 
+  const labelPfx: Ref<string[]> = ref(["admin_label_{{name}}_", "label_", ""]);
+  if (props.labelPrefixes) {
+    props.labelPrefixes.forEach((p: string) => {
+      if (!labelPfx.value.includes(p)) labelPfx.value.unshift(p);
+    });
+  }
+
   const sessionStore = useSessionStore();
   const { localeMessages } = storeToRefs(sessionStore);
   const messages = localeMessages;
@@ -233,9 +241,9 @@
     }
   };
 
-  {{#if typeDef.refTypes}}
   const navigating = ref(false);
 
+  {{#if typeDef.refTypes}}
   const initTypeDef = () => {
     const typeDef = {{Name}}TypeDef.extend({
       fields: {
@@ -381,17 +389,15 @@
     }
   };
 
-  watch({{name}}List, (newList, _oldList) => {
-    if (newList && Array.isArray(newList)) {
-      // if ((!oldList && newList.length > 0) || (oldList && oldList.length && oldList.length < newList.length)) {
-      //   navigateTo("/admin/{{name}}/setup");
-      // }
+  watch({{name}}List, (newList) => {
+    if (newList && Array.isArray(newList) && newList.length === 0) {
+      if (navigating.value) return;
+      navigating.value = true;
+      navigateTo("/admin/{{name}}/setup");
     }
   });
 
-  {{name}}Store.search(){{#if typeDef.refTypes}}.then((objs) => {
-    if (objs.length === 0) { {{#each typeDef.refTypes}}
-      {{refType}}Store.search();{{/each}}
-    }
+  {{name}}Store.search(){{#if typeDef.refTypes}}.then(() => {{{curlyOpen}}}{{#each typeDef.refTypes}}
+    {{refType}}Store.search();{{/each}}
   }){{/if}};
 </script>

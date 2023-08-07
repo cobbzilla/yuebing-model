@@ -16,6 +16,7 @@ const LOCAL_FIELDS: MobilettoOrmFieldDefConfigs = {
   },
   createIfNotExist: {
     default: false,
+    updatable: false,
     tabIndex: 12,
     label: "label_volumeType_local_createIfNotExist",
   },
@@ -56,6 +57,7 @@ const S3_FIELDS: MobilettoOrmFieldDefConfigs = {
     tabIndex: 23,
     label: "label_volumeType_s3_bucket",
     required: true,
+    updatable: false,
     min: 3,
     max: 63,
     regex: valid.REGEX_VALIDATORS.s3_bucket,
@@ -136,6 +138,7 @@ const B2_FIELDS: MobilettoOrmFieldDefConfigs = {
     tabIndex: 33,
     label: "label_volumeType_b2_bucket",
     required: true,
+    updatable: false,
     min: 6,
     max: 63,
     regex: valid.REGEX_VALIDATORS.b2_bucket,
@@ -171,6 +174,7 @@ const GENERIC_FIELDS: MobilettoOrmFieldDefConfigs = {
     tabIndex: 41,
     label: "label_volumeType_generic_driver",
     required: true,
+    updatable: false,
     max: 1000,
   },
   key: {
