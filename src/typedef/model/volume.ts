@@ -272,6 +272,7 @@ export const VolumeTypeDefFields: MobilettoOrmFieldDefConfigs = {
     label: "label_volumeType_encryptionEnable",
     tabIndex: 101,
     default: false,
+    updatable: false,
   },
   encryption: {
     when: (v: Record<string, unknown>) => v.encryptionEnable === true,
@@ -307,7 +308,7 @@ export const VolumeTypeDefFields: MobilettoOrmFieldDefConfigs = {
 
 export const VolumeTypeDef = new MobilettoOrmTypeDef({
   typeName: "volume",
-  tableFields: ["name", "type", "ctime", "mtime"],
+  tableFields: ["name", "type", "_meta.ctime", "_meta.mtime"],
   fields: VolumeTypeDefFields,
 });
 
@@ -319,7 +320,7 @@ export const SourceTypeDef = new MobilettoOrmTypeDef({
   typeName: "source",
   indexLevels: 2,
   shortName: "src",
-  tableFields: ["name", "type", "ctime", "mtime"],
+  tableFields: ["name", "type", "_meta.ctime", "_meta.mtime"],
   textSearchFields: ["name", "type", "local", "s3", "b2", "generic"],
   fields: SourceTypeDefFields,
 }).extend({
@@ -345,7 +346,7 @@ export const DestinationTypeDef = new MobilettoOrmTypeDef({
   typeName: "destination",
   indexLevels: 2,
   shortName: "dst",
-  tableFields: ["name", "type", "system", "ctime", "mtime"],
+  tableFields: ["name", "type", "system", "_meta.ctime", "_meta.mtime"],
   textSearchFields: ["name", "type", "local", "s3", "b2", "generic"],
   fields: DestinationTypeDefFields,
 }).extend({

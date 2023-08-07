@@ -109,12 +109,12 @@
                       </div>
                     </td>
                     <td>
-                      <v-btn v-if="canEdit(obj)" :disabled="{{name}}Store.{{name}}Busy" @click.stop="showEditOrm(obj)">
+                      <v-btn v-if="canEdit(obj, {{name}}List)" :disabled="{{name}}Store.{{name}}Busy" @click.stop="showEditOrm(obj)">
                         <Icon name="material-symbols:edit" />
                       </v-btn>
                     </td>
                     <td>
-                      <v-btn v-if="canDelete(obj)" :disabled="{{name}}Store.{{name}}Busy" @click.stop="delObject(obj)">
+                      <v-btn v-if="canDelete(obj, {{name}}List)" :disabled="{{name}}Store.{{name}}Busy" @click.stop="delObject(obj)">
                         <Icon name="material-symbols:delete" />
                       </v-btn>
                     </td>
@@ -171,8 +171,8 @@
       labelPrefixes: string[];
       typeNameMessage: string,
       actionConfigs: Record<string, ActionConfig>;
-      canEdit: (obj: MobilettoOrmObject) => boolean;
-      canDelete: (obj: MobilettoOrmObject) => boolean;
+      canEdit: (obj: MobilettoOrmObject, objList: MobilettoOrmObject[]) => boolean;
+      canDelete: (obj: MobilettoOrmObject, objList: MobilettoOrmObject[]) => boolean;
       deleteConfirmationMessage: string;
     }>(),{
       labelPrefixes: () => ["label_", ""],
