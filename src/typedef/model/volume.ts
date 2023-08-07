@@ -224,8 +224,6 @@ export const VolumeTypeDefFields: MobilettoOrmFieldDefConfigs = {
     tabIndex: 1,
     min: 3,
     max: 100,
-    render: (v: MobilettoOrmRawValue, messages: Record<string, string>, title: string): string =>
-      valid.isSelfVolume(v as string) ? parseMessage("admin_label_self_volume", messages, { title }) : (v as string),
   },
   type: {
     type: "string",
@@ -234,9 +232,8 @@ export const VolumeTypeDefFields: MobilettoOrmFieldDefConfigs = {
       return { value: type, label: `label_volumeType_${type}` };
     }),
     required: true,
+    index: true,
     updatable: false,
-    render: (v: MobilettoOrmRawValue, messages: Record<string, string>, title: string): string =>
-      valid.isSelfVolume(v as string) ? parseMessage("label_volumeType_system", messages, { title }) : (v as string),
   },
   local: {
     tabIndex: 10,
