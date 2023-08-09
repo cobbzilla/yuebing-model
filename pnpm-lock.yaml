@@ -36,11 +36,11 @@ devDependencies:
     specifier: ^4.7.7
     version: 4.7.7
   mobiletto-orm-typedef:
-    specifier: ^2.3.19
-    version: 2.3.19
+    specifier: ^2.3.21
+    version: 2.3.21
   mobiletto-orm-typedef-gen:
-    specifier: ^2.2.21
-    version: 2.2.21
+    specifier: ^2.3.4
+    version: 2.3.4
   mocha:
     specifier: ^10.2.0
     version: 10.2.0
@@ -54,8 +54,8 @@ devDependencies:
     specifier: ^5.1.6
     version: 5.1.6
   yuebing-messages:
-    specifier: ^2.0.38
-    version: 2.0.38
+    specifier: ^2.1.1
+    version: 2.1.1
 
 packages:
 
@@ -834,6 +834,10 @@ packages:
     hasBin: true
     dev: true
 
+  /hokey-runtime@1.0.4:
+    resolution: {integrity: sha512-1qc1B1lq17cesMvlE1jMnR3i+Wb3R/IvNLT9bsVLerGRc/uV0XbadN7KBjVQ9Miq2tKLbiVurIvR+Q0iiFczpQ==}
+    dev: true
+
   /ignore@5.2.4:
     resolution: {integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==}
     engines: {node: '>= 4'}
@@ -1020,12 +1024,12 @@ packages:
     hasBin: true
     dev: true
 
-  /mobiletto-orm-typedef-gen@2.2.21:
-    resolution: {integrity: sha512-wGVHn1pLTC4Zu831RDOuT94tg4PYD370MaQXHjm/RVB4u27///7E0SmHr99fUzalRpxp25Dfd+eWEtnEx5Z1ag==}
+  /mobiletto-orm-typedef-gen@2.3.4:
+    resolution: {integrity: sha512-nyvjl3wPpktws9+URmDKrubTjFXUR1SxSGtTbqgX1lqgNYNXtAXh79Sz5vMixgmcRRB9eL0FhaEEY7xojBvDiA==}
     dev: true
 
-  /mobiletto-orm-typedef@2.3.19:
-    resolution: {integrity: sha512-K+X0HhlDPPZY0P/dAowGj6m15u4eDKsesoqzxk+y6XZNWwj+jackivGSYUEDE4dJy4UaiNyhj0i+IB6GcjPdmg==}
+  /mobiletto-orm-typedef@2.3.21:
+    resolution: {integrity: sha512-cLQuBgU0YaaOy28OGJgcH4t5xw4yLk+s5kLI9NlNqa9nM9hkk7IeMqi0ATXnuVW19+Q6rNRro62lqF4XyzaiQw==}
     dependencies:
       shasum: 1.0.2
       uuid: 9.0.0
@@ -1525,6 +1529,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /yuebing-messages@2.0.38:
-    resolution: {integrity: sha512-cAxRdLik6XbjVxN1v9RP9TYQ2v96kYMT6eVQj/odeaPXWhaxC3CPHkAHRuEmxsyqfOwDKQCEvVwSUgyIxiaZeQ==}
+  /yuebing-messages@2.1.1:
+    resolution: {integrity: sha512-EAvp3UKG7UC17V7G5NSTYOblHFeMIoCH56rd/KHIPPLZWRDmXjqE0QKQxuWk/Rb+k5vd4oZDmq77XgUKN6opTw==}
+    dependencies:
+      hokey-runtime: 1.0.4
     dev: true

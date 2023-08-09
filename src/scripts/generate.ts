@@ -1,12 +1,19 @@
 #!/usr/bin/env node
 import path from "path";
+import * as fs from "fs";
 import { fileURLToPath } from "url";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 import { MobilettoOrmTypeDef } from "mobiletto-orm-typedef";
-import { generateTypeScriptType, generate } from "mobiletto-orm-typedef-gen";
+import {
+  generateTypeScriptType,
+  generateApi,
+  generateService,
+  generateServiceHelper,
+  generateStore,
+  generateStoreHelper,
+  generateAdmin,
+  generateAdminHelper,
+} from "mobiletto-orm-typedef-gen";
 import { PublicConfigTypeDef, PrivateConfigTypeDef } from "../typedef/model/config.js";
 import { AccountTypeDef, AuthAccountTypeDef } from "../typedef/model/account.js";
 import { UsernameAndPasswordTypeDef } from "../typedef/auth/usernameAndPassword.js";
@@ -15,98 +22,82 @@ import { VolumeTypeDef, SourceTypeDef, DestinationTypeDef } from "../typedef/mod
 import { SessionTypeDef } from "../typedef/auth/session.js";
 import { LibraryTypeDef } from "../typedef/model/library.js";
 
+if (!process?.env?.YUEBING_DIR) {
+  throw Error("YUEBING_DIR env var not defined");
+}
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const TS_TYPE_DIR = `${__dirname}/../../../src/type/model`;
+
+const YB_MODEL_PACKAGE = JSON.parse(fs.readFileSync(`${__dirname}/../../../package.json`).toString("utf8")).name;
+
+const ybDir = process.env.YUEBING_DIR;
+
 const uncapitalize = (s: string): string => s.substring(0, 1).toLowerCase() + s.substring(1);
 const capitalize = (s: string): string => s.substring(0, 1).toUpperCase() + s.substring(1);
 
-const generateService = (typeDef: MobilettoOrmTypeDef, outfile: string) => {
-  if (process.env.YUEBING_DIR) {
-    const ybDir = process.env.YUEBING_DIR;
-    generate(typeDef, `${__dirname}/../templates/service.ts.hbs`, { rootOnly: true, outfile: `${ybDir}/${outfile}` });
-  }
+const genTsType = (typeDef: MobilettoOrmTypeDef) =>
+  generateTypeScriptType(AccountTypeDef, { outfile: `${TS_TYPE_DIR}/${capitalize(typeDef.typeName)}Type.ts` });
+
+const genYuebing = (typeDef: MobilettoOrmTypeDef) => {
+  const type = uncapitalize(typeDef.typeName);
+  generateService(typeDef, YB_MODEL_PACKAGE, {
+    outfile: `${ybDir}/utils/services/model/${type}Service.ts`,
+  });
+  generateStore(typeDef, YB_MODEL_PACKAGE, { outfile: `${ybDir}/stores/model/${type}Store.ts` });
+  generateAdmin(typeDef, YB_MODEL_PACKAGE, {
+    outfile: `${ybDir}/components/model/${type}/Model${capitalize(type)}Admin.vue`,
+  });
+
+  const apiDir = `${ybDir}/server/api/model/${type}`;
+  generateApi(typeDef, YB_MODEL_PACKAGE, { rootOnly: true, outfile: `${apiDir}` });
 };
 
-const generateYuebing = (typeDef: MobilettoOrmTypeDef) => {
-  if (process.env.YUEBING_DIR) {
-    const ybDir = process.env.YUEBING_DIR;
-    const type = uncapitalize(typeDef.typeName);
-    const apiDir = `${ybDir}/server/api/model/${type}`;
-    generate(typeDef, `${__dirname}/../templates/id.put.ts.hbs`, { rootOnly: true, outfile: `${apiDir}/[id].put.ts` });
-    generate(typeDef, `${__dirname}/../templates/id.get.ts.hbs`, { rootOnly: true, outfile: `${apiDir}/[id].get.ts` });
-    generate(typeDef, `${__dirname}/../templates/id.patch.ts.hbs`, {
-      rootOnly: true,
-      outfile: `${apiDir}/[id].patch.ts`,
-    });
-    generate(typeDef, `${__dirname}/../templates/id.delete.ts.hbs`, {
-      rootOnly: true,
-      outfile: `${apiDir}/[id].delete.ts`,
-    });
-    generate(typeDef, `${__dirname}/../templates/index.post.ts.hbs`, {
-      rootOnly: true,
-      outfile: `${apiDir}/index.post.ts`,
-    });
-    const storeDir = `${ybDir}/stores`;
-    generate(typeDef, `${__dirname}/../templates/store.ts.hbs`, {
-      rootOnly: true,
-      outfile: `${storeDir}/model/${type}Store.ts`,
-    });
-    const adminComponentsDir = `${ybDir}/components/model/${type}/`;
-    generate(typeDef, `${__dirname}/../templates/admin.vue.hbs`, {
-      rootOnly: true,
-      outfile: `${adminComponentsDir}/Model${capitalize(type)}Admin.vue`,
-    });
-  }
+const genAll = (typeDef: MobilettoOrmTypeDef) => {
+  genTsType(typeDef);
+  genYuebing(typeDef);
 };
 
-// Configuration Singletons
-generateTypeScriptType(PublicConfigTypeDef, { outfile: `${__dirname}/../../../src/type/model/PublicConfigType.ts` });
-generateTypeScriptType(PrivateConfigTypeDef, { outfile: `${__dirname}/../../../src/type/model/PrivateConfigType.ts` });
+const genHelpers = () => {
+  const helperDir = `${ybDir}/utils/model`;
+  generateServiceHelper({ outfile: `${helperDir}/serviceHelper.ts` });
+  generateStoreHelper({ outfile: `${helperDir}/storeHelper.ts` });
+  generateAdminHelper({ outfile: `${helperDir}/adminHelper.ts` });
+};
 
-// Accounts
-generateTypeScriptType(AccountTypeDef, { outfile: `${__dirname}/../../../src/type/model/AccountType.ts` });
-generateService(AccountTypeDef, "utils/services/model/accountService.ts");
-generateYuebing(AccountTypeDef);
+const GEN_ALL = "all";
+const GEN_TYPE = "type";
 
-generateTypeScriptType(AuthAccountTypeDef, { outfile: `${__dirname}/../../../src/type/model/AuthAccountType.ts` });
+type GenSpec = {
+  typedef: MobilettoOrmTypeDef;
+  generate: "all" | "type";
+};
 
-// Generic Volume Stuff
-const volTypeImportHeader =
-  "import {\n" +
-  "  VOL_TYPE_LOCAL,\n" +
-  "  VOL_TYPE_S3,\n" +
-  "  VOL_TYPE_B2,\n" +
-  "  VOL_TYPE_GENERIC\n" +
-  '} from "../../typedef/model/volume.js";\n';
+type GEN_FUNC = (typedef: MobilettoOrmTypeDef) => void;
 
-generateTypeScriptType(VolumeTypeDef, { outfile: `${__dirname}/../../../src/type/model/VolumeType.ts` });
+const GEN_ACTIONS: Record<string, GEN_FUNC> = {
+  GEN_ALL: (typedef: MobilettoOrmTypeDef) => genAll(typedef),
+  GEN_TYPE: (typedef: MobilettoOrmTypeDef) => genTsType(typedef),
+};
 
-// Source Volumes
-generateTypeScriptType(SourceTypeDef, { outfile: `${__dirname}/../../../src/type/model/SourceType.ts` });
-generateService(SourceTypeDef, "utils/services/model/sourceService.ts");
-generateYuebing(SourceTypeDef);
+const GEN_TYPES: GenSpec[] = [
+  { typedef: PublicConfigTypeDef, generate: GEN_ALL },
+  { typedef: PrivateConfigTypeDef, generate: GEN_ALL },
+  { typedef: AccountTypeDef, generate: GEN_ALL },
+  { typedef: VolumeTypeDef, generate: GEN_TYPE },
+  { typedef: SourceTypeDef, generate: GEN_ALL },
+  { typedef: DestinationTypeDef, generate: GEN_ALL },
+  { typedef: LibraryTypeDef, generate: GEN_ALL },
+  { typedef: SessionTypeDef, generate: GEN_TYPE },
+  { typedef: AuthAccountTypeDef, generate: GEN_TYPE },
+  { typedef: UsernameAndPasswordTypeDef, generate: GEN_TYPE },
+  { typedef: RegistrationTypeDef, generate: GEN_TYPE },
+];
 
-// Destination Volumes
-generateTypeScriptType(DestinationTypeDef, {
-  outfile: `${__dirname}/../../../src/type/model/DestinationType.ts`,
-});
-generateService(DestinationTypeDef, "utils/services/model/destinationService.ts");
-generateYuebing(DestinationTypeDef);
+for (const spec of GEN_TYPES) {
+  GEN_ACTIONS[spec.generate](spec.typedef);
+}
 
-// Libraries
-generateTypeScriptType(LibraryTypeDef, {
-  outfile: `${__dirname}/../../../src/type/model/LibraryType.ts`,
-});
-generateService(LibraryTypeDef, "utils/services/model/libraryService.ts");
-generateYuebing(LibraryTypeDef);
-
-// Session objects (not persisted)
-generateTypeScriptType(SessionTypeDef, {
-  outfile: `${__dirname}/../../../src/type/auth/SessionType.ts`,
-});
-
-// Login objects (not persisted)
-generateTypeScriptType(UsernameAndPasswordTypeDef, {
-  outfile: `${__dirname}/../../../src/type/auth/UsernameAndPasswordType.ts`,
-});
-
-// Registration objects (not persisted)
-generateTypeScriptType(RegistrationTypeDef, { outfile: `${__dirname}/../../../src/type/auth/RegistrationType.ts` });
+// Helpers
+genHelpers();

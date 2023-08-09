@@ -1,7 +1,6 @@
 import { MobilettoOrmTypeDef, MobilettoOrmFieldDefConfigs, MobilettoOrmRawValue } from "mobiletto-orm-typedef";
 
 import * as valid from "../../validation.js";
-import { parseMessage } from "yuebing-messages";
 
 const LOCAL_FIELDS: MobilettoOrmFieldDefConfigs = {
   key: {

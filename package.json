@@ -1,6 +1,6 @@
 {
   "name": "yuebing-model",
-  "version": "2.3.76",
+  "version": "2.4.0",
   "type": "module",
   "description": "Data model for yuebing",
   "keywords": [
@@ -20,7 +20,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "test": "mocha ./test/*.spec.js",
-    "tsc": "tsc --module es2020 -p tsconfig.json && copyfiles --flat --error templates/*.hbs lib/esm/templates/ ",
+    "tsc": "tsc --module es2020 -p tsconfig.json",
     "lint": "npx eslint src",
     "lint:fix": "npm run lint -- --fix",
     "prettier": "npx prettier src --check",
@@ -46,12 +46,12 @@
     "eslint": "^8.44.0",
     "eslint-config-prettier": "^8.8.0",
     "handlebars": "^4.7.7",
-    "mobiletto-orm-typedef": "^2.3.19",
-    "mobiletto-orm-typedef-gen": "^2.2.21",
+    "mobiletto-orm-typedef": "^2.3.21",
+    "mobiletto-orm-typedef-gen": "^2.3.4",
     "mocha": "^10.2.0",
     "prettier": "^2.8.8",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^5.1.6",
-    "yuebing-messages": "^2.0.38"
+    "yuebing-messages": "^2.1.1"
   }
 }
