@@ -50,6 +50,7 @@ export const PublicConfigTypeDef = new MobilettoOrmTypeDef({
     isDefault: {
       required: false,
       default: false,
+      control: "hidden",
     },
     needsAdmin: {
       required: false,
@@ -58,12 +59,13 @@ export const PublicConfigTypeDef = new MobilettoOrmTypeDef({
     },
     crypto: {
       required: false,
+      control: "hidden",
       fields: {
         ciphers: {
           required: false,
           default: DEFAULT_ENCRYPTION_ALGO,
           values: [DEFAULT_ENCRYPTION_ALGO], // filled out by the server
-          control: "label",
+          control: "hidden",
         },
       },
     },

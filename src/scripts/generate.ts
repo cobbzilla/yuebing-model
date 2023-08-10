@@ -46,7 +46,7 @@ const genTsType = (typeDef: MobilettoOrmTypeDef, tsTypeDir?: string) =>
     outfile: `${tsTypeDir ? tsTypeDir : TS_MODEL_TYPE_DIR}/${capitalize(typeDef.typeName)}Type.ts`,
   });
 
-const genYuebing = (typeDef: MobilettoOrmTypeDef) => {
+const genYuebing = (typeDef: MobilettoOrmTypeDef, ctx?: Record<string, string>) => {
   const type = uncapitalize(typeDef.typeName);
   generateService(typeDef, YB_MODEL_PACKAGE, {
     outfile: `${ybDir}/utils/services/model/${type}Service.ts`,
@@ -57,12 +57,22 @@ const genYuebing = (typeDef: MobilettoOrmTypeDef) => {
   });
 
   const apiDir = `${ybDir}/server/api/model/${type}`;
-  generateApi(typeDef, YB_MODEL_PACKAGE, { rootOnly: true, outfile: `${apiDir}` });
+  const singletonDefault = ctx && ctx.singletonDefault ? ctx.singletonDefault : undefined;
+  const singletonDefaultImport = ctx && ctx.singletonDefaultImport ? ctx.singletonDefaultImport : undefined;
+  const utilsImportPath = ctx && ctx.utilsImportPath ? ctx.utilsImportPath : undefined;
+  generateApi(
+    typeDef,
+    YB_MODEL_PACKAGE,
+    { rootOnly: true, outfile: `${apiDir}` },
+    singletonDefault,
+    singletonDefaultImport,
+    utilsImportPath
+  );
 };
 
-const genAll = (typeDef: MobilettoOrmTypeDef) => {
+const genAll = (typeDef: MobilettoOrmTypeDef, ctx?: Record<string, string>) => {
   genTsType(typeDef);
-  genYuebing(typeDef);
+  genYuebing(typeDef, ctx);
 };
 
 const genHelpers = () => {
@@ -85,17 +95,26 @@ type GenSpec = {
   typedef: MobilettoOrmTypeDef;
   generate: "all" | "type";
   tsDir?: string;
+  ctx?: Record<string, string>;
 };
 
 type GEN_FUNC = (spec: GenSpec) => void;
 
 const GEN_ACTIONS: Record<string, GEN_FUNC> = {};
-GEN_ACTIONS[GEN_ALL] = (spec) => genAll(spec.typedef);
+GEN_ACTIONS[GEN_ALL] = (spec) => genAll(spec.typedef, spec.ctx);
 GEN_ACTIONS[GEN_TYPE] = (spec) => genTsType(spec.typedef, spec.tsDir);
 
 const GEN_TYPES: GenSpec[] = [
-  { typedef: PublicConfigTypeDef, generate: GEN_ALL },
-  { typedef: PrivateConfigTypeDef, generate: GEN_ALL },
+  {
+    typedef: PublicConfigTypeDef,
+    generate: GEN_ALL,
+    ctx: { singletonDefault: "DEFAULT_PUBLIC_CONFIG", singletonDefaultImport: "~/server/utils/default" },
+  },
+  {
+    typedef: PrivateConfigTypeDef,
+    generate: GEN_ALL,
+    ctx: { singletonDefault: "DEFAULT_PRIVATE_CONFIG", singletonDefaultImport: "~/server/utils/default" },
+  },
   { typedef: AccountTypeDef, generate: GEN_ALL },
   { typedef: VolumeTypeDef, generate: GEN_TYPE },
   { typedef: SourceTypeDef, generate: GEN_ALL },
