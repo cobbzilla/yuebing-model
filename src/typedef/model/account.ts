@@ -7,7 +7,6 @@ import {
 } from "mobiletto-orm-typedef";
 
 import * as valid from "../../validation.js";
-import { YUEBING_LOCALES } from "yuebing-messages";
 
 export const USERNAME_MIN_LENGTH = 2;
 export const USERNAME_MAX_LENGTH = 100;
@@ -64,8 +63,7 @@ export const primaryAccountFields: MobilettoOrmFieldDefConfigs = {
   },
   locale: {
     type: "string",
-    // note: title is an alias for label, this is convenient for v-select
-    items: YUEBING_LOCALES.map((loc) => ({ value: loc, label: `locale_${loc}`, title: `locale_${loc}` })),
+    items: valid.LOCALE_ITEMS,
     required: true,
     tabIndex: 6,
   },

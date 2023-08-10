@@ -47,11 +47,11 @@
     "eslint-config-prettier": "^8.8.0",
     "handlebars": "^4.7.7",
     "mobiletto-orm-typedef": "^2.3.22",
-    "mobiletto-orm-typedef-gen": "^2.3.16",
+    "mobiletto-orm-typedef-gen": "^2.3.17",
     "mocha": "^10.2.0",
     "prettier": "^2.8.8",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^5.1.6",
-    "yuebing-messages": "^2.1.1"
+    "yuebing-messages": "^2.1.2"
   }
 }

@@ -1,3 +1,12 @@
+import { YUEBING_LOCALES } from "yuebing-messages";
+
+// note: title is an alias for label, this is convenient for v-select
+export const LOCALE_ITEMS = YUEBING_LOCALES.map((loc) => ({
+  value: loc,
+  label: `locale_${loc}`,
+  title: `locale_${loc}`,
+}));
+
 export const EMAIL_REGEX = /^[A-Z\d][A-Z\d._%+-]*@[A-Z\d.-]+\.[A-Z]{2,24}$/i;
 export const LIST_OF_EMAILS_REGEX = /^\s*([A-Z\d][A-Z\d._%+-]*@[A-Z\d.-]+\.[A-Z]{2,24}\s*,?\s*)+$/im;
 

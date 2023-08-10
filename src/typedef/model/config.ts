@@ -1,8 +1,9 @@
 import { MobilettoOrmTypeDef } from "mobiletto-orm-typedef";
 import { LIST_OF_EMAILS_REGEX, REGEX_VALIDATORS } from "../../validation.js";
-import { FALLBACK_DEFAULT_LANG, YUEBING_LOCALES } from "yuebing-messages";
+import { FALLBACK_DEFAULT_LANG } from "yuebing-messages";
 import { EMAIL_MAX_LENGTH, EMAIL_MIN_LENGTH } from "./account.js";
 import { DEFAULT_ENCRYPTION_ALGO } from "./volume.js";
+import * as valid from "../../validation.js";
 
 export const PublicConfigTypeDef = new MobilettoOrmTypeDef({
   typeName: "publicConfig",
@@ -39,7 +40,7 @@ export const PublicConfigTypeDef = new MobilettoOrmTypeDef({
     defaultLocale: {
       required: true,
       type: "string",
-      values: YUEBING_LOCALES,
+      items: valid.LOCALE_ITEMS,
       default: FALLBACK_DEFAULT_LANG,
     },
     emailEnabled: {

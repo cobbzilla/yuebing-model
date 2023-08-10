@@ -1,3 +1,8 @@
+export declare const LOCALE_ITEMS: {
+    value: string;
+    label: string;
+    title: string;
+}[];
 export declare const EMAIL_REGEX: RegExp;
 export declare const LIST_OF_EMAILS_REGEX: RegExp;
 export declare const PATH_REGEX: RegExp;

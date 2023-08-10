@@ -39,8 +39,8 @@ devDependencies:
     specifier: ^2.3.22
     version: 2.3.22
   mobiletto-orm-typedef-gen:
-    specifier: ^2.3.16
-    version: 2.3.16
+    specifier: ^2.3.17
+    version: 2.3.17
   mocha:
     specifier: ^10.2.0
     version: 10.2.0
@@ -54,8 +54,8 @@ devDependencies:
     specifier: ^5.1.6
     version: 5.1.6
   yuebing-messages:
-    specifier: ^2.1.1
-    version: 2.1.1
+    specifier: ^2.1.2
+    version: 2.1.2
 
 packages:
 
@@ -1024,8 +1024,8 @@ packages:
     hasBin: true
     dev: true
 
-  /mobiletto-orm-typedef-gen@2.3.16:
-    resolution: {integrity: sha512-6nhRP9IXnrHtnjVNEWwu8GYA0yMTnNJlgEAOBMi0nE4CT79LrApac80s3A9ridNSUUDw8QkYspQI2n/9uZzTbQ==}
+  /mobiletto-orm-typedef-gen@2.3.17:
+    resolution: {integrity: sha512-PsaHLNQPY1mJWMiXoDNelFGPKmI7h2WNBRjV9HA+f3uOFjTKkpdNZtQz4sGDl9ZrbU2OQ9bX6G8NFIWbnIzHLg==}
     dev: true
 
   /mobiletto-orm-typedef@2.3.22:
@@ -1529,8 +1529,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /yuebing-messages@2.1.1:
-    resolution: {integrity: sha512-EAvp3UKG7UC17V7G5NSTYOblHFeMIoCH56rd/KHIPPLZWRDmXjqE0QKQxuWk/Rb+k5vd4oZDmq77XgUKN6opTw==}
+  /yuebing-messages@2.1.2:
+    resolution: {integrity: sha512-Eungj9tcEFgBwKmPCC8CrXpWdfeZh273Iq+TJ+dVrTFmunN5hs4pUQkpaJn1A2jcI7vGKEB9C6IAs+CT1K1F+Q==}
     dependencies:
       hokey-runtime: 1.0.4
     dev: true
