@@ -8,7 +8,6 @@ export type PublicConfigType = MobilettoOrmObject & {
     siteUrl: string;
     registrationEnabled: boolean;
     inviteFriendsEnabled: boolean;
-    limitRegistration?: string;
     defaultLocale: string;
     emailEnabled: boolean;
     isDefault?: boolean;

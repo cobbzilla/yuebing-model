@@ -18,6 +18,7 @@ export type PrivateConfig_emailType = {
     fromEmail: string;
 };
 export type PrivateConfig_authType = {
+    limitRegistration?: string;
     verifyAccountTimeout: number;
     resetPasswordTimeout: number;
     sessionTimeout: number;

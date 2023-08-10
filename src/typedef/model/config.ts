@@ -30,13 +30,6 @@ export const PublicConfigTypeDef = new MobilettoOrmTypeDef({
       required: true,
       default: true,
     },
-    limitRegistration: {
-      required: false,
-      type: "string",
-      regex: LIST_OF_EMAILS_REGEX,
-      normalize: async (v) => Promise.resolve(v ? v.toString().replace(/[,\s]+/, "\n") : v),
-      default: "",
-    },
     defaultLocale: {
       required: true,
       type: "string",
@@ -44,22 +37,26 @@ export const PublicConfigTypeDef = new MobilettoOrmTypeDef({
       default: FALLBACK_DEFAULT_LANG,
     },
     emailEnabled: {
+      transient: true,
       required: true,
-      control: "label",
+      control: "hidden",
       default: false,
     },
     isDefault: {
+      transient: true,
       required: false,
       default: false,
       control: "hidden",
       normalize: () => Promise.resolve(false),
     },
     needsAdmin: {
+      transient: true,
       required: false,
       default: false,
       control: "hidden",
     },
     crypto: {
+      transient: true,
       required: false,
       control: "hidden",
       fields: {
@@ -83,6 +80,13 @@ export const PrivateConfigTypeDef = new MobilettoOrmTypeDef({
   fields: {
     auth: {
       fields: {
+        limitRegistration: {
+          required: false,
+          type: "string",
+          regex: LIST_OF_EMAILS_REGEX,
+          normalize: async (v) => Promise.resolve(v ? v.toString().replace(/[,\s]+/, "\n") : v),
+          default: "",
+        },
         verifyAccountTimeout: {
           required: true,
           minValue: 1000 * 60, // 1 minute
