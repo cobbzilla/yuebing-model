@@ -52,6 +52,7 @@ export const PublicConfigTypeDef = new MobilettoOrmTypeDef({
       required: false,
       default: false,
       control: "hidden",
+      normalize: () => Promise.resolve(false),
     },
     needsAdmin: {
       required: false,
