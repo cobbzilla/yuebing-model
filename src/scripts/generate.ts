@@ -7,6 +7,8 @@ import { MobilettoOrmTypeDef } from "mobiletto-orm-typedef";
 import {
   generateTypeScriptType,
   generateApi,
+  generateErrorFilter,
+  generateSessionFilter,
   generateService,
   generateServiceHelper,
   generateStore,
@@ -70,6 +72,12 @@ const genHelpers = () => {
   generateAdminHelper({ outfile: `${helperDir}/adminHelper.ts` });
 };
 
+const genFilters = () => {
+  const filterDir = `${ybDir}/server/utils/filter`;
+  generateErrorFilter(YB_MODEL_PACKAGE, { outfile: `${filterDir}/errorFilter.ts` });
+  generateSessionFilter(YB_MODEL_PACKAGE, { outfile: `${filterDir}/sessionFilter.ts` });
+};
+
 const GEN_ALL = "all";
 const GEN_TYPE = "type";
 
@@ -99,9 +107,6 @@ const GEN_TYPES: GenSpec[] = [
   { typedef: RegistrationTypeDef, generate: GEN_TYPE, tsDir: TS_AUTH_TYPE_DIR },
 ];
 
-for (const spec of GEN_TYPES) {
-  GEN_ACTIONS[spec.generate](spec);
-}
-
-// Helpers
+GEN_TYPES.forEach((spec) => GEN_ACTIONS[spec.generate](spec));
 genHelpers();
+genFilters();
