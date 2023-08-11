@@ -86,6 +86,7 @@ export const PrivateConfigTypeDef = new MobilettoOrmTypeDef({
           regex: LIST_OF_EMAILS_REGEX,
           normalize: async (v) => Promise.resolve(v ? v.toString().replace(/[,\s]+/, "\n") : v),
           default: "",
+          control: "textarea",
         },
         verifyAccountTimeout: {
           required: true,
@@ -113,7 +114,7 @@ export const PrivateConfigTypeDef = new MobilettoOrmTypeDef({
           minValue: 200, // 200 milliseconds
           maxValue: 1000 * 5, // 5 seconds
           default: DEFAULT_BCRYPT_TIME_TARGET, // 350 milliseconds
-          control: "range",
+          control: "text",
         },
       },
     },
@@ -136,6 +137,7 @@ export const PrivateConfigTypeDef = new MobilettoOrmTypeDef({
           minValue: 10,
           maxValue: 65000,
           default: 25,
+          control: "text",
         },
         user: {
           required: true,
@@ -187,6 +189,7 @@ export const PrivateConfigTypeDef = new MobilettoOrmTypeDef({
           required: false,
           default: false,
           transient: true,
+          control: "hidden",
         },
       },
     },
