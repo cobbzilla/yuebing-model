@@ -3,10 +3,6 @@ import { MobilettoOrmObject } from "mobiletto-orm-typedef";
 export type PrivateConfig_autoscanType = {
     initialDelay: number;
     interval?: number;
-    showTransformOutput: boolean;
-    cleanupTemporaryAssets: boolean;
-    deleteIncompleteUploads: boolean;
-    transformConcurrency: number;
     isDefault?: boolean;
 };
 export type PrivateConfig_emailType = {
