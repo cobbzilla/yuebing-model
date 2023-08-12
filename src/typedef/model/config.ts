@@ -1,4 +1,4 @@
-import { MobilettoOrmTypeDef } from "mobiletto-orm-typedef";
+import { MobilettoOrmTypeDef } from "mobiletto-orm";
 import { LIST_OF_EMAILS_REGEX, REGEX_VALIDATORS } from "../../validation.js";
 import { FALLBACK_DEFAULT_LANG } from "yuebing-messages";
 import { EMAIL_MAX_LENGTH, EMAIL_MIN_LENGTH } from "./account.js";
@@ -164,6 +164,26 @@ export const PrivateConfigTypeDef = new MobilettoOrmTypeDef({
         },
       },
     },
+    isDefault: {
+      required: false,
+      default: false,
+      transient: true,
+      control: "hidden",
+    },
+  },
+});
+
+export const LocalConfigTypeDef = new MobilettoOrmTypeDef({
+  typeName: "localConfig",
+  shortName: "cfg~local",
+  singleton: "local",
+  scope: "local",
+  fields: {
+    systemName: {
+      required: true,
+      min: 10,
+      max: 100,
+    },
     autoscanEnabled: {
       required: true,
       default: false,
@@ -177,19 +197,6 @@ export const PrivateConfigTypeDef = new MobilettoOrmTypeDef({
           maxValue: 1000 * 60 * 60, // 1 hour
           default: 1000 * 60 * 10, // 10 minutes
           control: "duration",
-        },
-        interval: {
-          type: "number",
-          minValue: 1000 * 60, // 1 minute
-          maxValue: 1000 * 60 * 60 * 24 * 366, // 366 days
-          default: 1000 * 60 * 60 * 24, // default 24 hours
-          control: "duration",
-        },
-        isDefault: {
-          required: false,
-          default: false,
-          transient: true,
-          control: "hidden",
         },
       },
     },

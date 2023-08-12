@@ -1,6 +1,6 @@
 {
   "name": "yuebing-model",
-  "version": "2.4.17",
+  "version": "2.5.0",
   "type": "module",
   "description": "Data model for yuebing",
   "keywords": [
@@ -46,8 +46,11 @@
     "eslint": "^8.44.0",
     "eslint-config-prettier": "^8.8.0",
     "handlebars": "^4.7.7",
-    "mobiletto-orm-typedef": "^2.3.26",
-    "mobiletto-orm-typedef-gen": "^2.3.33",
+    "mobiletto-base": "^2.0.34",
+    "mobiletto-orm": "^2.2.28",
+    "mobiletto-orm-scan": "^1.0.0",
+    "mobiletto-orm-typedef": "^2.3.30",
+    "mobiletto-orm-typedef-gen": "^2.3.37",
     "mocha": "^10.2.0",
     "prettier": "^2.8.8",
     "tslint-config-prettier": "^1.18.0",

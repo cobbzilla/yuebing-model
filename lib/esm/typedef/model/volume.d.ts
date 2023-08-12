@@ -1,4 +1,4 @@
-import { MobilettoOrmTypeDef, MobilettoOrmFieldDefConfigs } from "mobiletto-orm-typedef";
+import { MobilettoOrmTypeDef, MobilettoOrmFieldDefConfigs } from "mobiletto-orm";
 export declare const VOL_TYPE_LOCAL = "local";
 export declare const VOL_TYPE_S3 = "s3";
 export declare const VOL_TYPE_B2 = "b2";

@@ -1,2 +1,2 @@
-import { MobilettoOrmTypeDef } from "mobiletto-orm-typedef";
+import { MobilettoOrmTypeDef } from "mobiletto-orm";
 export declare const UsernameAndPasswordTypeDef: MobilettoOrmTypeDef;

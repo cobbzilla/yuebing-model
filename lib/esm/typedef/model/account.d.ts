@@ -1,4 +1,4 @@
-import { MobilettoOrmTypeDef, MobilettoOrmFieldDefConfigs } from "mobiletto-orm-typedef";
+import { MobilettoOrmTypeDef, MobilettoOrmFieldDefConfigs } from "mobiletto-orm";
 export declare const USERNAME_MIN_LENGTH = 2;
 export declare const USERNAME_MAX_LENGTH = 100;
 export declare const EMAIL_MIN_LENGTH = 6;

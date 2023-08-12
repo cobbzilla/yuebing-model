@@ -3,7 +3,7 @@ import path from "path";
 import * as fs from "fs";
 import { fileURLToPath } from "url";
 
-import { MobilettoOrmTypeDef } from "mobiletto-orm-typedef";
+import { MobilettoOrmTypeDef } from "mobiletto-orm";
 import {
   generateTypeScriptType,
   generateApi,
@@ -17,13 +17,14 @@ import {
   generateAdminHelper,
 } from "mobiletto-orm-typedef-gen";
 
-import { PublicConfigTypeDef, PrivateConfigTypeDef } from "../typedef/model/config.js";
+import { PublicConfigTypeDef, PrivateConfigTypeDef, LocalConfigTypeDef } from "../typedef/model/config.js";
 import { AccountTypeDef, AuthAccountTypeDef } from "../typedef/model/account.js";
 import { UsernameAndPasswordTypeDef } from "../typedef/auth/usernameAndPassword.js";
 import { RegistrationTypeDef } from "../typedef/auth/registration.js";
 import { VolumeTypeDef, SourceTypeDef, DestinationTypeDef } from "../typedef/model/volume.js";
 import { SessionTypeDef } from "../typedef/auth/session.js";
 import { LibraryTypeDef } from "../typedef/model/library.js";
+import { AnalyzedAssetTypeDef, DiscoveredAssetTypeDef, DownloadedAssetTypeDef } from "../typedef/model/asset.js";
 
 if (!process?.env?.YUEBING_DIR) {
   throw new Error("YUEBING_DIR env var not defined");
@@ -115,11 +116,19 @@ const GEN_TYPES: GenSpec[] = [
     generate: GEN_ALL,
     ctx: { singletonDefault: "DEFAULT_PRIVATE_CONFIG", singletonDefaultImport: "~/server/utils/default" },
   },
+  {
+    typedef: LocalConfigTypeDef,
+    generate: GEN_ALL,
+    ctx: { singletonDefault: "DEFAULT_LOCAL_CONFIG", singletonDefaultImport: "~/server/utils/default" },
+  },
   { typedef: AccountTypeDef, generate: GEN_ALL },
   { typedef: VolumeTypeDef, generate: GEN_TYPE },
   { typedef: SourceTypeDef, generate: GEN_ALL },
   { typedef: DestinationTypeDef, generate: GEN_ALL },
   { typedef: LibraryTypeDef, generate: GEN_ALL },
+  { typedef: DiscoveredAssetTypeDef, generate: GEN_ALL },
+  { typedef: DownloadedAssetTypeDef, generate: GEN_ALL },
+  { typedef: AnalyzedAssetTypeDef, generate: GEN_ALL },
   { typedef: AuthAccountTypeDef, generate: GEN_TYPE, tsDir: TS_AUTH_TYPE_DIR },
   { typedef: SessionTypeDef, generate: GEN_TYPE, tsDir: TS_AUTH_TYPE_DIR },
   { typedef: UsernameAndPasswordTypeDef, generate: GEN_TYPE, tsDir: TS_AUTH_TYPE_DIR },

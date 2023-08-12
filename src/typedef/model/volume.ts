@@ -1,4 +1,4 @@
-import { MobilettoOrmTypeDef, MobilettoOrmFieldDefConfigs, MobilettoOrmRawValue } from "mobiletto-orm-typedef";
+import { MobilettoOrmTypeDef, MobilettoOrmFieldDefConfigs, MobilettoOrmRawValue } from "mobiletto-orm";
 
 import * as valid from "../../validation.js";
 

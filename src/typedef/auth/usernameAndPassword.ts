@@ -1,4 +1,4 @@
-import { MobilettoOrmTypeDef } from "mobiletto-orm-typedef";
+import { MobilettoOrmTypeDef } from "mobiletto-orm";
 import {
   EMAIL_MAX_LENGTH,
   EMAIL_MIN_LENGTH,

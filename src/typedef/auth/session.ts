@@ -1,5 +1,5 @@
-import { MobilettoOrmTypeDef } from "mobiletto-orm-typedef";
-import { generateId, MIN_ID_LENGTH } from "mobiletto-orm-typedef";
+import { MobilettoOrmTypeDef } from "mobiletto-orm";
+import { generateId, MIN_ID_LENGTH } from "mobiletto-orm";
 import { USERNAME_MAX_LENGTH, USERNAME_MIN_LENGTH } from "../model/account.js";
 
 export const SessionTypeDef = new MobilettoOrmTypeDef({
