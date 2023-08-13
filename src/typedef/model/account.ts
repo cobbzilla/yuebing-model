@@ -4,7 +4,7 @@ import {
   MobilettoOrmObject,
   MobilettoOrmIdArg,
   MobilettoOrmValidationErrors,
-} from "mobiletto-orm";
+} from "mobiletto-orm-typedef";
 
 import * as valid from "../../validation.js";
 

@@ -1,4 +1,4 @@
-import { MobilettoOrmFieldDefConfigs, MobilettoOrmTypeDef } from "mobiletto-orm";
+import { MobilettoOrmFieldDefConfigs, MobilettoOrmTypeDef } from "mobiletto-orm-typedef";
 export declare const DiscoveredAssetTypeDefFields: MobilettoOrmFieldDefConfigs;
 export declare const DiscoveredAssetTypeDef: MobilettoOrmTypeDef;
 export declare const DownloadedAssetTypeDefFields: MobilettoOrmFieldDefConfigs;

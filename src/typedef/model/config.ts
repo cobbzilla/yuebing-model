@@ -1,4 +1,4 @@
-import { MobilettoOrmTypeDef } from "mobiletto-orm";
+import { MobilettoOrmTypeDef } from "mobiletto-orm-typedef";
 import { LIST_OF_EMAILS_REGEX, REGEX_VALIDATORS } from "../../validation.js";
 import { FALLBACK_DEFAULT_LANG } from "yuebing-messages";
 import { EMAIL_MAX_LENGTH, EMAIL_MIN_LENGTH } from "./account.js";

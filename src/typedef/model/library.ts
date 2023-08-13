@@ -1,4 +1,4 @@
-import { MobilettoOrmTypeDef, MobilettoOrmFieldDefConfigs } from "mobiletto-orm";
+import { MobilettoOrmTypeDef, MobilettoOrmFieldDefConfigs } from "mobiletto-orm-typedef";
 import * as valid from "../../validation.js";
 
 export const LibraryTypeDefFields: MobilettoOrmFieldDefConfigs = {
