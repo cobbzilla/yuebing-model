@@ -63,8 +63,8 @@ devDependencies:
     specifier: ^5.1.6
     version: 5.1.6
   yuebing-messages:
-    specifier: ^2.1.6
-    version: 2.1.6
+    specifier: ^2.1.7
+    version: 2.1.7
 
 packages:
 
@@ -1800,8 +1800,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /yuebing-messages@2.1.6:
-    resolution: {integrity: sha512-00qyJ3+XgAX2/BGsYeXbKFju1BSFTAeG+Rl72HgqOqwBpw5yyNoi1mm+TQdVW5GYJ+mdvPppijzDzrLiUhmSiA==}
+  /yuebing-messages@2.1.7:
+    resolution: {integrity: sha512-ZIuQuiiXcIHRKkxUCYgO3hafUSlDjbfKDfW0UED2vhGHVtvUzNNTylQREX22HQAhEYcTdNEW2eY17xQ10E1Hbw==}
     dependencies:
       hokey-runtime: 1.0.4
     dev: true
