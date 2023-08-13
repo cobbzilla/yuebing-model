@@ -48,8 +48,8 @@ devDependencies:
     specifier: ^2.3.30
     version: 2.3.30
   mobiletto-orm-typedef-gen:
-    specifier: ^2.3.37
-    version: 2.3.37
+    specifier: ^2.3.38
+    version: 2.3.38
   mocha:
     specifier: ^10.2.0
     version: 10.2.0
@@ -908,7 +908,7 @@ packages:
       fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 5.0.1
+      minimatch: 5.1.6
       once: 1.4.0
     dev: true
 
@@ -1177,6 +1177,13 @@ packages:
       brace-expansion: 2.0.1
     dev: true
 
+  /minimatch@5.1.6:
+    resolution: {integrity: sha512-lKwV/1brpG6mBUFHtb7NUmtABCb2WZZmm2wNiOA5hAb8VdCS4B3dtMWyvcoViccwAW/COERjXLt0zP1zXUN26g==}
+    engines: {node: '>=10'}
+    dependencies:
+      brace-expansion: 2.0.1
+    dev: true
+
   /minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
     dev: true
@@ -1213,8 +1220,8 @@ packages:
       mobiletto-orm-typedef: 2.3.30
     dev: true
 
-  /mobiletto-orm-typedef-gen@2.3.37:
-    resolution: {integrity: sha512-/OKJPdeSNYcwwfRtwqQGI6UpYGsNQnrAuX0J9UDdALtFlA7d3vqanDogyxwWcrOiOXK84wxWjHaHs+HUVcFT0Q==}
+  /mobiletto-orm-typedef-gen@2.3.38:
+    resolution: {integrity: sha512-XIJEZzyikPPBqkmvD9hAwunuYH+N9nnizLoi5d6r8Y3UYebYuBdYyix3ZrDp9IAgtlOAN69q/402w5u8kETzeA==}
     dev: true
 
   /mobiletto-orm-typedef@2.3.30:
