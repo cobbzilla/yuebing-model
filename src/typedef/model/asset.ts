@@ -1,6 +1,51 @@
 import { MobilettoOrmFieldDefConfigs, MobilettoOrmTypeDef } from "mobiletto-orm-typedef";
 import { MobilettoScanObjectTypeDefConfig } from "mobiletto-orm-scan-typedef";
 
+export const LibraryScanTypeDef = new MobilettoOrmTypeDef({
+  typeName: "libraryScan",
+  shortName: "scan~lib",
+  indexLevels: 0,
+  scope: "local",
+  tableFields: ["library", "status", "owner", "started", "finished", "errorCount"],
+  textSearchFields: ["library", "status", "owner"],
+  fields: {
+    library: {
+      unique: true,
+      ref: { refType: "library" },
+    },
+    ...MobilettoScanObjectTypeDefConfig.fields,
+  },
+});
+
+export const SourceScanTypeDef = new MobilettoOrmTypeDef({
+  typeName: "sourceScan",
+  shortName: "scan~src",
+  indexLevels: 0,
+  scope: "local",
+  tableFields: ["source", "status", "owner", "started", "finished", "errorCount"],
+  textSearchFields: ["source", "status", "owner"],
+  fields: {
+    source: {
+      unique: true,
+      ref: { refType: "source" },
+    },
+    ...MobilettoScanObjectTypeDefConfig.fields,
+  },
+});
+
+const AssetTableFields = [
+  "name",
+  "source",
+  "status",
+  "owner",
+  "started",
+  "finished",
+  "errorCount",
+  "_meta.ctime",
+  "_meta.mtime",
+];
+const AssetTextSearchFields = ["name", "source", "owner"];
+
 export const DiscoveredAssetTypeDefFields: MobilettoOrmFieldDefConfigs = {
   name: {
     index: true,
@@ -23,6 +68,8 @@ export const DiscoveredAssetTypeDefFields: MobilettoOrmFieldDefConfigs = {
 export const DiscoveredAssetTypeDef = new MobilettoOrmTypeDef({
   typeName: "discoveredAsset",
   shortName: "ast~disc",
+  tableFields: AssetTableFields,
+  textSearchFields: AssetTextSearchFields,
   fields: DiscoveredAssetTypeDefFields,
 });
 
@@ -49,6 +96,8 @@ export const DownloadedAssetTypeDef = new MobilettoOrmTypeDef({
   typeName: "downloadedAsset",
   shortName: "ast~dwnld",
   scope: "local",
+  tableFields: AssetTableFields,
+  textSearchFields: AssetTextSearchFields,
   fields: DownloadedAssetTypeDefFields,
 });
 
@@ -90,5 +139,7 @@ export const AnalyzedAssetTypeDefFields: MobilettoOrmFieldDefConfigs = {
 export const AnalyzedAssetTypeDef = new MobilettoOrmTypeDef({
   typeName: "analyzedAsset",
   shortName: "ast~analyze",
+  tableFields: AssetTableFields,
+  textSearchFields: [...AssetTextSearchFields, "meta", "mediainfo"],
   fields: AnalyzedAssetTypeDefFields,
 });

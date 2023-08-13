@@ -24,7 +24,19 @@ import { RegistrationTypeDef } from "../typedef/auth/registration.js";
 import { VolumeTypeDef, SourceTypeDef, DestinationTypeDef } from "../typedef/model/volume.js";
 import { SessionTypeDef } from "../typedef/auth/session.js";
 import { LibraryTypeDef } from "../typedef/model/library.js";
-import { AnalyzedAssetTypeDef, DiscoveredAssetTypeDef, DownloadedAssetTypeDef } from "../typedef/model/asset.js";
+import {
+  AnalyzedAssetTypeDef,
+  DiscoveredAssetTypeDef,
+  DownloadedAssetTypeDef,
+  LibraryScanTypeDef,
+  SourceScanTypeDef,
+} from "../typedef/model/asset.js";
+import {
+  MediaOperationTypeDef,
+  MediaProfileTypeDef,
+  MediaPropertyTypeDef,
+  MediaTypeDef,
+} from "../typedef/model/media.js";
 
 if (!process?.env?.YUEBING_DIR) {
   throw new Error("YUEBING_DIR env var not defined");
@@ -89,19 +101,19 @@ const genFilters = () => {
   generateSessionFilter(YB_MODEL_PACKAGE, { outfile: `${filterDir}/sessionFilter.ts` });
 };
 
-const GEN_ALL = "all";
-const GEN_TYPE = "type";
+export const GEN_ALL = "all";
+export const GEN_TYPE = "type";
 
-type GenSpec = {
+export type GenSpec = {
   typedef: MobilettoOrmTypeDef;
   generate: "all" | "type";
   tsDir?: string;
   ctx?: Record<string, string>;
 };
 
-type GEN_FUNC = (spec: GenSpec) => void;
+export type GEN_FUNC = (spec: GenSpec) => void;
 
-const GEN_ACTIONS: Record<string, GEN_FUNC> = {};
+export const GEN_ACTIONS: Record<string, GEN_FUNC> = {};
 GEN_ACTIONS[GEN_ALL] = (spec) => genAll(spec.typedef, spec.ctx);
 GEN_ACTIONS[GEN_TYPE] = (spec) => genTsType(spec.typedef, spec.tsDir);
 
@@ -125,7 +137,12 @@ const GEN_TYPES: GenSpec[] = [
   { typedef: VolumeTypeDef, generate: GEN_TYPE },
   { typedef: SourceTypeDef, generate: GEN_ALL },
   { typedef: DestinationTypeDef, generate: GEN_ALL },
+  { typedef: MediaTypeDef, generate: GEN_ALL },
+  { typedef: MediaOperationTypeDef, generate: GEN_ALL },
+  { typedef: MediaPropertyTypeDef, generate: GEN_ALL },
   { typedef: LibraryTypeDef, generate: GEN_ALL },
+  { typedef: LibraryScanTypeDef, generate: GEN_ALL },
+  { typedef: SourceScanTypeDef, generate: GEN_ALL },
   { typedef: DiscoveredAssetTypeDef, generate: GEN_ALL },
   { typedef: DownloadedAssetTypeDef, generate: GEN_ALL },
   { typedef: AnalyzedAssetTypeDef, generate: GEN_ALL },
