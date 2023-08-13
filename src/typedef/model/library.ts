@@ -48,7 +48,7 @@ export const LibraryTypeDefFields: MobilettoOrmFieldDefConfigs = {
       interval: {
         required: false, // if not set, default value in private config is used
         type: "number",
-        minValue: 1000 * 60, // 1 minute
+        minValue: 1000 * 10, // 10 seconds
         maxValue: 1000 * 60 * 60 * 24 * 366, // 366 days
         default: 1000 * 60 * 60 * 24, // default 24 hours
         control: "duration",
