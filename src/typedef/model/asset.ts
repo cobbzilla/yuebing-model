@@ -1,5 +1,5 @@
 import { MobilettoOrmFieldDefConfigs, MobilettoOrmTypeDef } from "mobiletto-orm";
-import { MobilettoScanObjectTypeDefConfig } from "mobiletto-orm-scan";
+import { MobilettoScanObjectTypeDefConfig } from "mobiletto-orm-scan-typedef";
 
 export const DiscoveredAssetTypeDefFields: MobilettoOrmFieldDefConfigs = {
   name: {

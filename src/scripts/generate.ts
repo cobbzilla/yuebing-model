@@ -3,7 +3,6 @@ import path from "path";
 import * as fs from "fs";
 import { fileURLToPath } from "url";
 
-import { MobilettoOrmTypeDef } from "mobiletto-orm";
 import {
   generateTypeScriptType,
   generateApi,
@@ -15,6 +14,7 @@ import {
   generateStoreHelper,
   generateAdmin,
   generateAdminHelper,
+  MobilettoOrmTypeDef,
 } from "mobiletto-orm-typedef-gen";
 
 import { PublicConfigTypeDef, PrivateConfigTypeDef, LocalConfigTypeDef } from "../typedef/model/config.js";
