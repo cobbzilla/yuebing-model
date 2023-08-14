@@ -42,8 +42,8 @@ devDependencies:
     specifier: ^2.2.30
     version: 2.2.30
   mobiletto-orm-scan-typedef:
-    specifier: ^1.0.1
-    version: 1.0.1
+    specifier: ^1.0.3
+    version: 1.0.3
   mobiletto-orm-typedef:
     specifier: ^2.3.31
     version: 2.3.31
@@ -1214,8 +1214,8 @@ packages:
       consola: 3.2.3
     dev: true
 
-  /mobiletto-orm-scan-typedef@1.0.1:
-    resolution: {integrity: sha512-UwDIU2kk69LSno4E7C9mUbbeu21gY2SDeG3eBaueDFUSeN9+1zDSM6IjuFIElbjT4N2VMzuIqiEiALcuOzXwAw==}
+  /mobiletto-orm-scan-typedef@1.0.3:
+    resolution: {integrity: sha512-HkNI5mDa17CP/NqQ7NXJCDVc/CHkmlLfMuO4LUDjG2yDVArLZla8ADdBtRGm5kuj7jLAxGBiuIzZgJR8Czfb1A==}
     dependencies:
       mobiletto-orm-typedef: 2.3.31
     dev: true

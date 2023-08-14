@@ -16,6 +16,7 @@ import {
   generateAdminHelper,
   MobilettoOrmTypeDef,
 } from "mobiletto-orm-typedef-gen";
+import { MobilettoScanObjectTypeDef } from "mobiletto-orm-scan-typedef";
 
 import { PublicConfigTypeDef, PrivateConfigTypeDef, LocalConfigTypeDef } from "../typedef/model/config.js";
 import { AccountTypeDef, AuthAccountTypeDef } from "../typedef/model/account.js";
@@ -146,6 +147,7 @@ const GEN_TYPES: GenSpec[] = [
   { typedef: DiscoveredAssetTypeDef, generate: GEN_ALL },
   { typedef: DownloadedAssetTypeDef, generate: GEN_ALL },
   { typedef: AnalyzedAssetTypeDef, generate: GEN_ALL },
+  { typedef: MobilettoScanObjectTypeDef, generate: GEN_TYPE },
   { typedef: AuthAccountTypeDef, generate: GEN_TYPE, tsDir: TS_AUTH_TYPE_DIR },
   { typedef: SessionTypeDef, generate: GEN_TYPE, tsDir: TS_AUTH_TYPE_DIR },
   { typedef: UsernameAndPasswordTypeDef, generate: GEN_TYPE, tsDir: TS_AUTH_TYPE_DIR },

@@ -40,6 +40,7 @@ export const LibraryTypeDefFields: MobilettoOrmFieldDefConfigs = {
   },
   autoscanEnabled: {
     default: false,
+    index: true,
     tabIndex: 5,
   },
   autoscan: {
