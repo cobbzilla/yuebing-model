@@ -2,6 +2,7 @@ export * from "./validation.js";
 export * from "./typedef/model/config.js";
 export * from "./typedef/model/account.js";
 export * from "./typedef/model/volume.js";
+export * from "./typedef/model/media.js";
 export * from "./typedef/model/library.js";
 export * from "./typedef/model/asset.js";
 export * from "./typedef/auth/session.js";
