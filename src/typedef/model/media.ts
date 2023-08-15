@@ -13,13 +13,15 @@ export const MediaTypeDefFields: MobilettoOrmFieldDefConfigs = {
   },
   from: {
     required: false,
+    tabIndex: 2,
     ref: { refType: "media" },
   },
   ext: {
     required: true,
-    tabIndex: 2,
+    type: "string[]",
+    tabIndex: 3,
     min: 1,
-    max: 1000,
+    max: 20,
   },
 };
 
@@ -104,8 +106,7 @@ export const MediaProfileTypeDefFields: MobilettoOrmFieldDefConfigs = {
   },
   subProfiles: {
     required: false,
-    type: "array",
-    control: "multi",
+    type: "string[]",
     ref: { refType: "mediaProfile" },
   },
   enabled: { default: true },

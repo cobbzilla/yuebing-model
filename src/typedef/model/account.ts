@@ -68,7 +68,7 @@ export const primaryAccountFields: MobilettoOrmFieldDefConfigs = {
     tabIndex: 6,
   },
   flags: {
-    type: "array",
+    type: "string[]",
     values: [
       "flag_welcome_email",
       "flag_can_comment",
