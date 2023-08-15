@@ -6,10 +6,10 @@ export const LibraryScanTypeDef = new MobilettoOrmTypeDef({
   shortName: "scan~lib",
   indexLevels: 0,
   scope: "local",
-  tableFields: ["lock", "library", "status", "owner", "started", "finished", "errorCount"],
-  textSearchFields: ["lock", "library", "status", "owner"],
+  tableFields: ["name", "library", "status", "owner", "started", "finished", "errorCount"],
+  textSearchFields: ["name", "library", "status", "owner"],
   fields: {
-    lock: {
+    name: {
       primary: true,
       type: "string",
     },
@@ -24,20 +24,18 @@ export const LibraryScanTypeDef = new MobilettoOrmTypeDef({
 export const SourceScanTypeDef = new MobilettoOrmTypeDef({
   typeName: "sourceScan",
   shortName: "scan~src",
-  indexLevels: 0,
-  scope: "local",
-  tableFields: ["lock", "source", "status", "owner", "started", "finished", "errorCount"],
-  textSearchFields: ["lock", "source", "status", "owner"],
+  indexLevels: 2,
+  tableFields: ["lock", "owner", "_mtime.ctime", "_mtime.mtime"],
+  textSearchFields: ["lock", "owner"],
   fields: {
     lock: {
       primary: true,
       type: "string",
     },
-    source: {
-      unique: true,
-      ref: { refType: "source" },
+    owner: {
+      required: true,
+      type: "string",
     },
-    ...MobilettoScanObjectTypeDefConfig.fields,
   },
 });
 

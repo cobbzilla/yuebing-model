@@ -1,6 +1,6 @@
 import { MobilettoOrmObject } from "mobiletto-orm-typedef";
 export type LibraryScanType = MobilettoOrmObject & {
-    lock: string;
+    name: string;
     library: string;
     status?: string;
     owner?: string;
