@@ -8,6 +8,7 @@ export * from "./typedef/model/asset.js";
 export * from "./typedef/auth/session.js";
 export * from "./typedef/auth/registration.js";
 export * from "./typedef/auth/usernameAndPassword.js";
+export * from "./tools/connect.js";
 export * from "./type/model/PublicConfigType.js";
 export * from "./type/model/PrivateConfigType.js";
 export * from "./type/model/LocalConfigType.js";
