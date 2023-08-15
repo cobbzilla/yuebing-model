@@ -39,17 +39,17 @@ devDependencies:
     specifier: ^2.1.0
     version: 2.1.0
   mobiletto-orm:
-    specifier: ^2.2.33
-    version: 2.2.33
+    specifier: ^2.2.34
+    version: 2.2.34
   mobiletto-orm-scan-typedef:
-    specifier: ^1.0.6
-    version: 1.0.6
+    specifier: ^1.0.7
+    version: 1.0.7
   mobiletto-orm-typedef:
-    specifier: ^2.4.4
-    version: 2.4.4
+    specifier: ^2.4.5
+    version: 2.4.5
   mobiletto-orm-typedef-gen:
-    specifier: ^2.3.41
-    version: 2.3.41
+    specifier: ^2.3.42
+    version: 2.3.42
   mocha:
     specifier: ^10.2.0
     version: 10.2.0
@@ -1214,25 +1214,25 @@ packages:
       consola: 3.2.3
     dev: true
 
-  /mobiletto-orm-scan-typedef@1.0.6:
-    resolution: {integrity: sha512-r6627tGzRZl3aqoRCAunR5e7uke3q5dULOmqmRcWXwtH+ipoqBh5xrXNg233nA6AdHcu/BWF2svIyxD/rFA5Tw==}
+  /mobiletto-orm-scan-typedef@1.0.7:
+    resolution: {integrity: sha512-jGcM4iKLT/HzyNpr+fTUlUFTAW2cfRGS4owugK5vWBTJvb6iFbrui2y7qbULYzpGN7SiAkrG+t5hzK0m+m2vCQ==}
     dependencies:
-      mobiletto-orm-typedef: 2.4.4
+      mobiletto-orm-typedef: 2.4.5
     dev: true
 
-  /mobiletto-orm-typedef-gen@2.3.41:
-    resolution: {integrity: sha512-XozbfoHyoQKkMrX6JqaJzzwwtr9vM1iOrjlC435rBodd5Ul3fhvaDZG1vdYhwrS7qmpfy2onfB8DQpgvF7ZMlw==}
+  /mobiletto-orm-typedef-gen@2.3.42:
+    resolution: {integrity: sha512-qa9+S+SqpDzfA5MKlOWJMtdOkF8xhPC2iReuL6QluhqKkeWE3WdoynWZ+EkL2zK9/c062Jzz5ucGZB6iSY/LTw==}
     dev: true
 
-  /mobiletto-orm-typedef@2.4.4:
-    resolution: {integrity: sha512-fp0MICcFo/8KwH5s5dRmlPJ2al/DTYe4oubxBpCqAI33LxrnAbe+TNt+SyztI4Qd4PCVX2WtLcSekb8PEHSRDw==}
+  /mobiletto-orm-typedef@2.4.5:
+    resolution: {integrity: sha512-EOP4ETo+ggcssH9JZrzkwxYV1TJ+prcTHzcNJyVpby2FHUHSSn9sCr0TlKGhTi1Ris8snJlZu8fvJ9/y5iJ4Ow==}
     dependencies:
       shasum: 1.0.2
       uuid: 9.0.0
     dev: true
 
-  /mobiletto-orm@2.2.33:
-    resolution: {integrity: sha512-vavuuo+gYQR9Go/Gk19y9KrHXTeAPG9YCO7zx78nSBWkO9N0+D3LXBU0icJzy1FO6pAf1Ez6pMx9IZuTbl4GRA==}
+  /mobiletto-orm@2.2.34:
+    resolution: {integrity: sha512-BicVyqhypDW3+UzpGFYqvzblKgv72gt5hSYs2lsdan2OmKtk37PzB403Q/WnnA9MqM9qzY1QhF/GHqMCo5NPjg==}
     dev: true
 
   /mocha@10.2.0:
