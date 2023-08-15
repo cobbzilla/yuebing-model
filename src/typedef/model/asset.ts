@@ -6,16 +6,12 @@ export const LibraryScanTypeDef = new MobilettoOrmTypeDef({
   shortName: "scan~lib",
   indexLevels: 0,
   scope: "local",
-  tableFields: ["name", "library", "status", "owner", "started", "finished", "errorCount"],
-  textSearchFields: ["name", "library", "status", "owner"],
+  tableFields: ["library", "status", "owner", "started", "finished", "errorCount"],
+  textSearchFields: ["library", "status", "owner"],
   fields: {
-    name: {
+    library: {
       primary: true,
       type: "string",
-    },
-    library: {
-      unique: true,
-      ref: { refType: "library" },
     },
     ...MobilettoScanObjectTypeDefConfig.fields,
   },
