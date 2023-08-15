@@ -15,13 +15,29 @@ clean () {
 generate () {
     INDEX_TS="${BASE_DIR}"/src/index.ts
     INDEX_BAK=$(mktemp "${BASE_DIR}"/src/index.ts.XXXXXX) || exit 3
+    TOOLS_DIR="${BASE_DIR}"/src/tools
+    TOOLS_BAK=$(mktemp -d "${BASE_DIR}"/tools.tmp.XXXXXX) || exit 3
+    SUCCESS=0
     cd "${BASE_DIR}" && \
     cat "${INDEX_TS}" > "${INDEX_BAK}" && \
     cp "${BASE_DIR}"/src/index.ts.src "${INDEX_TS}" && \
+    mv "${TOOLS_DIR}"/* "${TOOLS_BAK}"/ && \
     pnpm tsc && \
     pnpm orm-gen && \
     mv "${INDEX_BAK}" "${INDEX_TS}" && \
-    pnpm tsc
+    mv "${TOOLS_BAK}"/* "${TOOLS_DIR}"/ && \
+    rmdir "${TOOLS_BAK}" && \
+    pnpm tsc && \
+    SUCCESS=1 || \
+    echo >&2 "error generating"
+    if [ ${SUCCESS} -eq 0 ] ; then
+        echo >&2 "rolling back: ${INDEX_BAK} -> ${INDEX_TS}" && \
+        mv "${INDEX_BAK}" "${INDEX_TS}" && \
+        echo >&2 "rolling back: ${TOOLS_BAK} -> ${TOOLS_DIR}" && \
+        mv "${TOOLS_BAK}"/* "${TOOLS_DIR}"/ && \
+        rmdir "${TOOLS_BAK}"
+        echo >&2 "successful rollback"
+    fi
 }
 
 clean
