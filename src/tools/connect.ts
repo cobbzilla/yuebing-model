@@ -64,9 +64,10 @@ const CONFIG_RESOLVERS: Record<string, MobilettoConnectionConfigResolver> = {
 
 export const resolveConnectionConfig = (config: VolumeType): MobilettoConnectionConfig => {
   const resolver = CONFIG_RESOLVERS[config.type];
+  const connConfig = config[config.type];
   return {
-    key: resolver.key(config),
-    secret: resolver.secret(config),
-    opts: resolver.opts(config),
+    key: resolver.key(connConfig),
+    secret: resolver.secret(connConfig),
+    opts: resolver.opts(connConfig),
   };
 };
