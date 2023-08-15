@@ -195,7 +195,7 @@ export const LocalConfigTypeDef = new MobilettoOrmTypeDef({
       fields: {
         initialDelay: {
           required: true,
-          minValue: 1000 * 60, // 1 minute
+          minValue: 1000 * 10, // 10 seconds
           maxValue: 1000 * 60 * 60, // 1 hour
           default: 1000 * 60 * 10, // 10 minutes
           control: "duration",
