@@ -5,7 +5,7 @@ export type Library_autoscanType = {
 };
 export type LibraryType = MobilettoOrmObject & {
     name: string;
-    media?: string;
+    media: string;
     sources: string[];
     destinations: string[];
     autoscanEnabled?: boolean;

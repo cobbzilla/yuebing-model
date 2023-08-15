@@ -12,6 +12,7 @@ export const LibraryTypeDefFields: MobilettoOrmFieldDefConfigs = {
     tabIndex: 1,
   },
   media: {
+    required: true,
     ref: { refType: "media" },
     tabIndex: 2,
   },
