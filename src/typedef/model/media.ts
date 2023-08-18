@@ -18,6 +18,7 @@ export const MediaTypeDefFields: MobilettoOrmFieldDefConfigs = {
   },
   ext: {
     required: true,
+    index: true,
     type: "string[]",
     tabIndex: 3,
     min: 1,
