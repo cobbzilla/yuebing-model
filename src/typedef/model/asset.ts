@@ -91,11 +91,17 @@ export const DestinationAssetTypeDefFields: MobilettoOrmFieldDefConfigs = {
     control: "label",
     tabIndex: 2,
   },
+  profile: {
+    required: true,
+    ref: { refType: "mediaProfile" },
+    control: "label",
+    tabIndex: 3,
+  },
   destinationPath: {
     required: true,
     type: "string",
     control: "label",
-    tabIndex: 3,
+    tabIndex: 4,
   },
   ...MobilettoScanObjectTypeDefConfig.fields,
 };
