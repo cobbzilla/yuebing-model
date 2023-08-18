@@ -1,6 +1,6 @@
 import { MobilettoOrmObject } from "mobiletto-orm-typedef";
 export type SourceAssetType = MobilettoOrmObject & {
-    name?: string;
+    name: string;
     source: string;
     status?: string;
     owner?: string;

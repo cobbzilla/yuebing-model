@@ -37,7 +37,7 @@ export const SourceScanTypeDef = new MobilettoOrmTypeDef({
 
 export const SourceAssetTypeDefFields: MobilettoOrmFieldDefConfigs = {
   name: {
-    index: true,
+    primary: true,
     indexLevels: 3,
     min: 1,
     max: 2048,
@@ -64,7 +64,7 @@ export const SourceAssetTypeDef = new MobilettoOrmTypeDef({
 
 export const DestinationAssetTypeDefFields: MobilettoOrmFieldDefConfigs = {
   name: {
-    index: true,
+    primary: true,
     indexLevels: 3,
     min: 1,
     max: 2048,
@@ -76,18 +76,17 @@ export const DestinationAssetTypeDefFields: MobilettoOrmFieldDefConfigs = {
     required: true,
     ref: { refType: "mediaProfile" },
     control: "label",
-    tabIndex: 3,
+    tabIndex: 2,
   },
   source: {
     required: true,
     ref: { refType: "source" },
     control: "label",
-    tabIndex: 2,
+    tabIndex: 3,
   },
-  sourcePath: {
+  sourceAsset: {
     required: true,
-    index: true,
-    type: "string",
+    ref: { refType: "sourceAsset" },
     control: "label",
     tabIndex: 4,
   },
