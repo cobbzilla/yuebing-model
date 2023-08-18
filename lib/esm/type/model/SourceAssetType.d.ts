@@ -1,5 +1,5 @@
 import { MobilettoOrmObject } from "mobiletto-orm-typedef";
-export type DiscoveredAssetType = MobilettoOrmObject & {
+export type SourceAssetType = MobilettoOrmObject & {
     name?: string;
     source: string;
     status?: string;

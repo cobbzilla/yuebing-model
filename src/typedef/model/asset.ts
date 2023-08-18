@@ -48,7 +48,7 @@ const AssetTableFields = [
 ];
 const AssetTextSearchFields = ["name", "source", "owner"];
 
-export const DiscoveredAssetTypeDefFields: MobilettoOrmFieldDefConfigs = {
+export const SourceAssetTypeDefFields: MobilettoOrmFieldDefConfigs = {
   name: {
     index: true,
     indexLevels: 3,
@@ -67,15 +67,15 @@ export const DiscoveredAssetTypeDefFields: MobilettoOrmFieldDefConfigs = {
   ...MobilettoScanObjectTypeDefConfig.fields,
 };
 
-export const DiscoveredAssetTypeDef = new MobilettoOrmTypeDef({
-  typeName: "discoveredAsset",
-  shortName: "ast~disc",
+export const SourceAssetTypeDef = new MobilettoOrmTypeDef({
+  typeName: "sourceAsset",
+  shortName: "asset~src",
   tableFields: AssetTableFields,
   textSearchFields: AssetTextSearchFields,
-  fields: DiscoveredAssetTypeDefFields,
+  fields: SourceAssetTypeDefFields,
 });
 
-export const DownloadedAssetTypeDefFields: MobilettoOrmFieldDefConfigs = {
+export const DestinationAssetTypeDefFields: MobilettoOrmFieldDefConfigs = {
   name: {
     index: true,
     indexLevels: 3,
@@ -91,57 +91,20 @@ export const DownloadedAssetTypeDefFields: MobilettoOrmFieldDefConfigs = {
     control: "label",
     tabIndex: 2,
   },
+  destinationPath: {
+    required: true,
+    type: "string",
+    control: "label",
+    tabIndex: 3,
+  },
   ...MobilettoScanObjectTypeDefConfig.fields,
 };
 
-export const DownloadedAssetTypeDef = new MobilettoOrmTypeDef({
-  typeName: "downloadedAsset",
-  shortName: "ast~dwnld",
+export const DestinationAssetTypeDef = new MobilettoOrmTypeDef({
+  typeName: "destinationAsset",
+  shortName: "asset~dest",
   scope: "local",
   tableFields: AssetTableFields,
   textSearchFields: AssetTextSearchFields,
-  fields: DownloadedAssetTypeDefFields,
-});
-
-export const AnalyzedAssetTypeDefFields: MobilettoOrmFieldDefConfigs = {
-  name: {
-    index: true,
-    indexLevels: 3,
-    min: 1,
-    max: 2048,
-    updatable: false,
-    control: "label",
-    tabIndex: 1,
-  },
-  source: {
-    required: true,
-    ref: { refType: "source" },
-    control: "label",
-    tabIndex: 2,
-  },
-  // MobilettoMetadata as JSON
-  meta: {
-    required: false,
-    min: 2,
-    max: 2048,
-    tabIndex: 3,
-    control: "label",
-  },
-  // MediaInfo as JSON
-  mediainfo: {
-    required: false,
-    min: 2,
-    max: 1024 * 128,
-    tabIndex: 4,
-    control: "label",
-  },
-  ...MobilettoScanObjectTypeDefConfig.fields,
-};
-
-export const AnalyzedAssetTypeDef = new MobilettoOrmTypeDef({
-  typeName: "analyzedAsset",
-  shortName: "ast~analyze",
-  tableFields: AssetTableFields,
-  textSearchFields: [...AssetTextSearchFields, "meta", "mediainfo"],
-  fields: AnalyzedAssetTypeDefFields,
+  fields: DestinationAssetTypeDefFields,
 });

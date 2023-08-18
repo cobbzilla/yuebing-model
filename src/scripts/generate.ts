@@ -16,7 +16,6 @@ import {
   generateAdminHelper,
   MobilettoOrmTypeDef,
 } from "mobiletto-orm-typedef-gen";
-import { MobilettoScanObjectTypeDef } from "mobiletto-orm-scan-typedef";
 
 import { PublicConfigTypeDef, PrivateConfigTypeDef, LocalConfigTypeDef } from "../typedef/model/config.js";
 import { AccountTypeDef, AuthAccountTypeDef } from "../typedef/model/account.js";
@@ -26,9 +25,8 @@ import { VolumeTypeDef, SourceTypeDef, DestinationTypeDef } from "../typedef/mod
 import { SessionTypeDef } from "../typedef/auth/session.js";
 import { LibraryTypeDef } from "../typedef/model/library.js";
 import {
-  AnalyzedAssetTypeDef,
-  DiscoveredAssetTypeDef,
-  DownloadedAssetTypeDef,
+  SourceAssetTypeDef,
+  DestinationAssetTypeDef,
   LibraryScanTypeDef,
   SourceScanTypeDef,
 } from "../typedef/model/asset.js";
@@ -145,9 +143,8 @@ const GEN_TYPES: GenSpec[] = [
   { typedef: LibraryTypeDef, generate: GEN_ALL },
   { typedef: LibraryScanTypeDef, generate: GEN_ALL },
   { typedef: SourceScanTypeDef, generate: GEN_ALL },
-  { typedef: DiscoveredAssetTypeDef, generate: GEN_ALL },
-  { typedef: DownloadedAssetTypeDef, generate: GEN_ALL },
-  { typedef: AnalyzedAssetTypeDef, generate: GEN_ALL },
+  { typedef: SourceAssetTypeDef, generate: GEN_ALL },
+  { typedef: DestinationAssetTypeDef, generate: GEN_ALL },
   { typedef: AuthAccountTypeDef, generate: GEN_TYPE, tsDir: TS_AUTH_TYPE_DIR },
   { typedef: SessionTypeDef, generate: GEN_TYPE, tsDir: TS_AUTH_TYPE_DIR },
   { typedef: UsernameAndPasswordTypeDef, generate: GEN_TYPE, tsDir: TS_AUTH_TYPE_DIR },
