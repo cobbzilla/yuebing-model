@@ -97,11 +97,18 @@ export const DestinationAssetTypeDefFields: MobilettoOrmFieldDefConfigs = {
     control: "label",
     tabIndex: 3,
   },
+  sourcePath: {
+    required: true,
+    index: true,
+    type: "string",
+    control: "label",
+    tabIndex: 4,
+  },
   destinationPath: {
     required: true,
     type: "string",
     control: "label",
-    tabIndex: 4,
+    tabIndex: 5,
   },
   ...MobilettoScanObjectTypeDefConfig.fields,
 };

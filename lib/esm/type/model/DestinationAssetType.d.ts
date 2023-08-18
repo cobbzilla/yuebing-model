@@ -3,6 +3,7 @@ export type DestinationAssetType = MobilettoOrmObject & {
     name?: string;
     source: string;
     profile: string;
+    sourcePath: string;
     destinationPath: string;
     status?: string;
     owner?: string;
