@@ -74,6 +74,7 @@ export const DestinationAssetTypeDefFields: MobilettoOrmFieldDefConfigs = {
   },
   profile: {
     required: true,
+    index: true,
     ref: { refType: "mediaProfile" },
     control: "label",
     tabIndex: 2,

@@ -18,6 +18,7 @@ export * from "./type/model/SourceType.js";
 export * from "./type/model/DestinationType.js";
 export * from "./type/model/LibraryType.js";
 export * from "./type/model/MediaType.js";
+export * from "./type/model/MediaProfileType.js";
 export * from "./type/model/MediaOperationType.js";
 export * from "./type/model/MediaPropertyType.js";
 export * from "./type/model/LibraryScanType.js";
