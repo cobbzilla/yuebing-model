@@ -35,19 +35,6 @@ export const SourceScanTypeDef = new MobilettoOrmTypeDef({
   },
 });
 
-const AssetTableFields = [
-  "name",
-  "source",
-  "status",
-  "owner",
-  "started",
-  "finished",
-  "errorCount",
-  "_meta.ctime",
-  "_meta.mtime",
-];
-const AssetTextSearchFields = ["name", "source", "owner"];
-
 export const SourceAssetTypeDefFields: MobilettoOrmFieldDefConfigs = {
   name: {
     index: true,
@@ -70,8 +57,8 @@ export const SourceAssetTypeDefFields: MobilettoOrmFieldDefConfigs = {
 export const SourceAssetTypeDef = new MobilettoOrmTypeDef({
   typeName: "sourceAsset",
   shortName: "asset~src",
-  tableFields: AssetTableFields,
-  textSearchFields: AssetTextSearchFields,
+  tableFields: ["name", "source", "status", "owner", "started", "finished", "errorCount", "_meta.ctime", "_meta.mtime"],
+  textSearchFields: ["name", "source", "owner"],
   fields: SourceAssetTypeDefFields,
 });
 
@@ -85,17 +72,17 @@ export const DestinationAssetTypeDefFields: MobilettoOrmFieldDefConfigs = {
     control: "label",
     tabIndex: 1,
   },
-  source: {
-    required: true,
-    ref: { refType: "source" },
-    control: "label",
-    tabIndex: 2,
-  },
   profile: {
     required: true,
     ref: { refType: "mediaProfile" },
     control: "label",
     tabIndex: 3,
+  },
+  source: {
+    required: true,
+    ref: { refType: "source" },
+    control: "label",
+    tabIndex: 2,
   },
   sourcePath: {
     required: true,
@@ -104,12 +91,6 @@ export const DestinationAssetTypeDefFields: MobilettoOrmFieldDefConfigs = {
     control: "label",
     tabIndex: 4,
   },
-  destinationPath: {
-    required: true,
-    type: "string",
-    control: "label",
-    tabIndex: 5,
-  },
   ...MobilettoScanObjectTypeDefConfig.fields,
 };
 
@@ -117,7 +98,19 @@ export const DestinationAssetTypeDef = new MobilettoOrmTypeDef({
   typeName: "destinationAsset",
   shortName: "asset~dest",
   scope: "local",
-  tableFields: AssetTableFields,
-  textSearchFields: AssetTextSearchFields,
+  tableFields: [
+    "name",
+    "profile",
+    "source",
+    "sourcePath",
+    "status",
+    "owner",
+    "started",
+    "finished",
+    "errorCount",
+    "_meta.ctime",
+    "_meta.mtime",
+  ],
+  textSearchFields: ["name", "profile", "source", "sourcePath", "owner"],
   fields: DestinationAssetTypeDefFields,
 });
