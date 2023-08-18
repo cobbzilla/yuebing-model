@@ -5,6 +5,9 @@ import {
   Volume_s3Type,
   VolumeType,
 } from "../type/model/VolumeType.js";
+import { mobiletto, MobilettoOptions } from "mobiletto-base";
+import { MobilettoEncryptionSettings } from "mobiletto-base/lib/cjs/crypt.js";
+import { MobilettoConnection } from "mobiletto-base/lib/cjs/types.js";
 
 export type MobilettoConnectionConfig = {
   key: string;
@@ -62,12 +65,38 @@ const CONFIG_RESOLVERS: Record<string, MobilettoConnectionConfigResolver> = {
   generic: GenericConfigResolver,
 };
 
-export const resolveConnectionConfig = (config: VolumeType): MobilettoConnectionConfig => {
-  const resolver = CONFIG_RESOLVERS[config.type];
-  const connConfig = config[config.type];
+export const resolveConnectionConfig = (volume: VolumeType): MobilettoConnectionConfig => {
+  const resolver = CONFIG_RESOLVERS[volume.type];
+  const connConfig = volume[volume.type];
   return {
     key: resolver.key(connConfig),
     secret: resolver.secret(connConfig),
     opts: resolver.opts(connConfig),
   };
+};
+
+const VOLUME_CONNECTIONS: Record<string, MobilettoConnection> = {};
+
+export const connectVolume = async <T extends VolumeType>(volume: T) => {
+  if (!VOLUME_CONNECTIONS[volume.name]) {
+    const config = resolveConnectionConfig(volume);
+    const encryption: MobilettoEncryptionSettings | undefined = volume.encryptionEnable
+      ? {
+          key: volume.encryption?.encryptionKey ? volume.encryption?.encryptionKey : "",
+          iv: volume.encryption?.encryptionIV ? volume.encryption?.encryptionIV : undefined,
+          algo: volume.encryption?.encryptionAlgo ? volume.encryption?.encryptionAlgo : undefined,
+        }
+      : undefined;
+    const connection = await mobiletto(
+      volume.type,
+      config.key,
+      config.secret,
+      config.opts ? (config.opts as MobilettoOptions) : undefined,
+      encryption
+    );
+    if (!VOLUME_CONNECTIONS[volume.name]) {
+      VOLUME_CONNECTIONS[volume.name] = connection;
+    }
+  }
+  return VOLUME_CONNECTIONS[volume.name];
 };
