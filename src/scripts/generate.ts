@@ -140,6 +140,7 @@ const GEN_TYPES: GenSpec[] = [
   { typedef: DestinationTypeDef, generate: GEN_ALL },
   { typedef: MediaTypeDef, generate: GEN_ALL },
   { typedef: MediaOperationTypeDef, generate: GEN_ALL },
+  { typedef: MediaProfileTypeDef, generate: GEN_ALL },
   { typedef: MediaPropertyTypeDef, generate: GEN_ALL },
   { typedef: LibraryTypeDef, generate: GEN_ALL },
   { typedef: LibraryScanTypeDef, generate: GEN_ALL },
