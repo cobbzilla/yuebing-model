@@ -3,7 +3,7 @@ import { MobilettoOrmObject } from "mobiletto-orm-typedef";
 export type ProfileJobType = MobilettoOrmObject & {
     name: string;
     profile: string;
-    destinationAsset: string;
+    asset: string;
     args: string[];
     status?: string;
     owner?: string;
