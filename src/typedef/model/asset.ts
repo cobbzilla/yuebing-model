@@ -72,24 +72,17 @@ export const DestinationAssetTypeDefFields: MobilettoOrmFieldDefConfigs = {
     control: "label",
     tabIndex: 1,
   },
-  profile: {
-    required: true,
-    index: true,
-    ref: { refType: "mediaProfile" },
-    control: "label",
-    tabIndex: 2,
-  },
   source: {
     required: true,
     ref: { refType: "source" },
     control: "label",
-    tabIndex: 3,
+    tabIndex: 2,
   },
   sourceAsset: {
     required: true,
     ref: { refType: "sourceAsset" },
     control: "label",
-    tabIndex: 4,
+    tabIndex: 3,
   },
   ...MobilettoScanObjectTypeDefConfig.fields,
 };
@@ -99,7 +92,6 @@ export const DestinationAssetTypeDef = new MobilettoOrmTypeDef({
   shortName: "asset~dest",
   tableFields: [
     "name",
-    "profile",
     "source",
     "sourcePath",
     "status",
@@ -110,7 +102,7 @@ export const DestinationAssetTypeDef = new MobilettoOrmTypeDef({
     "_meta.ctime",
     "_meta.mtime",
   ],
-  textSearchFields: ["name", "profile", "source", "sourcePath", "owner"],
+  textSearchFields: ["name", "source", "sourcePath", "owner"],
   fields: DestinationAssetTypeDefFields,
 });
 

@@ -1,5 +1,6 @@
-import { Volume_subDriver, VolumeType } from "../type/model/VolumeType.js";
 import { MobilettoConnection } from "mobiletto-base/lib/cjs/types.js";
+import { Volume_subDriver } from "../typedef/model/volume.js";
+import { VolumeType } from "../type/model/VolumeType.js";
 export type MobilettoConnectionConfig = {
     key: string;
     secret?: string;

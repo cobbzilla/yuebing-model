@@ -11,3 +11,6 @@ export declare const SourceTypeDefFields: MobilettoOrmFieldDefConfigs;
 export declare const SourceTypeDef: MobilettoOrmTypeDef;
 export declare const DestinationTypeDefFields: MobilettoOrmFieldDefConfigs;
 export declare const DestinationTypeDef: MobilettoOrmTypeDef;
+export type Volume_subDriver = {
+    [prop: string]: string | number | boolean;
+};

@@ -355,3 +355,7 @@ export const DestinationTypeDef = new MobilettoOrmTypeDef({
     type: { label: "label_destinationType_type" },
   },
 });
+
+export type Volume_subDriver = {
+  [prop: string]: string | number | boolean;
+};
