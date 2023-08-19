@@ -98,10 +98,14 @@ export const ProfileJobTypeDefFields: MobilettoOrmFieldDefConfigs = {
     tabIndex: 3,
   },
   args: {
-    required: true,
     type: "string[]",
     control: "label",
     tabIndex: 4,
+  },
+  analysis: {
+    type: "string",
+    tabIndex: 5,
+    control: "label",
   },
   ...MobilettoScanObjectTypeDefConfig.fields,
 };
@@ -112,7 +116,7 @@ export const ProfileJobTypeDef = new MobilettoOrmTypeDef({
   tableFields: [
     "name",
     "profile",
-    "destinationAsset",
+    "asset",
     "args",
     "status",
     "owner",
@@ -122,6 +126,6 @@ export const ProfileJobTypeDef = new MobilettoOrmTypeDef({
     "_meta.ctime",
     "_meta.mtime",
   ],
-  textSearchFields: ["name", "profile", "destinationAsset", "args"],
+  textSearchFields: ["name", "profile", "destinationAsset", "args", "analysis"],
   fields: ProfileJobTypeDefFields,
 });

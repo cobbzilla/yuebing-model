@@ -4,7 +4,8 @@ export type ProfileJobType = MobilettoOrmObject & {
     name: string;
     profile: string;
     asset: string;
-    args: string[];
+    args?: string[];
+    analysis?: string;
     status?: string;
     owner?: string;
     started?: number;
