@@ -130,3 +130,24 @@ export const ProfileJobTypeDef = new MobilettoOrmTypeDef({
   textSearchFields: ["name", "profile", "destinationAsset", "args", "analysis"],
   fields: ProfileJobTypeDefFields,
 });
+
+export const UploadJobTypeDefFields: MobilettoOrmFieldDefConfigs = {
+  path: {
+    primary: true,
+    indexLevels: 3,
+    max: 2048,
+    updatable: false,
+    control: "label",
+    tabIndex: 1,
+  },
+  ...MobilettoScanObjectTypeDefConfig.fields,
+};
+
+export const UploadJobTypeDef = new MobilettoOrmTypeDef({
+  typeName: "uploadJob",
+  shortName: "uploadJob",
+  scope: "local",
+  tableFields: ["path", "status", "owner", "started", "finished", "errorCount", "_meta.ctime", "_meta.mtime"],
+  textSearchFields: ["path"],
+  fields: UploadJobTypeDefFields,
+});
