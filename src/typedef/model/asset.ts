@@ -35,7 +35,7 @@ export const SourceScanTypeDef = new MobilettoOrmTypeDef({
   },
 });
 
-export const AssetTypeDefFields: MobilettoOrmFieldDefConfigs = {
+export const SourceAssetTypeDefFields: MobilettoOrmFieldDefConfigs = {
   name: {
     primary: true,
     indexLevels: 3,
@@ -54,7 +54,7 @@ export const AssetTypeDefFields: MobilettoOrmFieldDefConfigs = {
   ...MobilettoScanObjectTypeDefConfig.fields,
 };
 
-const assetTableFields = [
+const sourceAssetTableFields = [
   "name",
   "source",
   "status",
@@ -65,22 +65,14 @@ const assetTableFields = [
   "_meta.ctime",
   "_meta.mtime",
 ];
-const assetSearchFields = ["name", "source", "owner"];
+const sourceAssetSearchFields = ["name", "source", "owner"];
 
 export const SourceAssetTypeDef = new MobilettoOrmTypeDef({
   typeName: "sourceAsset",
   shortName: "asset~src",
-  tableFields: assetTableFields,
-  textSearchFields: assetSearchFields,
-  fields: AssetTypeDefFields,
-});
-
-export const DestinationAssetTypeDef = new MobilettoOrmTypeDef({
-  typeName: "destinationAsset",
-  shortName: "asset~dest",
-  tableFields: assetTableFields,
-  textSearchFields: assetSearchFields,
-  fields: AssetTypeDefFields,
+  tableFields: sourceAssetTableFields,
+  textSearchFields: sourceAssetSearchFields,
+  fields: SourceAssetTypeDefFields,
 });
 
 export const ProfileJobTypeDefFields: MobilettoOrmFieldDefConfigs = {

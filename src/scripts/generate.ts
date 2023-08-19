@@ -26,7 +26,6 @@ import { SessionTypeDef } from "../typedef/auth/session.js";
 import { LibraryTypeDef } from "../typedef/model/library.js";
 import {
   SourceAssetTypeDef,
-  DestinationAssetTypeDef,
   LibraryScanTypeDef,
   SourceScanTypeDef,
   ProfileJobTypeDef,
@@ -145,7 +144,6 @@ const GEN_TYPES: GenSpec[] = [
   { typedef: LibraryScanTypeDef, generate: GEN_ALL },
   { typedef: SourceScanTypeDef, generate: GEN_ALL },
   { typedef: SourceAssetTypeDef, generate: GEN_ALL },
-  { typedef: DestinationAssetTypeDef, generate: GEN_ALL },
   { typedef: ProfileJobTypeDef, generate: GEN_ALL },
   { typedef: AuthAccountTypeDef, generate: GEN_TYPE, tsDir: TS_AUTH_TYPE_DIR },
   { typedef: SessionTypeDef, generate: GEN_TYPE, tsDir: TS_AUTH_TYPE_DIR },
