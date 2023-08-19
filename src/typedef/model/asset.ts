@@ -140,6 +140,12 @@ export const UploadJobTypeDefFields: MobilettoOrmFieldDefConfigs = {
     control: "label",
     tabIndex: 1,
   },
+  destination: {
+    required: true,
+    ref: { refType: "destination" },
+    control: "label",
+    tabIndex: 2,
+  },
   ...MobilettoScanObjectTypeDefConfig.fields,
 };
 
@@ -147,7 +153,17 @@ export const UploadJobTypeDef = new MobilettoOrmTypeDef({
   typeName: "uploadJob",
   shortName: "uploadJob",
   scope: "local",
-  tableFields: ["path", "status", "owner", "started", "finished", "errorCount", "_meta.ctime", "_meta.mtime"],
-  textSearchFields: ["path"],
+  tableFields: [
+    "path",
+    "destination",
+    "status",
+    "owner",
+    "started",
+    "finished",
+    "errorCount",
+    "_meta.ctime",
+    "_meta.mtime",
+  ],
+  textSearchFields: ["path", "destination"],
   fields: UploadJobTypeDefFields,
 });
