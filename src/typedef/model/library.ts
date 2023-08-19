@@ -5,7 +5,6 @@ export const LibraryTypeDefFields: MobilettoOrmFieldDefConfigs = {
   name: {
     primary: true,
     indexLevels: 2,
-    min: 1,
     max: 500,
     regex: valid.REGEX_VALIDATORS.username,
     updatable: false,

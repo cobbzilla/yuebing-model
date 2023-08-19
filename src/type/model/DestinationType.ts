@@ -43,4 +43,5 @@ export type DestinationType = MobilettoOrmObject & {
     encryptionEnable?: boolean;
     encryption?: Destination_encryptionType;
     system?: boolean;
+    assets?: boolean;
 };

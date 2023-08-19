@@ -5,7 +5,6 @@ export const MediaTypeDefFields: MobilettoOrmFieldDefConfigs = {
   name: {
     primary: true,
     indexLevels: 0,
-    min: 1,
     max: 500,
     regex: valid.REGEX_VALIDATORS.username,
     tabIndex: 1,
@@ -20,7 +19,6 @@ export const MediaTypeDefFields: MobilettoOrmFieldDefConfigs = {
     index: true,
     type: "string[]",
     tabIndex: 3,
-    min: 1,
     max: 20,
   },
   packages: {
@@ -42,7 +40,6 @@ export const MediaOperationTypeDefFields: MobilettoOrmFieldDefConfigs = {
   name: {
     primary: true,
     indexLevels: 0,
-    min: 1,
     max: 500,
     regex: valid.REGEX_VALIDATORS.username,
     updatable: false,
@@ -50,7 +47,6 @@ export const MediaOperationTypeDefFields: MobilettoOrmFieldDefConfigs = {
   },
   command: {
     required: true,
-    min: 1,
     max: 1024,
     tabIndex: 4,
   },
@@ -82,7 +78,6 @@ export const MediaProfileTypeDefFields: MobilettoOrmFieldDefConfigs = {
   name: {
     primary: true,
     indexLevels: 0,
-    min: 1,
     max: 500,
     regex: valid.REGEX_VALIDATORS.username,
     updatable: false,
@@ -98,7 +93,6 @@ export const MediaProfileTypeDefFields: MobilettoOrmFieldDefConfigs = {
   },
   ext: {
     required: true,
-    min: 1,
     max: 20,
     tabIndex: 5,
   },
@@ -136,7 +130,6 @@ export const MediaPropertyTypeDefFields: MobilettoOrmFieldDefConfigs = {
   name: {
     primary: true,
     indexLevels: 0,
-    min: 1,
     max: 500,
     regex: valid.REGEX_VALIDATORS.username,
     updatable: false,
@@ -148,7 +141,6 @@ export const MediaPropertyTypeDefFields: MobilettoOrmFieldDefConfigs = {
   },
   value: {
     required: true,
-    min: 1,
     max: 8 * 1024,
     tabIndex: 3,
   },

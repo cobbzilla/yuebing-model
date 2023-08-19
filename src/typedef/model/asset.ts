@@ -39,7 +39,6 @@ export const SourceAssetTypeDefFields: MobilettoOrmFieldDefConfigs = {
   name: {
     primary: true,
     indexLevels: 3,
-    min: 1,
     max: 2048,
     updatable: false,
     control: "label",
@@ -79,8 +78,7 @@ export const ProfileJobTypeDefFields: MobilettoOrmFieldDefConfigs = {
   name: {
     primary: true,
     indexLevels: 3,
-    min: 1,
-    max: 2048,
+    max: 4096,
     updatable: false,
     control: "label",
     tabIndex: 1,
@@ -94,6 +92,9 @@ export const ProfileJobTypeDefFields: MobilettoOrmFieldDefConfigs = {
   },
   asset: {
     required: true,
+    index: true,
+    indexLevels: 3,
+    max: 2048,
     control: "label",
     tabIndex: 3,
   },

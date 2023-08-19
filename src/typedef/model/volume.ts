@@ -1,4 +1,4 @@
-import { MobilettoOrmTypeDef, MobilettoOrmFieldDefConfigs, MobilettoOrmRawValue } from "mobiletto-orm-typedef";
+import { MobilettoOrmTypeDef, MobilettoOrmFieldDefConfigs } from "mobiletto-orm-typedef";
 
 import * as valid from "../../validation.js";
 
@@ -335,8 +335,14 @@ export const DestinationTypeDefFields: MobilettoOrmFieldDefConfigs = {
   system: {
     type: "boolean",
     label: "label_volumeType_system",
-    default: false,
-    render: (v: MobilettoOrmRawValue): string => (valid.isSelfVolume(v as string) ? "true" : (v as string)),
+    default: true,
+    index: true,
+    indexLevels: 0,
+  },
+  assets: {
+    type: "boolean",
+    label: "label_volumeType_assets",
+    default: true,
     index: true,
     indexLevels: 0,
   },

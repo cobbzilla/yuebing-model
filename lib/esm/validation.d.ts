@@ -27,7 +27,3 @@ export declare const isExactRegexMatch: (value: string, regex: RegExp) => boolea
 export declare const isValidEmail: (value: string) => boolean;
 export declare const NORMALIZE_LOWERCASE: (v: unknown) => Promise<string>;
 export declare const findValidEmails: (muck: string | string[], splitOn?: RegExp) => string[];
-export declare const SELF_VOLUME_NAME = " ~ this ~ ";
-export declare const isSelfVolume: (volume?: string | {
-    name?: string;
-} | null) => boolean | "" | null | undefined;
