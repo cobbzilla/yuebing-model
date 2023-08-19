@@ -3,6 +3,7 @@ import {
   Volume_genericType,
   Volume_localType,
   Volume_s3Type,
+  Volume_subDriver,
   VolumeType,
 } from "../type/model/VolumeType.js";
 import { mobiletto, MobilettoOptions } from "mobiletto-base";
@@ -15,19 +16,19 @@ export type MobilettoConnectionConfig = {
   opts?: Record<string, unknown>;
 };
 
-export type MobilettoConnectionConfigResolver = {
-  key: (cfg: any) => string;
-  secret: (cfg: any) => string | undefined;
-  opts: (cfg: any) => Record<string, unknown> | undefined;
+export type MobilettoConnectionConfigResolver<T extends Volume_subDriver> = {
+  key: (cfg: T) => string;
+  secret: (cfg: T) => string | undefined;
+  opts: (cfg: T) => Record<string, unknown> | undefined;
 };
 
-const LocalConfigResolver: MobilettoConnectionConfigResolver = {
+const LocalConfigResolver: MobilettoConnectionConfigResolver<Volume_localType> = {
   key: (cfg: Volume_localType) => cfg.key,
-  secret: (_cfg: Volume_localType) => "",
+  secret: () => "",
   opts: (cfg: Volume_localType) => ({ createIfNotExist: cfg.createIfNotExist }),
 };
 
-const S3ConfigResolver: MobilettoConnectionConfigResolver = {
+const S3ConfigResolver: MobilettoConnectionConfigResolver<Volume_s3Type> = {
   key: (cfg: Volume_s3Type) => cfg.key,
   secret: (cfg: Volume_s3Type) => cfg.secret,
   opts: (cfg: Volume_s3Type) => ({
@@ -38,7 +39,7 @@ const S3ConfigResolver: MobilettoConnectionConfigResolver = {
   }),
 };
 
-const B2ConfigResolver: MobilettoConnectionConfigResolver = {
+const B2ConfigResolver: MobilettoConnectionConfigResolver<Volume_b2Type> = {
   key: (cfg: Volume_b2Type) => cfg.key,
   secret: (cfg: Volume_b2Type) => cfg.secret,
   opts: (cfg: Volume_b2Type) => ({
@@ -49,7 +50,7 @@ const B2ConfigResolver: MobilettoConnectionConfigResolver = {
   }),
 };
 
-const GenericConfigResolver: MobilettoConnectionConfigResolver = {
+const GenericConfigResolver: MobilettoConnectionConfigResolver<Volume_genericType> = {
   key: (cfg: Volume_genericType) => cfg.key || "",
   secret: (cfg: Volume_genericType) => cfg.secret || undefined,
   opts: (cfg: Volume_genericType) => ({
@@ -58,11 +59,11 @@ const GenericConfigResolver: MobilettoConnectionConfigResolver = {
   }),
 };
 
-const CONFIG_RESOLVERS: Record<string, MobilettoConnectionConfigResolver> = {
-  local: LocalConfigResolver,
-  s3: S3ConfigResolver,
-  b2: B2ConfigResolver,
-  generic: GenericConfigResolver,
+const CONFIG_RESOLVERS: Record<string, MobilettoConnectionConfigResolver<Volume_subDriver>> = {
+  local: LocalConfigResolver as MobilettoConnectionConfigResolver<Volume_subDriver>,
+  s3: S3ConfigResolver as MobilettoConnectionConfigResolver<Volume_subDriver>,
+  b2: B2ConfigResolver as MobilettoConnectionConfigResolver<Volume_subDriver>,
+  generic: GenericConfigResolver as MobilettoConnectionConfigResolver<Volume_subDriver>,
 };
 
 export const resolveConnectionConfig = (volume: VolumeType): MobilettoConnectionConfig => {

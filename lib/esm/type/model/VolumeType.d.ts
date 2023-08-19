@@ -4,13 +4,16 @@ export type Volume_encryptionType = {
     encryptionIV?: string;
     encryptionAlgo?: string;
 };
-export type Volume_genericType = {
+export type Volume_subDriver = {
+    [prop: string]: string | number | boolean;
+};
+export type Volume_genericType = Volume_subDriver & {
     driver: string;
     key?: string;
     secret?: string;
     opts?: string;
 };
-export type Volume_b2Type = {
+export type Volume_b2Type = Volume_subDriver & {
     key: string;
     secret: string;
     bucket: string;
@@ -18,7 +21,7 @@ export type Volume_b2Type = {
     prefix?: string;
     delimiter?: string;
 };
-export type Volume_s3Type = {
+export type Volume_s3Type = Volume_subDriver & {
     key: string;
     secret: string;
     bucket: string;
@@ -26,7 +29,7 @@ export type Volume_s3Type = {
     prefix?: string;
     delimiter?: string;
 };
-export type Volume_localType = {
+export type Volume_localType = Volume_subDriver & {
     key: string;
     createIfNotExist?: boolean;
     mode?: string;
