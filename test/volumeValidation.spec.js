@@ -30,9 +30,9 @@ describe("test source volume validation", () => {
         } catch (e) {
             expect(e).instanceof(MobilettoOrmValidationError);
             expect(Object.keys(e.errors).length).eq(1, "expected 1 validation error");
-            expect(e.errors["local_key"]).is.not.undefined;
-            expect(e.errors["local_key"].length).eq(1);
-            expect(e.errors["local_key"][0]).eq("required");
+            expect(e.errors["local.key"]).is.not.undefined;
+            expect(e.errors["local.key"].length).eq(1);
+            expect(e.errors["local.key"][0]).eq("required");
         }
     });
 });

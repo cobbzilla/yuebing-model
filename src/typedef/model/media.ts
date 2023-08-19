@@ -8,7 +8,6 @@ export const MediaTypeDefFields: MobilettoOrmFieldDefConfigs = {
     min: 1,
     max: 500,
     regex: valid.REGEX_VALIDATORS.username,
-    updatable: false,
     tabIndex: 1,
   },
   from: {
@@ -23,6 +22,11 @@ export const MediaTypeDefFields: MobilettoOrmFieldDefConfigs = {
     tabIndex: 3,
     min: 1,
     max: 20,
+  },
+  packages: {
+    type: "string[]",
+    tabIndex: 4,
+    max: 100,
   },
 };
 
