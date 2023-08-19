@@ -5,3 +5,5 @@ export declare const SourceAssetTypeDefFields: MobilettoOrmFieldDefConfigs;
 export declare const SourceAssetTypeDef: MobilettoOrmTypeDef;
 export declare const DestinationAssetTypeDefFields: MobilettoOrmFieldDefConfigs;
 export declare const DestinationAssetTypeDef: MobilettoOrmTypeDef;
+export declare const ProfileJobTypeDefFields: MobilettoOrmFieldDefConfigs;
+export declare const ProfileJobTypeDef: MobilettoOrmTypeDef;

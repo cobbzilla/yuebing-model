@@ -97,7 +97,6 @@ export const DestinationAssetTypeDefFields: MobilettoOrmFieldDefConfigs = {
 export const DestinationAssetTypeDef = new MobilettoOrmTypeDef({
   typeName: "destinationAsset",
   shortName: "asset~dest",
-  scope: "local",
   tableFields: [
     "name",
     "profile",
@@ -113,4 +112,56 @@ export const DestinationAssetTypeDef = new MobilettoOrmTypeDef({
   ],
   textSearchFields: ["name", "profile", "source", "sourcePath", "owner"],
   fields: DestinationAssetTypeDefFields,
+});
+
+export const ProfileJobTypeDefFields: MobilettoOrmFieldDefConfigs = {
+  name: {
+    primary: true,
+    indexLevels: 3,
+    min: 1,
+    max: 2048,
+    updatable: false,
+    control: "label",
+    tabIndex: 1,
+  },
+  profile: {
+    required: true,
+    index: true,
+    ref: { refType: "mediaProfile" },
+    control: "label",
+    tabIndex: 2,
+  },
+  destinationAsset: {
+    required: true,
+    ref: { refType: "destinationAsset" },
+    control: "label",
+    tabIndex: 3,
+  },
+  args: {
+    required: true,
+    type: "string[]",
+    control: "label",
+    tabIndex: 4,
+  },
+  ...MobilettoScanObjectTypeDefConfig.fields,
+};
+
+export const ProfileJobTypeDef = new MobilettoOrmTypeDef({
+  typeName: "profileJob",
+  shortName: "profileJob",
+  tableFields: [
+    "name",
+    "profile",
+    "destinationAsset",
+    "args",
+    "status",
+    "owner",
+    "started",
+    "finished",
+    "errorCount",
+    "_meta.ctime",
+    "_meta.mtime",
+  ],
+  textSearchFields: ["name", "profile", "destinationAsset", "args"],
+  fields: ProfileJobTypeDefFields,
 });

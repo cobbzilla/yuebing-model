@@ -4,4 +4,5 @@ export type MediaType = MobilettoOrmObject & {
     name: string;
     from?: string;
     ext: string[];
+    packages?: string[];
 };

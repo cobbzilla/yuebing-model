@@ -4,7 +4,6 @@ export type MediaProfileType = MobilettoOrmObject & {
     name: string;
     media?: string;
     operation?: string;
-    command: string;
     ext: string;
     contentType: string;
     from?: string;

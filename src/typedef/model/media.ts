@@ -48,15 +48,25 @@ export const MediaOperationTypeDefFields: MobilettoOrmFieldDefConfigs = {
     updatable: false,
     tabIndex: 1,
   },
+  command: {
+    required: true,
+    min: 1,
+    max: 1024,
+    tabIndex: 4,
+  },
   minFileSize: {
     required: true,
     minValue: 0,
     control: "text",
     tabIndex: 2,
   },
-  func: {
+  analysis: {
     default: false,
     tabIndex: 3,
+  },
+  func: {
+    default: false,
+    tabIndex: 4,
   },
 };
 
@@ -85,12 +95,6 @@ export const MediaProfileTypeDefFields: MobilettoOrmFieldDefConfigs = {
   operation: {
     ref: { refType: "mediaOperation" },
     tabIndex: 3,
-  },
-  command: {
-    required: true,
-    min: 1,
-    max: 1024,
-    tabIndex: 4,
   },
   ext: {
     required: true,

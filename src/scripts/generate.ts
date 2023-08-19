@@ -29,6 +29,7 @@ import {
   DestinationAssetTypeDef,
   LibraryScanTypeDef,
   SourceScanTypeDef,
+  ProfileJobTypeDef,
 } from "../typedef/model/asset.js";
 import {
   MediaOperationTypeDef,
@@ -145,6 +146,7 @@ const GEN_TYPES: GenSpec[] = [
   { typedef: SourceScanTypeDef, generate: GEN_ALL },
   { typedef: SourceAssetTypeDef, generate: GEN_ALL },
   { typedef: DestinationAssetTypeDef, generate: GEN_ALL },
+  { typedef: ProfileJobTypeDef, generate: GEN_ALL },
   { typedef: AuthAccountTypeDef, generate: GEN_TYPE, tsDir: TS_AUTH_TYPE_DIR },
   { typedef: SessionTypeDef, generate: GEN_TYPE, tsDir: TS_AUTH_TYPE_DIR },
   { typedef: UsernameAndPasswordTypeDef, generate: GEN_TYPE, tsDir: TS_AUTH_TYPE_DIR },
