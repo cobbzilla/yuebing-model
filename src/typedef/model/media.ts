@@ -44,34 +44,40 @@ export const MediaOperationTypeDefFields: MobilettoOrmFieldDefConfigs = {
     regex: REGEX_VALIDATORS.username,
     tabIndex: 1,
   },
+  media: {
+    required: true,
+    ref: { refType: "media" },
+    updatable: false,
+    tabIndex: 2,
+  },
   analysis: {
     default: false,
     updatable: false,
-    tabIndex: 2,
+    tabIndex: 3,
   },
   command: {
     updatable: false,
     max: 1024,
-    tabIndex: 3,
+    tabIndex: 4,
   },
   func: {
     default: false,
     updatable: false,
-    tabIndex: 4,
+    tabIndex: 5,
   },
   minFileSize: {
     required: true,
     minValue: 0,
     control: "text",
-    tabIndex: 5,
+    tabIndex: 6,
   },
 };
 
 export const MediaOperationTypeDef = new MobilettoOrmTypeDef({
   typeName: "mediaOperation",
   shortName: "media~op",
-  tableFields: ["name", "analysis", "command", "func", "_meta.ctime", "_meta.mtime"],
-  textSearchFields: ["name", "command"],
+  tableFields: ["name", "media", "analysis", "command", "func", "_meta.ctime", "_meta.mtime"],
+  textSearchFields: ["name", "media", "command"],
   fields: MediaOperationTypeDefFields,
 });
 
@@ -85,11 +91,13 @@ export const MediaProfileTypeDefFields: MobilettoOrmFieldDefConfigs = {
   },
   enabled: { default: true, tabIndex: 2 },
   media: {
+    required: true,
     ref: { refType: "media" },
     updatable: false,
     tabIndex: 3,
   },
   operation: {
+    required: true,
     ref: { refType: "mediaOperation" },
     updatable: false,
     tabIndex: 4,
@@ -152,6 +160,7 @@ export const MediaPropertyTypeDefFields: MobilettoOrmFieldDefConfigs = {
     tabIndex: 1,
   },
   media: {
+    required: true,
     ref: { refType: "media" },
     tabIndex: 2,
   },

@@ -2,8 +2,8 @@ import { MobilettoOrmObject } from "mobiletto-orm-typedef";
 export type MediaProfileType = MobilettoOrmObject & {
     name: string;
     enabled?: boolean;
-    media?: string;
-    operation?: string;
+    media: string;
+    operation: string;
     operationConfig?: string;
     ext?: string;
     contentType?: string;
