@@ -6,6 +6,17 @@ if [ -z "${BASE_DIR}" ] ; then
     echo >&2 "no basedir"
     exit 2
 fi
+TOOLS_DIR="${BASE_DIR}"/src/tools
+TOOLS_FILE_COUNT="$(find ${TOOLS_DIR} -type f | wc -l)"
+if [ -z "${TOOLS_FILE_COUNT}" ] ; then
+    echo >&2 "no tools found in ${TOOLS_DIR}, please fix repo"
+    exit 3
+fi
+# shellcheck disable=SC2086
+if [ ${TOOLS_FILE_COUNT} -eq 0 ] ; then
+    echo >&2 "no tools found in ${TOOLS_DIR}, please fix repo"
+    exit 3
+fi
 
 clean () {
     find "${BASE_DIR}"/lib/esm -type f | grep -v package.json | xargs rm
@@ -15,7 +26,6 @@ clean () {
 generate () {
     INDEX_TS="${BASE_DIR}"/src/index.ts
     INDEX_BAK=$(mktemp "${BASE_DIR}"/src/index.ts.XXXXXX) || exit 3
-    TOOLS_DIR="${BASE_DIR}"/src/tools
     TOOLS_BAK=$(mktemp -d "${BASE_DIR}"/tools.tmp.XXXXXX) || exit 3
     SUCCESS=0
     cd "${BASE_DIR}" && \
