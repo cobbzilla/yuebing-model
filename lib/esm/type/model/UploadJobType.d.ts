@@ -1,6 +1,9 @@
 import { MobilettoOrmObject } from "mobiletto-orm-typedef";
 export type UploadJobType = MobilettoOrmObject & {
-    path: string;
+    localPath: string;
+    sourceAsset: string;
+    media: string;
+    profile: string;
     destination: string;
     status?: string;
     owner?: string;

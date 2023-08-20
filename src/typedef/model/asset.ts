@@ -132,7 +132,7 @@ export const ProfileJobTypeDef = new MobilettoOrmTypeDef({
 });
 
 export const UploadJobTypeDefFields: MobilettoOrmFieldDefConfigs = {
-  path: {
+  localPath: {
     primary: true,
     indexLevels: 3,
     max: 2048,
@@ -140,9 +140,29 @@ export const UploadJobTypeDefFields: MobilettoOrmFieldDefConfigs = {
     control: "label",
     tabIndex: 1,
   },
+  sourceAsset: {
+    required: true,
+    type: "string",
+    updatable: false,
+    control: "label",
+    tabIndex: 2,
+  },
+  media: {
+    required: true,
+    type: "string",
+    updatable: false,
+    control: "label",
+    tabIndex: 3,
+  },
+  profile: {
+    required: true,
+    type: "string",
+    updatable: false,
+    control: "label",
+    tabIndex: 4,
+  },
   destination: {
     required: true,
-    ref: { refType: "destination" },
     control: "label",
     tabIndex: 2,
   },
