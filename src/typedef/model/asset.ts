@@ -142,6 +142,8 @@ export const UploadJobTypeDefFields: MobilettoOrmFieldDefConfigs = {
   },
   sourceAsset: {
     required: true,
+    index: true,
+    indexLevels: 3,
     type: "string",
     updatable: false,
     control: "label",
@@ -164,7 +166,7 @@ export const UploadJobTypeDefFields: MobilettoOrmFieldDefConfigs = {
   destination: {
     required: true,
     control: "label",
-    tabIndex: 2,
+    tabIndex: 5,
   },
   ...MobilettoScanObjectTypeDefConfig.fields,
 };
