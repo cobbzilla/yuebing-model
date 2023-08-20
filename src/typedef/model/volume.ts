@@ -1,6 +1,7 @@
 import { MobilettoOrmTypeDef, MobilettoOrmFieldDefConfigs } from "mobiletto-orm-typedef";
 
 import * as valid from "../../validation.js";
+import { REGEX_VALIDATORS } from "../../validation.js";
 
 const LOCAL_FIELDS: MobilettoOrmFieldDefConfigs = {
   key: {
@@ -224,6 +225,7 @@ export const VolumeTypeDefFields: MobilettoOrmFieldDefConfigs = {
   name: {
     type: "string",
     primary: true,
+    regex: REGEX_VALIDATORS.volume,
     tabIndex: 1,
     min: 3,
     max: 100,
