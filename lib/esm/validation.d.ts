@@ -12,6 +12,7 @@ export declare const REGEX_VALIDATORS: {
     email: RegExp;
     host: RegExp;
     url: RegExp;
+    content_type: RegExp;
     raw_hex: RegExp;
     hex: RegExp;
     volume: RegExp;

@@ -5,4 +5,5 @@ export type MediaOperationType = MobilettoOrmObject & {
     minFileSize: number;
     analysis?: boolean;
     func?: boolean;
+    configType?: string;
 };

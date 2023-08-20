@@ -1,12 +1,12 @@
 import { MobilettoOrmFieldDefConfigs, MobilettoOrmTypeDef } from "mobiletto-orm-typedef";
-import * as valid from "../../validation.js";
+import { REGEX_VALIDATORS } from "../../validation.js";
 
 export const MediaTypeDefFields: MobilettoOrmFieldDefConfigs = {
   name: {
     primary: true,
     indexLevels: 0,
     max: 500,
-    regex: valid.REGEX_VALIDATORS.username,
+    regex: REGEX_VALIDATORS.username,
     tabIndex: 1,
   },
   from: {
@@ -41,12 +41,12 @@ export const MediaOperationTypeDefFields: MobilettoOrmFieldDefConfigs = {
     primary: true,
     indexLevels: 0,
     max: 500,
-    regex: valid.REGEX_VALIDATORS.username,
-    updatable: false,
+    regex: REGEX_VALIDATORS.username,
     tabIndex: 1,
   },
   command: {
     required: true,
+    updatable: false,
     max: 1024,
     tabIndex: 4,
   },
@@ -58,19 +58,26 @@ export const MediaOperationTypeDefFields: MobilettoOrmFieldDefConfigs = {
   },
   analysis: {
     default: false,
+    updatable: false,
     tabIndex: 3,
   },
   func: {
     default: false,
+    updatable: false,
     tabIndex: 4,
+  },
+  configType: {
+    type: "string",
+    updatable: false,
+    tabIndex: 5,
   },
 };
 
 export const MediaOperationTypeDef = new MobilettoOrmTypeDef({
   typeName: "mediaOperation",
   shortName: "media~op",
-  tableFields: ["name", "media", "value", "_meta.ctime", "_meta.mtime"],
-  textSearchFields: ["name", "media", "value"],
+  tableFields: ["name", "command", "analysis", "func", "configType", "_meta.ctime", "_meta.mtime"],
+  textSearchFields: ["name", "command", "configType"],
   fields: MediaOperationTypeDefFields,
 });
 
@@ -79,50 +86,63 @@ export const MediaProfileTypeDefFields: MobilettoOrmFieldDefConfigs = {
     primary: true,
     indexLevels: 0,
     max: 500,
-    regex: valid.REGEX_VALIDATORS.username,
-    updatable: false,
+    regex: REGEX_VALIDATORS.username,
     tabIndex: 1,
   },
+  enabled: { default: true, tabIndex: 2 },
   media: {
     ref: { refType: "media" },
-    tabIndex: 2,
+    updatable: false,
+    tabIndex: 3,
   },
   operation: {
     ref: { refType: "mediaOperation" },
-    tabIndex: 3,
+    updatable: false,
+    tabIndex: 4,
+  },
+  operationConfig: {
+    type: "string",
+    updatable: false,
+    tabIndex: 5,
+    max: 4096,
   },
   ext: {
     required: true,
+    updatable: false,
     max: 20,
-    tabIndex: 5,
+    tabIndex: 6,
   },
   contentType: {
     required: true,
+    updatable: false,
     min: 3,
     max: 500,
-    // todo: add content-type regex
-    tabIndex: 6,
+    regex: REGEX_VALIDATORS.content_type,
+    tabIndex: 7,
   },
   from: {
     required: false,
+    updatable: false,
     ref: { refType: "mediaProfile" },
+    tabIndex: 7,
   },
   subProfiles: {
     required: false,
+    updatable: false,
     type: "string[]",
     ref: { refType: "mediaProfile" },
+    tabIndex: 8,
   },
-  enabled: { default: true },
-  noop: { default: false },
-  primary: { default: false },
-  multiFile: { default: false },
+  noop: { default: false, tabIndex: 9, updatable: false },
+  primary: { default: false, tabIndex: 10, updatable: false },
+  multiFile: { default: false, tabIndex: 11, updatable: false },
 };
 
 export const MediaProfileTypeDef = new MobilettoOrmTypeDef({
   typeName: "mediaProfile",
   shortName: "media~prof",
-  tableFields: ["name", "media", "value", "_meta.ctime", "_meta.mtime"],
-  textSearchFields: ["name", "media", "value"],
+  tableFields: ["name", "media", "enabled", "operation", "contentType", "_meta.ctime", "_meta.mtime"],
+  textSearchFields: ["name", "media", "operation", "ext", "contentType", "from", "subProfiles"],
   fields: MediaProfileTypeDefFields,
 });
 
@@ -131,7 +151,7 @@ export const MediaPropertyTypeDefFields: MobilettoOrmFieldDefConfigs = {
     primary: true,
     indexLevels: 0,
     max: 500,
-    regex: valid.REGEX_VALIDATORS.username,
+    regex: REGEX_VALIDATORS.username,
     updatable: false,
     tabIndex: 1,
   },
