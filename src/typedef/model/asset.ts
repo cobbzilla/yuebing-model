@@ -140,7 +140,7 @@ export const UploadJobTypeDefFields: MobilettoOrmFieldDefConfigs = {
     control: "label",
     tabIndex: 1,
   },
-  sourceAsset: {
+  asset: {
     required: true,
     index: true,
     indexLevels: 3,
@@ -176,7 +176,10 @@ export const UploadJobTypeDef = new MobilettoOrmTypeDef({
   shortName: "uploadJob",
   scope: "local",
   tableFields: [
-    "path",
+    "localPath",
+    "asset",
+    "media",
+    "profile",
     "destination",
     "status",
     "owner",
@@ -186,6 +189,6 @@ export const UploadJobTypeDef = new MobilettoOrmTypeDef({
     "_meta.ctime",
     "_meta.mtime",
   ],
-  textSearchFields: ["path", "destination"],
+  textSearchFields: ["localPath", "asset", "media", "profile", "destination"],
   fields: UploadJobTypeDefFields,
 });
