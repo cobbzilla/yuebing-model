@@ -39,17 +39,17 @@ devDependencies:
     specifier: ^2.1.1
     version: 2.1.1
   mobiletto-orm:
-    specifier: ^2.2.40
-    version: 2.2.40
+    specifier: ^2.2.41
+    version: 2.2.41
   mobiletto-orm-scan-typedef:
     specifier: ^1.0.12
     version: 1.0.12
   mobiletto-orm-typedef:
-    specifier: ^2.4.5
-    version: 2.4.5
+    specifier: ^2.4.6
+    version: 2.4.6
   mobiletto-orm-typedef-gen:
-    specifier: ^2.3.42
-    version: 2.3.42
+    specifier: ^2.3.43
+    version: 2.3.43
   mocha:
     specifier: ^10.2.0
     version: 10.2.0
@@ -1219,19 +1219,19 @@ packages:
     resolution: {integrity: sha512-r2KVrR9EYAxKh4gcUkgIhiTgmgC10Fcah860IoaUsTGNCdOIpjpmgtzMyL/pjSwdGkn47OBXX7NE1/E9d0sbmA==}
     dev: true
 
-  /mobiletto-orm-typedef-gen@2.3.42:
-    resolution: {integrity: sha512-qa9+S+SqpDzfA5MKlOWJMtdOkF8xhPC2iReuL6QluhqKkeWE3WdoynWZ+EkL2zK9/c062Jzz5ucGZB6iSY/LTw==}
+  /mobiletto-orm-typedef-gen@2.3.43:
+    resolution: {integrity: sha512-tapZwNUJw3l7J63pCuCItlhVchfXcQJkhULWJjvJ0R7G1rd9u4t86T98d9SGPL2sw26CutVyEqm0YIhyTLZ0sg==}
     dev: true
 
-  /mobiletto-orm-typedef@2.4.5:
-    resolution: {integrity: sha512-EOP4ETo+ggcssH9JZrzkwxYV1TJ+prcTHzcNJyVpby2FHUHSSn9sCr0TlKGhTi1Ris8snJlZu8fvJ9/y5iJ4Ow==}
+  /mobiletto-orm-typedef@2.4.6:
+    resolution: {integrity: sha512-kWrMHgz6CqXP21H5bXh/NPI5AWqTkzqcv6AV9vO2XN6vqmbG6wkLDZ/6sh0ii6UPifEE3HO3M83ukGqmBDcmHg==}
     dependencies:
       shasum: 1.0.2
       uuid: 9.0.0
     dev: true
 
-  /mobiletto-orm@2.2.40:
-    resolution: {integrity: sha512-VVte4W9h1lhoLCtWwtc7x/efrIBOlpYJDMZKZpPsn377ipTwV334iDOR2Z6Ur02Qyn6MTDL3b+dG5zTyXztoHQ==}
+  /mobiletto-orm@2.2.41:
+    resolution: {integrity: sha512-lOan5Elyh48XV0SpbIEin+31L7xsTDX+pPW8vOpdS+06ps0YWoAQoof2TTf0be7JpjDYE42hGNsb3C5GfMbe6A==}
     dev: true
 
   /mocha@10.2.0:
