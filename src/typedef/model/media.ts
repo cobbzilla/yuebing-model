@@ -101,13 +101,11 @@ export const MediaProfileTypeDefFields: MobilettoOrmFieldDefConfigs = {
     max: 4096,
   },
   ext: {
-    required: true,
     updatable: false,
     max: 20,
     tabIndex: 6,
   },
   contentType: {
-    required: true,
     updatable: false,
     min: 3,
     max: 500,
@@ -121,7 +119,6 @@ export const MediaProfileTypeDefFields: MobilettoOrmFieldDefConfigs = {
     tabIndex: 7,
   },
   subProfiles: {
-    required: false,
     updatable: false,
     type: "string[]",
     ref: { refType: "mediaProfile" },
