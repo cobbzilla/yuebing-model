@@ -113,7 +113,6 @@ export const MediaProfileTypeDefFields: MobilettoOrmFieldDefConfigs = {
     tabIndex: 7,
   },
   from: {
-    required: false,
     updatable: false,
     ref: { refType: "mediaProfile" },
     tabIndex: 7,
