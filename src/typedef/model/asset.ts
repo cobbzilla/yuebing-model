@@ -168,6 +168,12 @@ export const UploadJobTypeDefFields: MobilettoOrmFieldDefConfigs = {
     control: "label",
     tabIndex: 5,
   },
+  size: {
+    required: true,
+    type: "number",
+    control: "label",
+    tabIndex: 6,
+  },
   ...MobilettoScanObjectTypeDefConfig.fields,
 };
 

@@ -5,6 +5,7 @@ export type UploadJobType = MobilettoOrmObject & {
     media: string;
     profile: string;
     destination: string;
+    size: number;
     status?: string;
     owner?: string;
     started?: number;
