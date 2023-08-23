@@ -19,8 +19,6 @@ export * from "./typedef/auth/usernameAndPassword.js";
 // export * from "./type/model/LibraryType.js";
 // export * from "./type/model/MediaType.js";
 // export * from "./type/model/MediaProfileType.js";
-// export * from "./type/model/MediaOperationType.js";
-// export * from "./type/model/MediaPropertyType.js";
 // export * from "./type/model/LibraryScanType.js";
 // export * from "./type/model/SourceScanType.js";
 // export * from "./type/model/SourceAssetType.js";

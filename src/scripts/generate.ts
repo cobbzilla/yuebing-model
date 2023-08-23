@@ -31,12 +31,7 @@ import {
   ProfileJobTypeDef,
   UploadJobTypeDef,
 } from "../typedef/model/asset.js";
-import {
-  MediaOperationTypeDef,
-  MediaProfileTypeDef,
-  MediaPropertyTypeDef,
-  MediaTypeDef,
-} from "../typedef/model/media.js";
+import { MediaProfileTypeDef, MediaTypeDef } from "../typedef/model/media.js";
 
 if (!process?.env?.YUEBING_DIR) {
   throw new Error("YUEBING_DIR env var not defined");
@@ -138,9 +133,7 @@ const GEN_TYPES: GenSpec[] = [
   { typedef: SourceTypeDef, generate: GEN_ALL },
   { typedef: DestinationTypeDef, generate: GEN_ALL },
   { typedef: MediaTypeDef, generate: GEN_ALL },
-  { typedef: MediaOperationTypeDef, generate: GEN_ALL },
   { typedef: MediaProfileTypeDef, generate: GEN_ALL },
-  { typedef: MediaPropertyTypeDef, generate: GEN_ALL },
   { typedef: LibraryTypeDef, generate: GEN_ALL },
   { typedef: LibraryScanTypeDef, generate: GEN_ALL },
   { typedef: SourceScanTypeDef, generate: GEN_ALL },

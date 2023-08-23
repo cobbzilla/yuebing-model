@@ -36,51 +36,6 @@ export const MediaTypeDef = new MobilettoOrmTypeDef({
   fields: MediaTypeDefFields,
 });
 
-export const MediaOperationTypeDefFields: MobilettoOrmFieldDefConfigs = {
-  name: {
-    primary: true,
-    indexLevels: 0,
-    max: 500,
-    regex: REGEX_VALIDATORS.username,
-    tabIndex: 1,
-  },
-  media: {
-    required: true,
-    ref: { refType: "media" },
-    updatable: false,
-    tabIndex: 2,
-  },
-  analysis: {
-    default: false,
-    updatable: false,
-    tabIndex: 3,
-  },
-  command: {
-    updatable: false,
-    max: 1024,
-    tabIndex: 4,
-  },
-  func: {
-    default: false,
-    updatable: false,
-    tabIndex: 5,
-  },
-  minFileSize: {
-    required: true,
-    minValue: 0,
-    control: "text",
-    tabIndex: 6,
-  },
-};
-
-export const MediaOperationTypeDef = new MobilettoOrmTypeDef({
-  typeName: "mediaOperation",
-  shortName: "media~op",
-  tableFields: ["name", "media", "analysis", "command", "func", "_meta.ctime", "_meta.mtime"],
-  textSearchFields: ["name", "media", "command"],
-  fields: MediaOperationTypeDefFields,
-});
-
 export const MediaProfileTypeDefFields: MobilettoOrmFieldDefConfigs = {
   name: {
     primary: true,
@@ -148,33 +103,4 @@ export const MediaProfileTypeDef = new MobilettoOrmTypeDef({
   tableFields: ["name", "media", "enabled", "operation", "contentType", "_meta.ctime", "_meta.mtime"],
   textSearchFields: ["name", "media", "operation", "ext", "contentType", "from", "subProfiles"],
   fields: MediaProfileTypeDefFields,
-});
-
-export const MediaPropertyTypeDefFields: MobilettoOrmFieldDefConfigs = {
-  name: {
-    primary: true,
-    indexLevels: 0,
-    max: 500,
-    regex: REGEX_VALIDATORS.username,
-    updatable: false,
-    tabIndex: 1,
-  },
-  media: {
-    required: true,
-    ref: { refType: "media" },
-    tabIndex: 2,
-  },
-  value: {
-    required: true,
-    max: 8 * 1024,
-    tabIndex: 3,
-  },
-};
-
-export const MediaPropertyTypeDef = new MobilettoOrmTypeDef({
-  typeName: "mediaProperty",
-  shortName: "media~prop",
-  tableFields: ["name", "media", "value", "_meta.ctime", "_meta.mtime"],
-  textSearchFields: ["name", "media", "value"],
-  fields: MediaPropertyTypeDefFields,
 });
