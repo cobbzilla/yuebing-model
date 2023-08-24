@@ -53,7 +53,6 @@ export const MediaProfileTypeDefFields: MobilettoOrmFieldDefConfigs = {
   },
   operation: {
     required: true,
-    ref: { refType: "mediaOperation" },
     updatable: false,
     tabIndex: 4,
   },
