@@ -1,6 +1,6 @@
 {
   "name": "yuebing-model",
-  "version": "2.7.19",
+  "version": "2.7.20",
   "type": "module",
   "description": "Data model for yuebing",
   "keywords": [
@@ -55,6 +55,7 @@
     "prettier": "^2.8.8",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^5.1.6",
-    "yuebing-messages": "^2.1.7"
+    "yuebing-messages": "^2.1.9",
+    "yuebing-util": "^1.0.0"
   }
 }

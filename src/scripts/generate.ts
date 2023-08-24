@@ -16,6 +16,7 @@ import {
   generateAdminHelper,
   MobilettoOrmTypeDef,
 } from "mobiletto-orm-typedef-gen";
+import { capitalize, uncapitalize } from "yuebing-util";
 
 import { PublicConfigTypeDef, PrivateConfigTypeDef, LocalConfigTypeDef } from "../typedef/model/config.js";
 import { AccountTypeDef, AuthAccountTypeDef } from "../typedef/model/account.js";
@@ -45,9 +46,6 @@ const TS_AUTH_TYPE_DIR = `${__dirname}/../../../src/type/auth`;
 const YB_MODEL_PACKAGE = JSON.parse(fs.readFileSync(`${__dirname}/../../../package.json`).toString("utf8")).name;
 
 const ybDir = process.env.YUEBING_DIR;
-
-const uncapitalize = (s: string): string => s.substring(0, 1).toLowerCase() + s.substring(1);
-const capitalize = (s: string): string => s.substring(0, 1).toUpperCase() + s.substring(1);
 
 const genTsType = (typeDef: MobilettoOrmTypeDef, tsTypeDir?: string) =>
   generateTypeScriptType(typeDef, {
