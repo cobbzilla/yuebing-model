@@ -103,7 +103,7 @@ export const ProfileJobTypeDefFields: MobilettoOrmFieldDefConfigs = {
     control: "label",
     tabIndex: 4,
   },
-  analysis: {
+  result: {
     type: "string",
     tabIndex: 5,
     control: "label",
@@ -119,6 +119,7 @@ export const ProfileJobTypeDef = new MobilettoOrmTypeDef({
     "profile",
     "asset",
     "args",
+    "result",
     "status",
     "owner",
     "started",
@@ -127,7 +128,7 @@ export const ProfileJobTypeDef = new MobilettoOrmTypeDef({
     "_meta.ctime",
     "_meta.mtime",
   ],
-  textSearchFields: ["name", "profile", "destinationAsset", "args", "analysis"],
+  textSearchFields: ["name", "profile", "destinationAsset", "args", "result"],
   fields: ProfileJobTypeDefFields,
 });
 
