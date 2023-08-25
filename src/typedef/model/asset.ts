@@ -98,14 +98,20 @@ export const ProfileJobTypeDefFields: MobilettoOrmFieldDefConfigs = {
     control: "label",
     tabIndex: 3,
   },
-  args: {
-    type: "string[]",
+  analysis: {
+    required: true,
+    default: false,
     control: "label",
     tabIndex: 4,
   },
+  args: {
+    type: "string[]",
+    control: "label",
+    tabIndex: 5,
+  },
   result: {
     type: "string",
-    tabIndex: 5,
+    tabIndex: 6,
     control: "label",
   },
   ...MobilettoScanObjectTypeDefConfig.fields,
@@ -118,6 +124,7 @@ export const ProfileJobTypeDef = new MobilettoOrmTypeDef({
     "name",
     "profile",
     "asset",
+    "analysis",
     "args",
     "result",
     "status",
