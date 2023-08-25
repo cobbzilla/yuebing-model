@@ -90,6 +90,12 @@ export const ProfileJobTypeDefFields: MobilettoOrmFieldDefConfigs = {
     control: "label",
     tabIndex: 2,
   },
+  operation: {
+    required: true,
+    max: 200,
+    control: "label",
+    tabIndex: 4,
+  },
   asset: {
     required: true,
     index: true,
@@ -102,17 +108,17 @@ export const ProfileJobTypeDefFields: MobilettoOrmFieldDefConfigs = {
     required: true,
     default: false,
     control: "label",
-    tabIndex: 4,
+    tabIndex: 5,
   },
   args: {
     type: "string[]",
     control: "label",
-    tabIndex: 5,
+    tabIndex: 6,
   },
   result: {
     type: "string",
-    tabIndex: 6,
     control: "label",
+    tabIndex: 7,
   },
   ...MobilettoScanObjectTypeDefConfig.fields,
 };
@@ -123,6 +129,7 @@ export const ProfileJobTypeDef = new MobilettoOrmTypeDef({
   tableFields: [
     "name",
     "profile",
+    "operation",
     "asset",
     "analysis",
     "args",
@@ -135,7 +142,7 @@ export const ProfileJobTypeDef = new MobilettoOrmTypeDef({
     "_meta.ctime",
     "_meta.mtime",
   ],
-  textSearchFields: ["name", "profile", "destinationAsset", "args", "result"],
+  textSearchFields: ["name", "profile", "operation", "destinationAsset", "args", "result"],
   fields: ProfileJobTypeDefFields,
 });
 
