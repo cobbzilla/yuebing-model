@@ -9,22 +9,12 @@ export const MediaTypeDefFields: MobilettoOrmFieldDefConfigs = {
     regex: REGEX_VALIDATORS.username,
     tabIndex: 1,
   },
-  from: {
-    required: false,
-    tabIndex: 2,
-    ref: { refType: "media" },
-  },
   ext: {
     required: true,
     index: true,
     type: "string[]",
-    tabIndex: 3,
+    tabIndex: 2,
     max: 20,
-  },
-  packages: {
-    type: "string[]",
-    tabIndex: 4,
-    max: 100,
   },
 };
 
