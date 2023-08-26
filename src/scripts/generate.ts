@@ -16,7 +16,7 @@ import {
   generateAdminHelper,
   MobilettoOrmTypeDef,
 } from "mobiletto-orm-typedef-gen";
-import { capitalize, uncapitalize } from "yuebing-util";
+import { capitalize, uncapitalize } from "zilla-util";
 
 import { PublicConfigTypeDef, PrivateConfigTypeDef, LocalConfigTypeDef } from "../typedef/model/config.js";
 import { AccountTypeDef, AuthAccountTypeDef } from "../typedef/model/account.js";

@@ -65,9 +65,9 @@ devDependencies:
   yuebing-messages:
     specifier: ^2.1.9
     version: 2.1.9
-  yuebing-util:
-    specifier: ^1.0.0
-    version: 1.0.0
+  zilla-util:
+    specifier: ^1.0.1
+    version: 1.0.1
 
 packages:
 
@@ -1812,6 +1812,6 @@ packages:
       hokey-runtime: 1.0.4
     dev: true
 
-  /yuebing-util@1.0.0:
-    resolution: {integrity: sha512-yd7FmTNLliJpmxYqGImuYJIWCV0LIV5DvJzAftXC1brSlyTGXiLmjMBJZoMrBRTHMr3S+iJV0qhitjmmSRdhsg==}
+  /zilla-util@1.0.1:
+    resolution: {integrity: sha512-BMCVSUERMZeez+ncDNbvlEMyD/g43+IYmHedxu0TnJTTuhjqLrU+7DW/rmzX9v/pf1ITUjflpvWvStEQC4lp+Q==}
     dev: true
