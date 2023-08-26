@@ -42,8 +42,8 @@ devDependencies:
     specifier: ^2.2.44
     version: 2.2.44
   mobiletto-orm-scan-typedef:
-    specifier: ^1.0.12
-    version: 1.0.12
+    specifier: ^1.0.13
+    version: 1.0.13
   mobiletto-orm-typedef:
     specifier: ^2.4.9
     version: 2.4.9
@@ -962,8 +962,8 @@ packages:
     hasBin: true
     dev: true
 
-  /hokey-runtime@1.0.4:
-    resolution: {integrity: sha512-1qc1B1lq17cesMvlE1jMnR3i+Wb3R/IvNLT9bsVLerGRc/uV0XbadN7KBjVQ9Miq2tKLbiVurIvR+Q0iiFczpQ==}
+  /hokey-runtime@1.0.8:
+    resolution: {integrity: sha512-YqJSwM99lVgkxZ0lv38LfzBCwMPYpgiYaDZoGDOHtE3+Nkjk9unEitsnwHZViAGscJPglTCJhdozkd/Gcf0kNA==}
     dev: true
 
   /ignore@5.2.4:
@@ -1218,8 +1218,8 @@ packages:
       consola: 3.2.3
     dev: true
 
-  /mobiletto-orm-scan-typedef@1.0.12:
-    resolution: {integrity: sha512-r2KVrR9EYAxKh4gcUkgIhiTgmgC10Fcah860IoaUsTGNCdOIpjpmgtzMyL/pjSwdGkn47OBXX7NE1/E9d0sbmA==}
+  /mobiletto-orm-scan-typedef@1.0.13:
+    resolution: {integrity: sha512-7/Heu5q536+vtBlcq1re/WQ55jp+n7nVVMfOPVz/feFn16g8Lchrq3/qjJSGfwa6ynEJCmJ4Gc0HOUubK5SxUQ==}
     dev: true
 
   /mobiletto-orm-typedef-gen@2.3.46:
@@ -1809,7 +1809,7 @@ packages:
   /yuebing-messages@2.1.9:
     resolution: {integrity: sha512-MIQUgTQ3BJrw3rrGdyaSsFKQJgc4ucqF6iMtdeDdu7fSa6SVT1OCDC/AQLP5ynQhdHcTFlOzVnIc4Cght+AsGQ==}
     dependencies:
-      hokey-runtime: 1.0.4
+      hokey-runtime: 1.0.8
     dev: true
 
   /zilla-util@1.0.1:
