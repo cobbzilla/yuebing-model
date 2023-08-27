@@ -84,7 +84,6 @@ export const MediaProfileTypeDefFields: MobilettoOrmFieldDefConfigs = {
   },
   noop: { default: false, tabIndex: 12, updatable: false },
   primary: { default: false, tabIndex: 13, updatable: false },
-  multiFile: { default: false, tabIndex: 14, updatable: false },
 };
 
 export const MediaProfileTypeDef = new MobilettoOrmTypeDef({

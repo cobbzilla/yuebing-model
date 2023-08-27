@@ -14,5 +14,4 @@ export type MediaProfileType = MobilettoOrmObject & {
     additionalAssets?: string[];
     noop?: boolean;
     primary?: boolean;
-    multiFile?: boolean;
 };
