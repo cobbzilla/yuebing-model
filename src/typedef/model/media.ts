@@ -22,7 +22,7 @@ export const MediaTypeDef = new MobilettoOrmTypeDef({
   typeName: "media",
   shortName: "media",
   tableFields: ["name", "ext", "_meta.ctime", "_meta.mtime"],
-  textSearchFields: ["name", "ext"],
+  search: { textSearchFields: ["name", "ext"] },
   fields: MediaTypeDefFields,
 });
 
@@ -90,6 +90,9 @@ export const MediaProfileTypeDef = new MobilettoOrmTypeDef({
   typeName: "mediaProfile",
   shortName: "media~prof",
   tableFields: ["name", "media", "enabled", "operation", "contentType", "_meta.ctime", "_meta.mtime"],
-  textSearchFields: ["name", "media", "operation", "ext", "contentType", "from", "subProfiles"],
+  search: {
+    textSearchFields: ["name", "media", "operation", "ext", "contentType", "from", "subProfiles"],
+    refSearch: { media: "select" },
+  },
   fields: MediaProfileTypeDefFields,
 });

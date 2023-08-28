@@ -7,7 +7,7 @@ export const LibraryScanTypeDef = new MobilettoOrmTypeDef({
   indexLevels: 0,
   scope: "local",
   tableFields: ["library", "status", "owner", "started", "finished", "errorCount"],
-  textSearchFields: ["library", "status", "owner"],
+  search: { textSearchFields: ["library", "status", "owner"] },
   fields: {
     library: {
       primary: true,
@@ -22,7 +22,7 @@ export const SourceScanTypeDef = new MobilettoOrmTypeDef({
   shortName: "scan~src",
   indexLevels: 2,
   tableFields: ["lock", "owner", "_mtime.ctime", "_mtime.mtime"],
-  textSearchFields: ["lock", "owner"],
+  search: { textSearchFields: ["lock", "owner"] },
   fields: {
     lock: {
       primary: true,
@@ -70,7 +70,10 @@ export const SourceAssetTypeDef = new MobilettoOrmTypeDef({
   typeName: "sourceAsset",
   shortName: "asset~src",
   tableFields: sourceAssetTableFields,
-  textSearchFields: sourceAssetSearchFields,
+  search: {
+    textSearchFields: sourceAssetSearchFields,
+    refSearch: { source: "select" },
+  },
   fields: SourceAssetTypeDefFields,
 });
 
@@ -142,7 +145,10 @@ export const ProfileJobTypeDef = new MobilettoOrmTypeDef({
     "_meta.ctime",
     "_meta.mtime",
   ],
-  textSearchFields: ["name", "profile", "operation", "destinationAsset", "args", "result"],
+  search: {
+    textSearchFields: ["name", "profile", "operation", "destinationAsset", "args", "result"],
+    refSearch: { profile: "select" },
+  },
   fields: ProfileJobTypeDefFields,
 });
 
@@ -210,6 +216,6 @@ export const UploadJobTypeDef = new MobilettoOrmTypeDef({
     "_meta.ctime",
     "_meta.mtime",
   ],
-  textSearchFields: ["localPath", "asset", "media", "profile", "destination"],
+  search: { textSearchFields: ["localPath", "asset", "media", "profile", "destination"] },
   fields: UploadJobTypeDefFields,
 });

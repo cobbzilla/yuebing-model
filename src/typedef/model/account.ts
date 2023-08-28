@@ -99,7 +99,7 @@ export const AccountTypeDef = new MobilettoOrmTypeDef({
   typeName: "account",
   shortName: "acct",
   tableFields: ACCOUNT_TABLE_FIELDS,
-  textSearchFields: ACCOUNT_TEXT_SEARCH_FIELDS,
+  search: { textSearchFields: ACCOUNT_TEXT_SEARCH_FIELDS },
   fields: {
     ...primaryAccountFields,
     admin: {
