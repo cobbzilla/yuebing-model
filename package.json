@@ -50,12 +50,12 @@
     "mobiletto-orm": "^2.2.46",
     "mobiletto-orm-scan-typedef": "^1.0.14",
     "mobiletto-orm-typedef": "^2.4.10",
-    "mobiletto-orm-typedef-gen": "^2.3.52",
+    "mobiletto-orm-typedef-gen": "^2.3.53",
     "mocha": "^10.2.0",
     "prettier": "^2.8.8",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^5.1.6",
-    "yuebing-messages": "^2.1.11",
+    "yuebing-messages": "^2.1.12",
     "zilla-util": "^1.0.1"
   }
 }
