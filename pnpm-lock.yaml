@@ -48,8 +48,8 @@ devDependencies:
     specifier: ^2.4.12
     version: 2.4.12
   mobiletto-orm-typedef-gen:
-    specifier: ^2.3.64
-    version: 2.3.64
+    specifier: ^2.3.69
+    version: 2.3.69
   mocha:
     specifier: ^10.2.0
     version: 10.2.0
@@ -1222,8 +1222,8 @@ packages:
     resolution: {integrity: sha512-myvzwwBPDgw2EEOX1pQvm0vDok5Baz73PX+5tCwhpmrOuCmzoQT7VyYBoaq8vjUsMXkofii9qhcBVvrL1TMTog==}
     dev: true
 
-  /mobiletto-orm-typedef-gen@2.3.64:
-    resolution: {integrity: sha512-yps9/XBwaX2gwfXM24t+cU85qxM/dCuxsbpl837C7s0wVh4Cfu6Jc8zgXpyFHSOrixNFLm9IsEnnvLc1YJt9HQ==}
+  /mobiletto-orm-typedef-gen@2.3.69:
+    resolution: {integrity: sha512-hcqOL2ncwSCtkdffsXZXAttfL9UPWDq6y131n1hFp5aDBwKBkkkCaMvCPDFHCObrEFlhc8aRJoX3gCzHJEvV1g==}
     dev: true
 
   /mobiletto-orm-typedef@2.4.12:
