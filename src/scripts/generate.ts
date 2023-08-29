@@ -54,18 +54,22 @@ const genTsType = (typeDef: MobilettoOrmTypeDef, tsTypeDir?: string) =>
 
 const genYuebing = (typeDef: MobilettoOrmTypeDef, ctx?: Record<string, string>) => {
   const type = uncapitalize(typeDef.typeName);
+  const utilsImportPath = ctx && ctx.utilsImportPath ? ctx.utilsImportPath : undefined;
+
   generateService(typeDef, YB_MODEL_PACKAGE, {
     outfile: `${ybDir}/utils/services/model/${type}Service.ts`,
   });
   generateStore(typeDef, YB_MODEL_PACKAGE, { outfile: `${ybDir}/stores/model/${type}Store.ts` });
-  generateAdmin(typeDef, YB_MODEL_PACKAGE, {
-    outfile: `${ybDir}/components/model/${type}/Model${capitalize(type)}Admin.vue`,
-  });
+  generateAdmin(
+    typeDef,
+    YB_MODEL_PACKAGE,
+    { outfile: `${ybDir}/components/model/${type}/Model${capitalize(type)}Admin.vue` },
+    utilsImportPath
+  );
 
   const apiDir = `${ybDir}/server/api/model/${type}`;
   const singletonDefault = ctx && ctx.singletonDefault ? ctx.singletonDefault : undefined;
   const singletonDefaultImport = ctx && ctx.singletonDefaultImport ? ctx.singletonDefaultImport : undefined;
-  const utilsImportPath = ctx && ctx.utilsImportPath ? ctx.utilsImportPath : undefined;
   generateApi(
     typeDef,
     YB_MODEL_PACKAGE,
