@@ -13,6 +13,7 @@ export const LibraryTypeDefFields: MobilettoOrmFieldDefConfigs = {
   media: {
     required: true,
     ref: { refType: "media" },
+    control: "select",
     tabIndex: 2,
   },
   sources: {
