@@ -12,6 +12,10 @@ export const LibraryScanTypeDef = new MobilettoOrmTypeDef({
     library: {
       primary: true,
       type: "string",
+      ref: {
+        refType: "library",
+      },
+      control: "select",
     },
     ...MobilettoScanObjectTypeDefConfig.fields,
   },
