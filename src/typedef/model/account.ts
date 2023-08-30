@@ -113,9 +113,10 @@ export const AccountTypeDef = new MobilettoOrmTypeDef({
     delete: {
       permission: { owner: true },
       validate: async (
-        caller: MobilettoOrmObject,
-        target: MobilettoOrmObject | MobilettoOrmIdArg
+        caller: MobilettoOrmObject | undefined,
+        target: MobilettoOrmObject | MobilettoOrmIdArg | null
       ): Promise<boolean | MobilettoOrmValidationErrors> => {
+        if (!caller || !target) return false;
         const targetId = typeof target === "object" ? AccountTypeDef.id(target as MobilettoOrmObject) : target;
         const callerId = AccountTypeDef.id(caller);
         // admins cannot delete themselves. another admin must unset their admin flag first.
@@ -132,9 +133,10 @@ export const AccountTypeDef = new MobilettoOrmTypeDef({
     update: {
       permission: { owner: true },
       validate: async (
-        caller: MobilettoOrmObject,
-        target: MobilettoOrmObject | MobilettoOrmIdArg
+        caller: MobilettoOrmObject | undefined,
+        target: MobilettoOrmObject | MobilettoOrmIdArg | null
       ): Promise<boolean | MobilettoOrmValidationErrors> => {
+        if (!caller || !target) return false;
         // admins cannot unset their own admin flag. another admin must change it for them
         if (AccountTypeDef.id(caller) === AccountTypeDef.id(target as MobilettoOrmObject) && caller.admin) {
           if (!(target as MobilettoOrmObject).admin) {
