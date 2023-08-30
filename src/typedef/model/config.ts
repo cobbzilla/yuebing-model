@@ -200,6 +200,46 @@ export const LocalConfigTypeDef = new MobilettoOrmTypeDef({
           default: 1000 * 60 * 10, // 10 minutes
           control: "duration",
         },
+        // how often to look for updated scan configs
+        // this only scan local disk, so can be semi-frequent
+        scanPollInterval: {
+          minValue: 1000 * 60, // 1 minute
+          maxValue: 1000 * 60 * 60, // 1 hour
+          default: 1000 * 60 * 2,
+          control: "duration",
+        },
+        // how long to sleep when waiting for new source assets to analyze, or waiting for current analysis to finish
+        analyzerPollInterval: {
+          minValue: 1000 * 10, // 10 seconds
+          maxValue: 1000 * 60 * 5, // 5 minutes
+          default: 1000 * 60, // 1 minute
+          control: "duration",
+        },
+        // how long to sleep when waiting for new profile jobs, or waiting for current profile job to finish
+        transformerPollInterval: {
+          minValue: 1000 * 10, // 10 seconds
+          maxValue: 1000 * 60 * 10, // 10 minutes
+          default: 1000 * 60, // 1 minute
+          control: "duration",
+        },
+        // how long to sleep when waiting for new upload jobs, or waiting for current upload jobs to finish
+        uploaderPollInterval: {
+          minValue: 1000 * 10, // 10 seconds
+          maxValue: 1000 * 60 * 10, // 10 minutes
+          default: 1000 * 60, // 1 minute
+          control: "duration",
+        },
+        downloadDir: {
+          default: "/tmp/ybDownloads",
+        },
+        assetDir: {
+          default: "/tmp/ybAssets",
+        },
+        runScanner: { default: true },
+        runAnalyzer: { default: true },
+        runTransformer: { default: true },
+        runUploader: { default: true },
+        removeLocalFile: { default: true },
       },
     },
   },
