@@ -39,17 +39,17 @@ devDependencies:
     specifier: ^2.1.1
     version: 2.1.1
   mobiletto-orm:
-    specifier: ^2.2.48
-    version: 2.2.48
+    specifier: ^2.2.49
+    version: 2.2.49
   mobiletto-orm-scan-typedef:
     specifier: ^1.0.14
     version: 1.0.14
   mobiletto-orm-typedef:
-    specifier: ^2.4.12
-    version: 2.4.12
+    specifier: ^2.4.13
+    version: 2.4.13
   mobiletto-orm-typedef-gen:
-    specifier: ^2.3.69
-    version: 2.3.69
+    specifier: ^2.3.71
+    version: 2.3.71
   mocha:
     specifier: ^10.2.0
     version: 10.2.0
@@ -63,8 +63,8 @@ devDependencies:
     specifier: ^5.1.6
     version: 5.1.6
   yuebing-messages:
-    specifier: ^2.1.13
-    version: 2.1.13
+    specifier: ^2.1.14
+    version: 2.1.14
   zilla-util:
     specifier: ^1.0.1
     version: 1.0.1
@@ -1222,19 +1222,19 @@ packages:
     resolution: {integrity: sha512-myvzwwBPDgw2EEOX1pQvm0vDok5Baz73PX+5tCwhpmrOuCmzoQT7VyYBoaq8vjUsMXkofii9qhcBVvrL1TMTog==}
     dev: true
 
-  /mobiletto-orm-typedef-gen@2.3.69:
-    resolution: {integrity: sha512-hcqOL2ncwSCtkdffsXZXAttfL9UPWDq6y131n1hFp5aDBwKBkkkCaMvCPDFHCObrEFlhc8aRJoX3gCzHJEvV1g==}
+  /mobiletto-orm-typedef-gen@2.3.71:
+    resolution: {integrity: sha512-1FlkMaXrfrEnczHahN/6dYTy5lq59Wwup9aqPyyX5Pi3VVLY1uAkXUHDMOX9AvOL0DZ+7JSrxcVAXcP1rmvOXg==}
     dev: true
 
-  /mobiletto-orm-typedef@2.4.12:
-    resolution: {integrity: sha512-1BcHSpQ4Pk1AqCM7yuwQZ1Ev9O1BNIPto6xlPTEL192RDO/MnEpCNEBGtRveIryWcUncleRO++W6GIIWFd4lzw==}
+  /mobiletto-orm-typedef@2.4.13:
+    resolution: {integrity: sha512-QlBByECq6pEfocrqbtR0AzZFCxSKyzYHEhT3igKlVhtBe4pBWrWFHG/2vQU/g5bxoUKhbTBO4zACKrlwFgbm9g==}
     dependencies:
       shasum: 1.0.2
       uuid: 9.0.0
     dev: true
 
-  /mobiletto-orm@2.2.48:
-    resolution: {integrity: sha512-KCGBXWtiRBfdIqupKWoe0JqwlE658Wm69FzgvgLus3TQjvD6Xgy+12BtoAiQcWh14aNtzjItkr/85nlQTDrrkw==}
+  /mobiletto-orm@2.2.49:
+    resolution: {integrity: sha512-9yQKiOboVlU2AefuOsGKKCcFntTyI0yczSU4gnhc3E6rkoQfOlmD+ukWjt/VBTQHusEYx65iF3oZkQ5V49tKgg==}
     dev: true
 
   /mocha@10.2.0:
@@ -1806,8 +1806,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /yuebing-messages@2.1.13:
-    resolution: {integrity: sha512-JHkQ+4fpk0rUVHZgUIfhRxEIsNFd6l5TrXjVUpr6wzx+mUK8XP1LhhRtl/T+ATwA0ucxHyXqHdme6CRoO2BWJQ==}
+  /yuebing-messages@2.1.14:
+    resolution: {integrity: sha512-+H64OQWzGx+5kCBf1YcYK0VD8ehQAvUnb8TtCpcCEinreEGwhovyFU/L4OKkgZRYu3TCMJW6yPji6JC2JUeUZw==}
     dependencies:
       hokey-runtime: 1.0.8
     dev: true
