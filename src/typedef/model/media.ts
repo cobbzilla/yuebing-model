@@ -38,6 +38,7 @@ export const MediaProfileTypeDefFields: MobilettoOrmFieldDefConfigs = {
   priority: { default: 0, tabIndex: 3 },
   media: {
     required: true,
+    control: "select",
     ref: { refType: "media" },
     updatable: false,
     tabIndex: 4,
