@@ -52,7 +52,7 @@ const genTsType = (typeDef: MobilettoOrmTypeDef, tsTypeDir?: string) =>
     outfile: `${tsTypeDir ? tsTypeDir : TS_MODEL_TYPE_DIR}/${capitalize(typeDef.typeName)}Type.ts`,
   });
 
-const genYuebing = (typeDef: MobilettoOrmTypeDef, ctx?: Record<string, string>) => {
+const genYuebing = (typeDef: MobilettoOrmTypeDef, ctx?: Record<string, string>, admin?: boolean) => {
   const type = uncapitalize(typeDef.typeName);
   const utilsImportPath = ctx && ctx.utilsImportPath ? ctx.utilsImportPath : undefined;
 
@@ -60,12 +60,14 @@ const genYuebing = (typeDef: MobilettoOrmTypeDef, ctx?: Record<string, string>) 
     outfile: `${ybDir}/utils/services/model/${type}Service.ts`,
   });
   generateStore(typeDef, YB_MODEL_PACKAGE, { outfile: `${ybDir}/stores/model/${type}Store.ts` });
-  generateAdmin(
-    typeDef,
-    YB_MODEL_PACKAGE,
-    { outfile: `${ybDir}/components/model/${type}/Model${capitalize(type)}Admin.vue` },
-    utilsImportPath
-  );
+  if (typeof admin === "undefined" || admin) {
+    generateAdmin(
+      typeDef,
+      YB_MODEL_PACKAGE,
+      { outfile: `${ybDir}/components/model/${type}/Model${capitalize(type)}Admin.vue` },
+      utilsImportPath
+    );
+  }
 
   const apiDir = `${ybDir}/server/api/model/${type}`;
   const singletonDefault = ctx && ctx.singletonDefault ? ctx.singletonDefault : undefined;
@@ -80,9 +82,9 @@ const genYuebing = (typeDef: MobilettoOrmTypeDef, ctx?: Record<string, string>) 
   );
 };
 
-const genAll = (typeDef: MobilettoOrmTypeDef, ctx?: Record<string, string>) => {
+const genAll = (typeDef: MobilettoOrmTypeDef, ctx?: Record<string, string>, admin?: boolean) => {
   genTsType(typeDef);
-  genYuebing(typeDef, ctx);
+  genYuebing(typeDef, ctx, admin);
 };
 
 const genHelpers = () => {
@@ -99,11 +101,12 @@ const genFilters = () => {
 };
 
 export const GEN_ALL = "all";
-export const GEN_TYPE = "type";
+export const GEN_ALL_NO_ADMIN = "all_no_admin";
+export const GEN_TYPE = "type_only";
 
 export type GenSpec = {
   typedef: MobilettoOrmTypeDef;
-  generate: "all" | "type";
+  generate: "all" | "all_no_admin" | "type_only";
   tsDir?: string;
   ctx?: Record<string, string>;
 };
@@ -112,6 +115,7 @@ export type GEN_FUNC = (spec: GenSpec) => void;
 
 export const GEN_ACTIONS: Record<string, GEN_FUNC> = {};
 GEN_ACTIONS[GEN_ALL] = (spec) => genAll(spec.typedef, spec.ctx);
+GEN_ACTIONS[GEN_ALL_NO_ADMIN] = (spec) => genAll(spec.typedef, spec.ctx, false);
 GEN_ACTIONS[GEN_TYPE] = (spec) => genTsType(spec.typedef, spec.tsDir);
 
 const GEN_TYPES: GenSpec[] = [
@@ -139,9 +143,9 @@ const GEN_TYPES: GenSpec[] = [
   { typedef: LibraryTypeDef, generate: GEN_ALL },
   { typedef: LibraryScanTypeDef, generate: GEN_ALL },
   { typedef: SourceScanTypeDef, generate: GEN_ALL },
-  { typedef: SourceAssetTypeDef, generate: GEN_ALL },
-  { typedef: ProfileJobTypeDef, generate: GEN_ALL },
-  { typedef: UploadJobTypeDef, generate: GEN_ALL },
+  { typedef: SourceAssetTypeDef, generate: GEN_ALL_NO_ADMIN },
+  { typedef: ProfileJobTypeDef, generate: GEN_ALL_NO_ADMIN },
+  { typedef: UploadJobTypeDef, generate: GEN_ALL_NO_ADMIN },
   { typedef: AuthAccountTypeDef, generate: GEN_TYPE, tsDir: TS_AUTH_TYPE_DIR },
   { typedef: SessionTypeDef, generate: GEN_TYPE, tsDir: TS_AUTH_TYPE_DIR },
   { typedef: UsernameAndPasswordTypeDef, generate: GEN_TYPE, tsDir: TS_AUTH_TYPE_DIR },
