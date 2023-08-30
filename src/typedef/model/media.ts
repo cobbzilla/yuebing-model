@@ -67,12 +67,14 @@ export const MediaProfileTypeDefFields: MobilettoOrmFieldDefConfigs = {
   },
   from: {
     updatable: false,
+    control: "select",
     ref: { refType: "mediaProfile" },
     tabIndex: 9,
   },
   subProfiles: {
     updatable: false,
     type: "string[]",
+    control: "multi",
     ref: { refType: "mediaProfile" },
     tabIndex: 10,
   },
