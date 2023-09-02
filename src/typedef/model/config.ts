@@ -187,14 +187,12 @@ export const LocalConfigTypeDef = new MobilettoOrmTypeDef({
       max: 1000,
     },
     autoscanEnabled: {
-      required: true,
-      default: false,
+      default: true,
     },
     autoscan: {
       when: (v) => v.autoscanEnabled === true,
       fields: {
         initialDelay: {
-          required: true,
           minValue: 1000 * 10, // 10 seconds
           maxValue: 1000 * 60 * 60, // 1 hour
           default: 1000 * 60 * 10, // 10 minutes
