@@ -39,8 +39,8 @@ devDependencies:
     specifier: ^2.1.1
     version: 2.1.1
   mobiletto-orm:
-    specifier: ^2.2.52
-    version: 2.2.52
+    specifier: ^2.2.53
+    version: 2.2.53
   mobiletto-orm-scan-typedef:
     specifier: ^1.0.15
     version: 1.0.15
@@ -48,8 +48,8 @@ devDependencies:
     specifier: ^2.4.16
     version: 2.4.16
   mobiletto-orm-typedef-gen:
-    specifier: ^2.4.10
-    version: 2.4.10
+    specifier: ^2.4.11
+    version: 2.4.11
   mocha:
     specifier: ^10.2.0
     version: 10.2.0
@@ -63,8 +63,8 @@ devDependencies:
     specifier: ^5.1.6
     version: 5.1.6
   yuebing-messages:
-    specifier: ^2.1.22
-    version: 2.1.22
+    specifier: ^2.1.24
+    version: 2.1.24
   zilla-util:
     specifier: ^1.0.1
     version: 1.0.1
@@ -1222,8 +1222,8 @@ packages:
     resolution: {integrity: sha512-ePoyW6FvrQT+8Qim5zNMF1OPHTjF7sgp5VTdbOrP+XT24161uFkcTfjP0KTmk6ANWFctSpo/hZAtJivlo052ag==}
     dev: true
 
-  /mobiletto-orm-typedef-gen@2.4.10:
-    resolution: {integrity: sha512-f533/L/+CZPiJXwUZWU+7YmOZwJx6G3Lng8m4X9lO331LqWU0Da4j+u6Lx0KKmYpEGdKzNL5UswmSMIgoEFOwQ==}
+  /mobiletto-orm-typedef-gen@2.4.11:
+    resolution: {integrity: sha512-0UCOaUBNmE5/yh5ALd9iaLnR6EnltyEVNrtY2KGmuQJ29j9WYnAukUyGAXHVgpGZUXd18N0cPmaHHNqJ/2ERcQ==}
     dev: true
 
   /mobiletto-orm-typedef@2.4.16:
@@ -1233,8 +1233,8 @@ packages:
       uuid: 9.0.0
     dev: true
 
-  /mobiletto-orm@2.2.52:
-    resolution: {integrity: sha512-QTQE+fCI0iYGx8P8PCMJwvqqrdNj9qUl8VpUoPfYxFMMyTMkEBW0Mc2FvWdGXWN553A6ntAU7eAsjGBlALoiJQ==}
+  /mobiletto-orm@2.2.53:
+    resolution: {integrity: sha512-jXnwPGwWiK7EIzAQtcYiVSFS4La2gh8V9V1WvmfT+Jpp3qEkWjnUUwBHwvLNbPq9sFuktI80wA6rK42/durwuA==}
     dev: true
 
   /mocha@10.2.0:
@@ -1806,8 +1806,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /yuebing-messages@2.1.22:
-    resolution: {integrity: sha512-FwNXw7ANEAxN/eNi+eb91jkyOmtYDzl9v+mI685frTrQa0FhxRPI62m8XP9PNzVHXOBrsiwrqSlaaiYaBqEd0w==}
+  /yuebing-messages@2.1.24:
+    resolution: {integrity: sha512-vT41j/Uosv0hQOs9cey7NiNumjPCCWeBpJtapO9WHCsTNoWlPqCxHQLEyZokt9PCWI6UTYnTUeB5YduVg8Btww==}
     dependencies:
       hokey-runtime: 1.0.9
     dev: true
