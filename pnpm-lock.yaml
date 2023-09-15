@@ -66,8 +66,8 @@ devDependencies:
     specifier: ^2.1.24
     version: 2.1.24
   zilla-util:
-    specifier: ^1.0.9
-    version: 1.0.9
+    specifier: ^1.0.10
+    version: 1.0.10
 
 packages:
 
@@ -1797,6 +1797,6 @@ packages:
       hokey-runtime: 1.0.9
     dev: true
 
-  /zilla-util@1.0.9:
-    resolution: {integrity: sha512-yGyTmHFwIiZ9qOj0jNpAKxxhF0up8/f2TCfjdKcu4XGUaWMp3VOVxpxc14t392LThYstJ2F0onH3D1vOOCGR6Q==}
+  /zilla-util@1.0.10:
+    resolution: {integrity: sha512-azYGaxQSRYEOi1yjhCcxBOWuQJqd/0wBJ+QNAX0SwWjYu3Ckyw2K0OvSgdWFHFdILKI7e9PvRECT6u4nDeEsHw==}
     dev: true
