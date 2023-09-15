@@ -12,22 +12,23 @@ export const LibraryScanTypeDef = new MobilettoOrmTypeDef({
   fields: {
     scanId: {
       primary: true,
+      control: "label",
       type: "string",
       regex: valid.REGEX_VALIDATORS.scan_id,
     },
     scheduled: {
       required: true,
       type: "number",
-      control: "timestamp",
+      control: "label",
       render: "datetime",
     },
     library: {
       type: "string",
+      control: "label",
       required: true,
       ref: {
         refType: "library",
       },
-      control: "select",
     },
     ...MobilettoScanObjectTypeDefConfig.fields,
   },
