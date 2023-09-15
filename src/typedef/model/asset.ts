@@ -18,6 +18,8 @@ export const LibraryScanTypeDef = new MobilettoOrmTypeDef({
     scheduled: {
       required: true,
       type: "number",
+      control: "timestamp",
+      render: "datetime",
     },
     library: {
       type: "string",
