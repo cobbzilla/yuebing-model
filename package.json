@@ -1,6 +1,6 @@
 {
   "name": "yuebing-model",
-  "version": "2.7.60",
+  "version": "2.7.61",
   "type": "module",
   "description": "Data model for yuebing",
   "keywords": [
@@ -56,6 +56,6 @@
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^5.1.6",
     "yuebing-messages": "^2.1.24",
-    "zilla-util": "^1.0.7"
+    "zilla-util": "^1.0.8"
   }
 }
