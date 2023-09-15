@@ -48,7 +48,7 @@
     "handlebars": "^4.7.7",
     "mobiletto-base": "^2.1.1",
     "mobiletto-orm": "^2.2.53",
-    "mobiletto-orm-scan-typedef": "^1.0.15",
+    "mobiletto-orm-scan-typedef": "^1.0.17",
     "mobiletto-orm-typedef": "^2.4.16",
     "mobiletto-orm-typedef-gen": "^2.4.11",
     "mocha": "^10.2.0",

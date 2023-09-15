@@ -1,17 +1,27 @@
 import { MobilettoOrmFieldDefConfigs, MobilettoOrmTypeDef } from "mobiletto-orm-typedef";
-import { MobilettoScanObjectTypeDefConfig } from "mobiletto-orm-scan-typedef";
+import { MobilettoScanLockTypeDefConfig, MobilettoScanObjectTypeDefConfig } from "mobiletto-orm-scan-typedef";
+import * as valid from "../../validation.js";
 
 export const LibraryScanTypeDef = new MobilettoOrmTypeDef({
   typeName: "libraryScan",
   shortName: "scan~lib",
   indexLevels: 0,
   scope: "local",
-  tableFields: ["library", "status", "owner", "started", "finished", "errorCount"],
-  search: { textSearchFields: ["library", "status", "owner"] },
+  tableFields: ["scanId", "library", "status", "owner", "started", "finished", "errorCount"],
+  search: { textSearchFields: ["scanId", "library", "status", "owner"] },
   fields: {
-    library: {
+    scanId: {
       primary: true,
       type: "string",
+      regex: valid.REGEX_VALIDATORS.scan_id,
+    },
+    scheduled: {
+      required: true,
+      type: "number",
+    },
+    library: {
+      type: "string",
+      required: true,
       ref: {
         refType: "library",
       },
@@ -27,16 +37,7 @@ export const SourceScanTypeDef = new MobilettoOrmTypeDef({
   indexLevels: 2,
   tableFields: ["lock", "owner", "_mtime.ctime", "_mtime.mtime"],
   search: { textSearchFields: ["lock", "owner"] },
-  fields: {
-    lock: {
-      primary: true,
-      type: "string",
-    },
-    owner: {
-      required: true,
-      type: "string",
-    },
-  },
+  fields: MobilettoScanLockTypeDefConfig.fields,
 });
 
 export const SourceAssetTypeDefFields: MobilettoOrmFieldDefConfigs = {

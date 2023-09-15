@@ -9,6 +9,7 @@ export declare const PATH_REGEX: RegExp;
 export declare const REGEX_VALIDATORS: {
     locale: RegExp;
     username: RegExp;
+    scan_id: RegExp;
     email: RegExp;
     host: RegExp;
     url: RegExp;
