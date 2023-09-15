@@ -48,8 +48,8 @@ devDependencies:
     specifier: ^2.4.16
     version: 2.4.16
   mobiletto-orm-typedef-gen:
-    specifier: ^2.4.11
-    version: 2.4.11
+    specifier: ^2.4.12
+    version: 2.4.12
   mocha:
     specifier: ^10.2.0
     version: 10.2.0
@@ -66,8 +66,8 @@ devDependencies:
     specifier: ^2.1.24
     version: 2.1.24
   zilla-util:
-    specifier: ^1.0.10
-    version: 1.0.10
+    specifier: ^1.0.12
+    version: 1.0.12
 
 packages:
 
@@ -1207,8 +1207,8 @@ packages:
     resolution: {integrity: sha512-pHNQ8e6xaNBJFGQxGe0PsDp18e8WFN3SPPLap0L4xgGrCuZ17vpd84b8GjlTK3h7Ruo2HWzQlRa8fZwx7j2yrQ==}
     dev: true
 
-  /mobiletto-orm-typedef-gen@2.4.11:
-    resolution: {integrity: sha512-0UCOaUBNmE5/yh5ALd9iaLnR6EnltyEVNrtY2KGmuQJ29j9WYnAukUyGAXHVgpGZUXd18N0cPmaHHNqJ/2ERcQ==}
+  /mobiletto-orm-typedef-gen@2.4.12:
+    resolution: {integrity: sha512-LGP4n8h0MDiahQR46XWMfNLyAQZbJit8wZlmDumuqMxSr9pNJzmPKDWjmoct1+QfSgB82Vl+QSfxt0le3Vqv4A==}
     dev: true
 
   /mobiletto-orm-typedef@2.4.16:
@@ -1797,6 +1797,6 @@ packages:
       hokey-runtime: 1.0.9
     dev: true
 
-  /zilla-util@1.0.10:
-    resolution: {integrity: sha512-azYGaxQSRYEOi1yjhCcxBOWuQJqd/0wBJ+QNAX0SwWjYu3Ckyw2K0OvSgdWFHFdILKI7e9PvRECT6u4nDeEsHw==}
+  /zilla-util@1.0.12:
+    resolution: {integrity: sha512-/5mK34KsZR/OpEDOhsWNviCq4cKYHg/r5+kW0NskAtWifq62jhTxxlvTeVTGQSyMUrz7J9ir16oS9dk0uIKGww==}
     dev: true

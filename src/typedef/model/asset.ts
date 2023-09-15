@@ -7,8 +7,8 @@ export const LibraryScanTypeDef = new MobilettoOrmTypeDef({
   shortName: "scan~lib",
   indexLevels: 0,
   scope: "local",
-  tableFields: ["scanId", "library", "status", "owner", "started", "finished", "errorCount"],
-  search: { textSearchFields: ["scanId", "library", "status", "owner"] },
+  tableFields: ["scanId", "library", "status", "started", "finished", "errorCount"],
+  search: { textSearchFields: ["scanId", "library", "status"] },
   fields: {
     scanId: {
       primary: true,
